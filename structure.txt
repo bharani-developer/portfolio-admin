@@ -1,0 +1,619 @@
++-- public
+¦   +-- favicon.svg
+¦   +-- icons.svg
++-- src
+¦   +-- app
+¦   ¦   +-- index.ts
+¦   ¦   +-- providers.tsx
+¦   ¦   +-- query-client.ts
+¦   ¦   +-- router.tsx
+¦   +-- assets
+¦   ¦   +-- fonts
+¦   ¦   ¦   +-- GeistMonoVariable.woff2
+¦   ¦   ¦   +-- GeistVariable.woff2
+¦   ¦   +-- icons
+¦   ¦   +-- images
+¦   ¦       +-- hero.png
+¦   +-- components
+¦   ¦   +-- common
+¦   ¦   ¦   +-- app-logo.tsx
+¦   ¦   ¦   +-- empty-state.tsx
+¦   ¦   ¦   +-- error-boundary.tsx
+¦   ¦   ¦   +-- error-state.tsx
+¦   ¦   ¦   +-- full-screen-loader.tsx
+¦   ¦   ¦   +-- page-container.tsx
+¦   ¦   ¦   +-- page-loader.tsx
+¦   ¦   ¦   +-- page-title.tsx
+¦   ¦   ¦   +-- skills-input.tsx
+¦   ¦   ¦   +-- theme-toggle.tsx
+¦   ¦   +-- editor
+¦   ¦   ¦   +-- form-editor.tsx
+¦   ¦   +-- forms
+¦   ¦   ¦   +-- form-image-upload.tsx
+¦   ¦   ¦   +-- form-input.tsx
+¦   ¦   ¦   +-- form-select.tsx
+¦   ¦   ¦   +-- form-switch.tsx
+¦   ¦   ¦   +-- form-textarea.tsx
+¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- submit-button.tsx
+¦   ¦   +-- layout
+¦   ¦   ¦   +-- app-breadcrumb.tsx
+¦   ¦   ¦   +-- app-header.tsx
+¦   ¦   ¦   +-- app-sidebar.tsx
+¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- page-container.tsx
+¦   ¦   +-- table
+¦   ¦   ¦   +-- data-table.tsx
+¦   ¦   ¦   +-- delete-dialog.tsx
+¦   ¦   ¦   +-- table-pagination.tsx
+¦   ¦   ¦   +-- table-search.tsx
+¦   ¦   +-- ui
+¦   ¦       +-- alert.tsx
+¦   ¦       +-- alert-dialog.tsx
+¦   ¦       +-- avatar.tsx
+¦   ¦       +-- badge.tsx
+¦   ¦       +-- breadcrumb.tsx
+¦   ¦       +-- button.tsx
+¦   ¦       +-- card.tsx
+¦   ¦       +-- checkbox.tsx
+¦   ¦       +-- collapsible.tsx
+¦   ¦       +-- dialog.tsx
+¦   ¦       +-- dropdown-menu.tsx
+¦   ¦       +-- form.tsx
+¦   ¦       +-- input.tsx
+¦   ¦       +-- label.tsx
+¦   ¦       +-- navigation-menu.tsx
+¦   ¦       +-- pagination.tsx
+¦   ¦       +-- progress.tsx
+¦   ¦       +-- scroll-area.tsx
+¦   ¦       +-- select.tsx
+¦   ¦       +-- separator.tsx
+¦   ¦       +-- sheet.tsx
+¦   ¦       +-- skeleton.tsx
+¦   ¦       +-- sonner.tsx
+¦   ¦       +-- switch.tsx
+¦   ¦       +-- table.tsx
+¦   ¦       +-- tabs.tsx
+¦   ¦       +-- textarea.tsx
+¦   ¦       +-- tooltip.tsx
+¦   +-- config
+¦   ¦   +-- dashboard.config.ts
+¦   ¦   +-- index.ts
+¦   ¦   +-- navigation.config.ts
+¦   ¦   +-- sidebar.config.ts
+¦   +-- guards
+¦   ¦   +-- auth-guard.tsx
+¦   ¦   +-- guest-guard.tsx
+¦   +-- layouts
+¦   ¦   +-- auth-layout.tsx
+¦   ¦   +-- dashboard-layout.tsx
+¦   +-- modules
+¦   ¦   +-- about
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- about-form.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-about.ts
+¦   ¦   ¦   ¦   +-- use-create-about.ts
+¦   ¦   ¦   ¦   +-- use-delete-about.ts
+¦   ¦   ¦   ¦   +-- use-update-about.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- about.page.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- about.route-config.tsx
+¦   ¦   ¦   ¦   +-- about.routes.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- about.schema.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- about.service.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- about.type.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- auth
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- change-password-form.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- login-form.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-change-password.ts
+¦   ¦   ¦   ¦   +-- use-login.ts
+¦   ¦   ¦   ¦   +-- use-logout.ts
+¦   ¦   ¦   ¦   +-- use-profile.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- login.page.tsx
+¦   ¦   ¦   ¦   +-- profile.page.tsx
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- auth.routes.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- change-password.schema.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- login.schema.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- auth.service.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- auth.type.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- blogs
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- blog-form.tsx
+¦   ¦   ¦   ¦   +-- blogs-actions.tsx
+¦   ¦   ¦   ¦   +-- blogs-table.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-blog.ts
+¦   ¦   ¦   ¦   +-- use-blogs.ts
+¦   ¦   ¦   ¦   +-- use-create-blog.ts
+¦   ¦   ¦   ¦   +-- use-delete-blog.ts
+¦   ¦   ¦   ¦   +-- use-update-blog.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- blogs-list.page.tsx
+¦   ¦   ¦   ¦   +-- create-blog.page.tsx
+¦   ¦   ¦   ¦   +-- edit-blog.page.tsx
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- blogs.routes.tsx
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- blogs.schema.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- blogs.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- blogs.type.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- certifications
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- certification-dialog.tsx
+¦   ¦   ¦   ¦   +-- certification-form.tsx
+¦   ¦   ¦   ¦   +-- certifications-actions.tsx
+¦   ¦   ¦   ¦   +-- certifications-filters.tsx
+¦   ¦   ¦   ¦   +-- certifications-table.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-certification.ts
+¦   ¦   ¦   ¦   +-- use-certifications.ts
+¦   ¦   ¦   ¦   +-- use-create-certification.ts
+¦   ¦   ¦   ¦   +-- use-delete-certification.ts
+¦   ¦   ¦   ¦   +-- use-update-certification.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- certifications-list.page.tsx
+¦   ¦   ¦   ¦   +-- create-certification.page.tsx
+¦   ¦   ¦   ¦   +-- edit-certification.page.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- certifications.routes.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- certifications.schema.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- certifications.service.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- certifications.type.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- contact
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- contact-actions.tsx
+¦   ¦   ¦   ¦   +-- contact-columns.tsx
+¦   ¦   ¦   ¦   +-- contact-details.tsx
+¦   ¦   ¦   ¦   +-- contact-filters.tsx
+¦   ¦   ¦   ¦   +-- contact-form.tsx
+¦   ¦   ¦   ¦   +-- contact-priority-badge.tsx
+¦   ¦   ¦   ¦   +-- contact-status-badge.tsx
+¦   ¦   ¦   ¦   +-- contact-table.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-active-contacts.ts
+¦   ¦   ¦   ¦   +-- use-contact.ts
+¦   ¦   ¦   ¦   +-- use-contacts.ts
+¦   ¦   ¦   ¦   +-- use-contact-stats.ts
+¦   ¦   ¦   ¦   +-- use-create-contact.ts
+¦   ¦   ¦   ¦   +-- use-delete-contact.ts
+¦   ¦   ¦   ¦   +-- use-mark-contact-read.ts
+¦   ¦   ¦   ¦   +-- use-mark-contact-replied.ts
+¦   ¦   ¦   ¦   +-- use-read-contacts.ts
+¦   ¦   ¦   ¦   +-- use-replied-contacts.ts
+¦   ¦   ¦   ¦   +-- use-unread-contacts.ts
+¦   ¦   ¦   ¦   +-- use-update-contact.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- contact-list.page.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- contact.routes.tsx
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- contact.schema.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- contact.service.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- contact.type.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- dashboard
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- dashboard-overview.tsx
+¦   ¦   ¦   ¦   +-- dashboard-skeleton.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- recent-blogs-card.tsx
+¦   ¦   ¦   ¦   +-- recent-contacts-card.tsx
+¦   ¦   ¦   ¦   +-- recent-projects-card.tsx
+¦   ¦   ¦   ¦   +-- stats-card.tsx.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-dashboard.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- dashboard.page.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- dashboard.routes.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- dashboard.service.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- dashboard.type.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- education
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- education-actions.tsx
+¦   ¦   ¦   ¦   +-- education-dialog.tsx
+¦   ¦   ¦   ¦   +-- education-filters.tsx
+¦   ¦   ¦   ¦   +-- education-form.tsx
+¦   ¦   ¦   ¦   +-- education-table.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-create-education.ts
+¦   ¦   ¦   ¦   +-- use-delete-education.ts
+¦   ¦   ¦   ¦   +-- use-education.ts
+¦   ¦   ¦   ¦   +-- use-educations.ts
+¦   ¦   ¦   ¦   +-- use-update-education.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- create-education.page.tsx
+¦   ¦   ¦   ¦   +-- edit-education.page.tsx
+¦   ¦   ¦   ¦   +-- education-list.page.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- education.routes.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- education.schema.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- education.service.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- education.type.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- utils
+¦   ¦   ¦   ¦   +-- build-education-payload.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- experience
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- experience-actions.tsx
+¦   ¦   ¦   ¦   +-- experience-dialog.tsx
+¦   ¦   ¦   ¦   +-- experience-filters.tsx
+¦   ¦   ¦   ¦   +-- experience-form.tsx
+¦   ¦   ¦   ¦   +-- experience-table.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-create-experience.ts
+¦   ¦   ¦   ¦   +-- use-delete-experience.ts
+¦   ¦   ¦   ¦   +-- use-experience.ts
+¦   ¦   ¦   ¦   +-- use-experiences.ts
+¦   ¦   ¦   ¦   +-- use-update-experience.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- create-experience.page.tsx
+¦   ¦   ¦   ¦   +-- edit-experience.page.tsx
+¦   ¦   ¦   ¦   +-- experience-list.page.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- experience.routes.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- experience.schema.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- experience.service.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- experience.type.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- hero
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- hero-form.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-create-hero.ts
+¦   ¦   ¦   ¦   +-- use-delete-hero.ts
+¦   ¦   ¦   ¦   +-- use-hero.ts
+¦   ¦   ¦   ¦   +-- use-update-hero.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- hero.page.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- hero.routes.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- hero.schema.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- hero.service.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- hero.type.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- not-found
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- not-found.page.tsx
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- not-found.routes.tsx
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- projects
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- project-dialog.tsx
+¦   ¦   ¦   ¦   +-- project-form.tsx
+¦   ¦   ¦   ¦   +-- projects-actions.tsx
+¦   ¦   ¦   ¦   +-- projects-filters.tsx
+¦   ¦   ¦   ¦   +-- projects-table.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-create-project.ts
+¦   ¦   ¦   ¦   +-- use-delete-project.ts
+¦   ¦   ¦   ¦   +-- use-project.ts
+¦   ¦   ¦   ¦   +-- use-projects.ts
+¦   ¦   ¦   ¦   +-- use-update-project.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- create-project.page.tsx
+¦   ¦   ¦   ¦   +-- edit-project.page.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- projects-list.page.tsx
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- projects.routes.tsx
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- projects.schema.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- projects.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- projects.type.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- services
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- service-form.tsx
+¦   ¦   ¦   ¦   +-- services-actions.tsx
+¦   ¦   ¦   ¦   +-- services-filters.tsx
+¦   ¦   ¦   ¦   +-- services-table.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-create-service.ts
+¦   ¦   ¦   ¦   +-- use-delete-service.ts
+¦   ¦   ¦   ¦   +-- use-service.ts
+¦   ¦   ¦   ¦   +-- use-services.ts
+¦   ¦   ¦   ¦   +-- use-services-actions.ts
+¦   ¦   ¦   ¦   +-- use-update-service.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- create-service.page.tsx
+¦   ¦   ¦   ¦   +-- edit-service.page.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- services-list.page.tsx
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- services.routes.tsx
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- services.schema.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- services.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- services.type.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- settings
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- settings-form.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-settings.ts
+¦   ¦   ¦   ¦   +-- use-update-settings.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- settings.page.tsx
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- settings.routes.tsx
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- settings.schema.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- settings.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- settings.type.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- skills
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- skill-form.tsx
+¦   ¦   ¦   ¦   +-- skills-actions.tsx
+¦   ¦   ¦   ¦   +-- skills-filters.tsx
+¦   ¦   ¦   ¦   +-- skills-table.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-create-skill.ts
+¦   ¦   ¦   ¦   +-- use-delete-skill.ts
+¦   ¦   ¦   ¦   +-- use-skill.ts
+¦   ¦   ¦   ¦   +-- use-skills.ts
+¦   ¦   ¦   ¦   +-- use-update-skill.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- create-skill.page.tsx
+¦   ¦   ¦   ¦   +-- edit-skill.page.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- skills-list.page.tsx
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- skills.routes.tsx
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- skills.schema.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- skills.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- skills.type.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- testimonials
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- testimonial-dialog.tsx
+¦   ¦   ¦   ¦   +-- testimonial-form.tsx
+¦   ¦   ¦   ¦   +-- testimonials-actions.tsx
+¦   ¦   ¦   ¦   +-- testimonials-filters.tsx
+¦   ¦   ¦   ¦   +-- testimonials-table.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- use-create-testimonial.ts
+¦   ¦   ¦   ¦   +-- use-delete-testimonial.ts
+¦   ¦   ¦   ¦   +-- use-testimonial.ts
+¦   ¦   ¦   ¦   +-- use-testimonials.ts
+¦   ¦   ¦   ¦   +-- use-update-testimonial.ts
+¦   ¦   ¦   +-- pages
+¦   ¦   ¦   ¦   +-- create-testimonial.page.tsx
+¦   ¦   ¦   ¦   +-- edit-testimonial.page.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- testimonials-list.page.tsx
+¦   ¦   ¦   +-- routes
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- testimonials.routes.tsx
+¦   ¦   ¦   +-- schemas
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- testimonials.schema.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- testimonials.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- testimonials.type.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- upload
+¦   ¦       +-- components
+¦   ¦       ¦   +-- file-upload.tsx
+¦   ¦       ¦   +-- gallery-upload.tsx
+¦   ¦       ¦   +-- image-preview.tsx
+¦   ¦       ¦   +-- image-upload.tsx
+¦   ¦       ¦   +-- index.ts
+¦   ¦       +-- hooks
+¦   ¦       ¦   +-- index.ts
+¦   ¦       ¦   +-- use-upload.ts
+¦   ¦       +-- routes
+¦   ¦       ¦   +-- index.ts
+¦   ¦       ¦   +-- upload.routes.tsx
+¦   ¦       +-- services
+¦   ¦       ¦   +-- index.ts
+¦   ¦       ¦   +-- upload.service.ts
+¦   ¦       +-- types
+¦   ¦       ¦   +-- index.ts
+¦   ¦       ¦   +-- upload.type.ts
+¦   ¦       +-- index.ts
+¦   +-- providers
+¦   ¦   +-- confirmation
+¦   ¦   ¦   +-- confirmation.context.ts
+¦   ¦   ¦   +-- confirmation-provider.tsx
+¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- use-confirmation.ts
+¦   ¦   +-- query-provider.tsx
+¦   ¦   +-- theme-provider.tsx
+¦   ¦   +-- tooltip-provider.tsx
+¦   +-- routes
+¦   ¦   +-- route.constant.ts
+¦   +-- shared
+¦   ¦   +-- config
+¦   ¦   ¦   +-- api.config.ts
+¦   ¦   +-- constants
+¦   ¦   ¦   +-- api.constant.ts
+¦   ¦   ¦   +-- api-endpoints.ts
+¦   ¦   ¦   +-- app.constant.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- message.constant.ts
+¦   ¦   ¦   +-- query.constant.ts
+¦   ¦   ¦   +-- query-keys.ts
+¦   ¦   ¦   +-- storage.constant.ts
+¦   ¦   +-- hooks
+¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- use-confirmation.ts
+¦   ¦   ¦   +-- use-debounce.ts
+¦   ¦   ¦   +-- use-pagination.ts
+¦   ¦   +-- lib
+¦   ¦   ¦   +-- auth-storage.ts
+¦   ¦   ¦   +-- env.ts
+¦   ¦   ¦   +-- format-date.ts
+¦   ¦   ¦   +-- format-date-time.ts
+¦   ¦   ¦   +-- format-file-size.ts
+¦   ¦   ¦   +-- generate-slug.ts
+¦   ¦   ¦   +-- handle-error.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- logger.ts
+¦   ¦   ¦   +-- storage.ts
+¦   ¦   ¦   +-- utils.ts
+¦   ¦   +-- schemas
+¦   ¦   ¦   +-- image.schema.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- services
+¦   ¦   ¦   +-- http-client.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- types
+¦   ¦       +-- api-response.type.ts
+¦   ¦       +-- auth.type.ts
+¦   ¦       +-- breadcrumb.type.ts
+¦   ¦       +-- common.type.ts
+¦   ¦       +-- error.type.ts
+¦   ¦       +-- image.type.ts
+¦   ¦       +-- index.ts
+¦   ¦       +-- pagination.type.ts
+¦   ¦       +-- sidebar-item.type.ts
+¦   ¦       +-- user.type.ts
+¦   +-- styles
+¦   ¦   +-- globals.css
+¦   ¦   +-- index.css
+¦   ¦   +-- theme.css
+¦   +-- App.tsx
+¦   +-- main.tsx
+¦   +-- vite-env.d.ts
++-- .env
++-- .gitignore
++-- components.json
++-- eslint.config.js
++-- index.html
++-- package.json
++-- package-lock.json
++-- README.md
++-- tsconfig.app.json
++-- tsconfig.json
++-- tsconfig.node.json
++-- vite.config.ts

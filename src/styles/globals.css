@@ -1,0 +1,275 @@
+/* global.css */
+/* -------------------------------------------------------------------------- */
+/*                                Tailwind CSS                                */
+/* -------------------------------------------------------------------------- */
+
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------- */
+/*                                 Root Setup                                 */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Base Layout                                 */
+/* -------------------------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+
+  -moz-osx-font-smoothing: grayscale;
+
+  -webkit-text-size-adjust: 100%;
+
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
+}
+
+html,
+body,
+#root {
+  min-height: 100dvh;
+}
+
+body {
+  font-family: "Geist Variable", sans-serif;
+
+  font-optical-sizing: auto;
+
+  background-color: hsl(var(--background));
+
+  color: hsl(var(--foreground));
+
+  overflow-x: hidden;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Selection                                   */
+/* -------------------------------------------------------------------------- */
+
+::selection {
+  background-color: hsl(var(--primary) / 0.2);
+
+  color: hsl(var(--foreground));
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Focus Ring                                  */
+/* -------------------------------------------------------------------------- */
+
+*:focus-visible {
+  outline: none;
+
+  box-shadow:
+    0 0 0 2px hsl(var(--background)),
+    0 0 0 4px hsl(var(--ring));
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 Scrollbar                                  */
+/* -------------------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+
+  background-color: hsl(var(--border));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Firefox */
+
+* {
+  scrollbar-width: thin;
+
+  scrollbar-color: hsl(var(--border)) transparent;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Typography                                  */
+/* -------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+
+  font-weight: 600;
+}
+
+p,
+li,
+span {
+  text-wrap: pretty;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  Images                                    */
+/* -------------------------------------------------------------------------- */
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+
+  max-width: 100%;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Links                                    */
+/* -------------------------------------------------------------------------- */
+
+a {
+  color: inherit;
+
+  text-decoration: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  Buttons                                   */
+/* -------------------------------------------------------------------------- */
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  Inputs                                    */
+/* -------------------------------------------------------------------------- */
+
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            Layout Containers                               */
+/* -------------------------------------------------------------------------- */
+
+#root {
+  isolation: isolate;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               Animations                                   */
+/* -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    animation-duration: 0.2s;
+
+    animation-timing-function: ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Utility Classes                                */
+/* -------------------------------------------------------------------------- */
+
+@utility page-container {
+  width: 100%;
+
+  margin-inline: auto;
+
+  padding-inline: 1rem;
+}
+
+@utility dashboard-container {
+  width: 100%;
+
+  max-width: 1600px;
+
+  margin-inline: auto;
+}
+
+@utility glass-card {
+  backdrop-filter: blur(16px);
+
+  background: hsl(var(--background) / 0.8);
+
+  border: 1px solid hsl(var(--border));
+}
+
+@utility gradient-text {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary)),
+    hsl(var(--primary) / 0.7)
+  );
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+}
+
+@utility animate-enter {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Keyframes                                   */
+/* -------------------------------------------------------------------------- */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}

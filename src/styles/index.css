@@ -1,0 +1,347 @@
+/*  index.css */
+
+/* -------------------------------------------------------------------------- */
+/* Tailwind                                                                    */
+/* -------------------------------------------------------------------------- */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@import "./theme.css";
+@import "./globals.css";
+/* -------------------------------------------------------------------------- */
+/* Base Reset                                                                  */
+/* -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+
+  border-color: var(--border);
+}
+
+* {
+  min-width: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+
+  text-size-adjust: 100%;
+
+  -webkit-font-smoothing: antialiased;
+
+  -moz-osx-font-smoothing: grayscale;
+
+  font-synthesis-weight: none;
+
+  hanging-punctuation: first last;
+
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+
+  min-height: 100vh;
+
+  background-color: var(--background);
+
+  color: var(--foreground);
+
+  font-family:
+    "Geist Variable",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  text-rendering: optimizeLegibility;
+
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+
+  isolation: isolate;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Typography                                                                  */
+/* -------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+
+  color: inherit;
+
+  font-weight: 600;
+
+  line-height: 1.2;
+
+  text-wrap: balance;
+
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+
+  text-wrap: pretty;
+}
+
+small {
+  font-size: 0.875rem;
+}
+
+strong {
+  font-weight: 600;
+}
+
+a {
+  color: inherit;
+
+  text-decoration: none;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Forms                                                                       */
+/* -------------------------------------------------------------------------- */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+button,
+input,
+textarea,
+select {
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Media                                                                       */
+/* -------------------------------------------------------------------------- */
+
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Tables                                                                      */
+/* -------------------------------------------------------------------------- */
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  border-spacing: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Selection                                                                   */
+/* -------------------------------------------------------------------------- */
+
+::selection {
+  background-color: var(--primary);
+
+  color: var(--primary-foreground);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Focus                                                                       */
+/* -------------------------------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+
+  outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Disabled                                                                    */
+/* -------------------------------------------------------------------------- */
+
+:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.6;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Scrollbar                                                                   */
+/* -------------------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--border) 85%, var(--foreground));
+
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Firefox Scrollbar                                                           */
+/* -------------------------------------------------------------------------- */
+
+html {
+  scrollbar-color: var(--border) transparent;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Utility                                                                     */
+/* -------------------------------------------------------------------------- */
+
+[hidden] {
+  display: none !important;
+}
+
+::backdrop {
+  background: rgb(0 0 0 / 0.5);
+
+  backdrop-filter: blur(4px);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Premium Dashboard Helpers                                                   */
+/* -------------------------------------------------------------------------- */
+
+.card-modern {
+  border: 1px solid var(--border);
+
+  background: var(--card);
+
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.04),
+    0 8px 24px rgb(0 0 0 / 0.04);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card-modern:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 4px 10px rgb(0 0 0 / 0.06),
+    0 16px 40px rgb(0 0 0 / 0.08);
+}
+
+.dark .card-modern {
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.2),
+    0 12px 32px rgb(0 0 0 / 0.3);
+}
+
+.page-container {
+  margin-inline: auto;
+
+  width: 100%;
+
+  max-width: 1600px;
+}
+
+.glass {
+  backdrop-filter: blur(20px);
+
+  background: color-mix(in oklab, var(--background) 80%, transparent);
+}
+
+.gradient-primary {
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    color-mix(in oklab, var(--primary) 70%, white)
+  );
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--foreground), var(--primary));
+
+  background-clip: text;
+
+  -webkit-background-clip: text;
+
+  color: transparent;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Reduced Motion                                                              */
+/* -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
+  }
+}
