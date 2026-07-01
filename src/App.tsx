@@ -14,9 +14,12 @@ import { Toaster } from "@/components/ui/sonner";
 
 const googleClientId =
   import.meta.env.VITE_GOOGLE_CLIENT_ID;
-console.log(
-  import.meta.env.VITE_GOOGLE_CLIENT_ID,
-);
+console.log("VITE_GOOGLE_CLIENT_ID:", googleClientId);
+console.log("import.meta.env:", import.meta.env);
+
+if (!googleClientId) {
+  throw new Error("VITE_GOOGLE_CLIENT_ID is missing.");
+}
 export default function App(): React.JSX.Element {
   if (!googleClientId) {
     throw new Error(
