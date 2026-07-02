@@ -1,4 +1,4 @@
-// src/guards/guest-guard.tsx
+import type { JSX } from "react";
 
 import { Navigate, Outlet } from "react-router-dom";
 
@@ -10,30 +10,38 @@ import { ROUTES } from "@/routes/route.constant";
 
 import { authStorage } from "@/shared/lib/auth-storage";
 
-export function GuestGuard(): React.JSX.Element {
+export function GuestGuard(): JSX.Element {
   const hasToken = authStorage.isAuthenticated();
 
-  const { data: user, isPending } = useProfile();
+  const {
+    data: user,
+    isPending,
+    isFetching,
+  } = useProfile();
 
-  /**
-   * Only show loader when a token exists
-   * and we're validating the session.
+  /*
+   * Only display a loader while validating
+   * an existing authenticated session.
    */
-  if (hasToken && isPending) {
+  if (hasToken && (isPending || isFetching)) {
     return <FullScreenLoader />;
   }
 
-  /**
-   * Authenticated users should not
-   * access guest pages.
+  /*
+   * Authenticated users should never
+   * access guest-only pages.
    */
   if (user) {
-    return <Navigate to={ROUTES.DASHBOARD} replace />;
+    return (
+      <Navigate
+        to={ROUTES.DASHBOARD}
+        replace
+      />
+    );
   }
 
-  /**
-   * Allow unauthenticated users
-   * to access login page.
+  /*
+   * No authenticated session.
    */
   return <Outlet />;
 }

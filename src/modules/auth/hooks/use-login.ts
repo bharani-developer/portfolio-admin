@@ -1,8 +1,6 @@
-// src\modules\auth\hooks\use-login.ts
-
 import { useMutation } from "@tanstack/react-query";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { toast } from "sonner";
 
@@ -23,20 +21,33 @@ import type {
   IProfileResponse,
 } from "../types/auth.type";
 
+interface ILocationState {
+  from?: {
+    pathname: string;
+  };
+}
+
 export function useLogin() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const redirectTo =
+    (location.state as ILocationState | null)?.from?.pathname ??
+    ROUTES.DASHBOARD;
 
   return useMutation<ILoginResponse, Error, ILoginPayload>({
-    mutationKey: ["auth", "login"],
+    mutationKey: QUERY_KEYS.AUTH.LOGIN,
 
-    mutationFn: async (payload: ILoginPayload): Promise<ILoginResponse> => {
-      return authService.login(payload);
-    },
+    mutationFn: authService.login,
 
     onMutate: async () => {
       authStorage.clear();
 
       await queryClient.cancelQueries({
+        queryKey: QUERY_KEYS.AUTH.PROFILE,
+      });
+
+      queryClient.removeQueries({
         queryKey: QUERY_KEYS.AUTH.PROFILE,
       });
     },
@@ -45,22 +56,16 @@ export function useLogin() {
       try {
         authStorage.setAccessToken(response.data.accessToken);
 
-        const profile = await authService.getProfile();
+        const profile = await queryClient.fetchQuery<IProfileResponse>({
+          queryKey: QUERY_KEYS.AUTH.PROFILE,
+          queryFn: authService.getProfile,
+        });
 
         authStorage.setUser(profile.data);
 
-        queryClient.setQueryData<IProfileResponse>(
-          QUERY_KEYS.AUTH.PROFILE,
-          profile,
-        );
-
-        await queryClient.invalidateQueries({
-          queryKey: QUERY_KEYS.AUTH.PROFILE,
-        });
-
         toast.success(response.message ?? "Login successful.");
 
-        navigate(ROUTES.DASHBOARD, {
+        navigate(redirectTo, {
           replace: true,
         });
       } catch (error) {

@@ -12,8 +12,7 @@ import { ConfirmationProvider } from "@/providers/confirmation";
 
 import { Toaster } from "@/components/ui/sonner";
 
-const googleClientId =
-  import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 console.log("VITE_GOOGLE_CLIENT_ID:", googleClientId);
 console.log("import.meta.env:", import.meta.env);
 
@@ -22,22 +21,16 @@ if (!googleClientId) {
 }
 export default function App(): React.JSX.Element {
   if (!googleClientId) {
-    throw new Error(
-      "VITE_GOOGLE_CLIENT_ID is missing.",
-    );
+    throw new Error("VITE_GOOGLE_CLIENT_ID is missing.");
   }
 
   return (
-    <GoogleOAuthProvider
-      clientId={googleClientId}
-    >
+    <GoogleOAuthProvider clientId={googleClientId}>
       <ThemeProvider>
         <QueryProvider>
           <TooltipProvider>
             <ConfirmationProvider>
-              <RouterProvider
-                router={router}
-              />
+              <RouterProvider router={router} />
 
               <Toaster
                 position="top-right"

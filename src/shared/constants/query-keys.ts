@@ -4,6 +4,12 @@ export const QUERY_KEYS = {
   AUTH: {
     ALL: ["auth"] as const,
 
+    LOGIN: ["auth", "login"] as const,
+
+    LOGOUT: ["auth", "logout"] as const,
+
+    REFRESH: ["auth", "refresh"] as const,
+
     PROFILE: ["auth", "profile"] as const,
   },
 
