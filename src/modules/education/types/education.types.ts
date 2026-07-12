@@ -150,8 +150,7 @@ export interface IEducationQueryParams {
   isActive?: boolean;
 }
 
-export interface IEducationsResponse
-  extends IApiResponse<IEducation[]> {
+export interface IEducationsResponse extends IApiResponse<IEducation[]> {
   meta?: IApiMeta | undefined;
 }
 

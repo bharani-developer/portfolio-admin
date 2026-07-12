@@ -2,7 +2,7 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { testimonialService } from "../services";
 

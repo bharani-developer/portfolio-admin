@@ -4,10 +4,7 @@ import { useMemo, useState } from "react";
 
 import type { ReactElement } from "react";
 
-import {
-  AlertCircle,
-  GraduationCap,
-} from "lucide-react";
+import { AlertCircle, GraduationCap } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,49 +23,34 @@ import {
   EducationTable,
 } from "../components";
 
-import {
-  useDeleteEducation,
-  useEducations,
-} from "../hooks";
+import { useDeleteEducation, useEducations } from "../hooks";
 
-import type {
-  IEducation,
-  IEducationQueryParams,
-} from "../types";
+import type { IEducation, IEducationQueryParams } from "../types";
 
 /* -------------------------------------------------------------------------- */
 /*                          Education List Page                               */
 /* -------------------------------------------------------------------------- */
 
 export function EducationListPage(): ReactElement {
-  const [selectedEducation, setSelectedEducation] =
-    useState<IEducation | null>(null);
+  const [selectedEducation, setSelectedEducation] = useState<IEducation | null>(
+    null,
+  );
 
-  const [isDialogOpen, setIsDialogOpen] =
-    useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const [searchTerm, setSearchTerm] =
-    useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const [educationLevel, setEducationLevel] =
-    useState("all");
+  const [educationLevel, setEducationLevel] = useState("all");
 
-  const [isCurrent, setIsCurrent] =
-    useState("all");
+  const [isCurrent, setIsCurrent] = useState("all");
 
-  const [isActive, setIsActive] =
-    useState("all");
+  const [isActive, setIsActive] = useState("all");
 
   /* ------------------------------------------------------------------------ */
   /*                               Pagination                                 */
   /* ------------------------------------------------------------------------ */
 
-  const {
-    page,
-    limit,
-    setPage,
-    setLimit,
-  } = usePagination({
+  const { page, limit, setPage, setLimit } = usePagination({
     initialPage: 1,
     initialLimit: 10,
   });
@@ -83,49 +65,35 @@ export function EducationListPage(): ReactElement {
   };
 
   if (searchTerm.trim()) {
-    query.searchTerm =
-      searchTerm.trim();
+    query.searchTerm = searchTerm.trim();
   }
 
   if (educationLevel !== "all") {
-    query.educationLevel =
-      educationLevel;
+    query.educationLevel = educationLevel;
   }
 
   if (isCurrent !== "all") {
-    query.isCurrent =
-      isCurrent === "true";
+    query.isCurrent = isCurrent === "true";
   }
 
   if (isActive !== "all") {
-    query.isActive =
-      isActive === "true";
+    query.isActive = isActive === "true";
   }
 
   /* ------------------------------------------------------------------------ */
   /*                               API Request                                */
   /* ------------------------------------------------------------------------ */
 
-  const {
-    data,
-    isLoading,
-    isFetching,
-    isError,
-    error,
-    refetch,
-  } = useEducations(query);
+  const { data, isLoading, isFetching, isError, error, refetch } =
+    useEducations(query);
 
-  const deleteEducation =
-    useDeleteEducation();
+  const deleteEducation = useDeleteEducation();
 
   /* ------------------------------------------------------------------------ */
   /*                                 Data                                     */
   /* ------------------------------------------------------------------------ */
 
-  const educations = useMemo(
-    () => data?.data ?? [],
-    [data],
-  );
+  const educations = useMemo(() => data?.data ?? [], [data]);
 
   /* ------------------------------------------------------------------------ */
   /*                                Statistics                                */
@@ -133,20 +101,11 @@ export function EducationListPage(): ReactElement {
 
   const stats = useMemo(
     () => ({
-      total:
-        data?.meta?.total ?? 0,
+      total: data?.meta?.total ?? 0,
 
-      active:
-        educations.filter(
-          (education) =>
-            education.isActive,
-        ).length,
+      active: educations.filter((education) => education.isActive).length,
 
-      current:
-        educations.filter(
-          (education) =>
-            education.isCurrent,
-        ).length,
+      current: educations.filter((education) => education.isCurrent).length,
     }),
     [data, educations],
   );
@@ -155,64 +114,48 @@ export function EducationListPage(): ReactElement {
   /*                             Filter Options                               */
   /* ------------------------------------------------------------------------ */
 
-  const educationLevels =
-    useMemo(
-      () =>
-        Array.from(
-          new Set(
-            educations
-              .map(
-                (education) =>
-                  education.educationLevel,
-              )
-              .filter(Boolean),
-          ),
-        ).sort(),
-      [educations],
-    );
+  const educationLevels = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          educations
+            .map((education) => education.educationLevel)
+            .filter(Boolean),
+        ),
+      ).sort(),
+    [educations],
+  );
 
   /* ------------------------------------------------------------------------ */
   /*                                Actions                                   */
   /* ------------------------------------------------------------------------ */
 
-  const handleCreate =
-    (): void => {
-      setSelectedEducation(null);
-
-      setIsDialogOpen(true);
-    };
-
-  const handleEdit = (
-    education: IEducation,
-  ): void => {
-    setSelectedEducation(
-      education,
-    );
+  const handleCreate = (): void => {
+    setSelectedEducation(null);
 
     setIsDialogOpen(true);
   };
 
-  const handleDelete =
-    async (
-      education: IEducation,
-    ): Promise<void> => {
-      await deleteEducation.mutateAsync(
-        {
-          id: education._id,
-        },
-      );
+  const handleEdit = (education: IEducation): void => {
+    setSelectedEducation(education);
 
-      await refetch();
-    };
+    setIsDialogOpen(true);
+  };
+
+  const handleDelete = async (education: IEducation): Promise<void> => {
+    await deleteEducation.mutateAsync({
+      id: education._id,
+    });
+
+    await refetch();
+  };
 
   /* ------------------------------------------------------------------------ */
   /*                               Loading                                    */
   /* ------------------------------------------------------------------------ */
 
   if (isLoading && !data) {
-    return (
-      <PageLoader message="Loading education..." />
-    );
+    return <PageLoader message="Loading education..." />;
   }
 
   /* ------------------------------------------------------------------------ */
@@ -221,7 +164,7 @@ export function EducationListPage(): ReactElement {
 
   if (isError) {
     return (
-      <PageContainer ultraWide>
+      <PageContainer>
         <PageTitle
           title="Education"
           description="Manage academic qualifications and education history."
@@ -262,8 +205,7 @@ export function EducationListPage(): ReactElement {
                   text-muted-foreground
                 "
               >
-                {error?.message ??
-                  "Something went wrong."}
+                {error?.message ?? "Something went wrong."}
               </p>
             </div>
 
@@ -285,7 +227,7 @@ export function EducationListPage(): ReactElement {
   /* ------------------------------------------------------------------------ */
 
   return (
-    <PageContainer ultraWide>
+    <PageContainer>
       <div className="space-y-6">
         <PageTitle
           title="Education"
@@ -301,146 +243,78 @@ export function EducationListPage(): ReactElement {
         />
 
         <EducationActions
-          totalEducations={
-            stats.total
-          }
-          activeEducations={
-            stats.active
-          }
-          currentEducations={
-            stats.current
-          }
-          onCreate={
-            handleCreate
-          }
+          totalEducations={stats.total}
+          activeEducations={stats.active}
+          currentEducations={stats.current}
+          onCreate={handleCreate}
           onRefresh={() => {
             void refetch();
           }}
         />
 
         <EducationFilters
-          searchTerm={
-            searchTerm
-          }
-          educationLevel={
-            educationLevel
-          }
-          isCurrent={
-            isCurrent
-          }
-          isActive={
-            isActive
-          }
-          educationLevels={
-            educationLevels
-          }
-          isLoading={
-            isFetching
-          }
-          onSearchChange={(
-            value,
-          ) => {
-            setSearchTerm(
-              value,
-            );
+          searchTerm={searchTerm}
+          educationLevel={educationLevel}
+          isCurrent={isCurrent}
+          isActive={isActive}
+          educationLevels={educationLevels}
+          isLoading={isFetching}
+          onSearchChange={(value) => {
+            setSearchTerm(value);
 
             setPage(1);
           }}
-          onEducationLevelChange={(
-            value,
-          ) => {
-            setEducationLevel(
-              value,
-            );
+          onEducationLevelChange={(value) => {
+            setEducationLevel(value);
 
             setPage(1);
           }}
-          onIsCurrentChange={(
-            value,
-          ) => {
-            setIsCurrent(
-              value,
-            );
+          onIsCurrentChange={(value) => {
+            setIsCurrent(value);
 
             setPage(1);
           }}
-          onIsActiveChange={(
-            value,
-          ) => {
-            setIsActive(
-              value,
-            );
+          onIsActiveChange={(value) => {
+            setIsActive(value);
 
             setPage(1);
           }}
         />
 
         <EducationTable
-          educations={
-            educations
-          }
+          educations={educations}
           meta={data?.meta}
-          isLoading={
-            isFetching
-          }
-          onPageChange={
-            setPage
-          }
-          onLimitChange={(
-            newLimit,
-          ) => {
-            setLimit(
-              newLimit,
-            );
+          isLoading={isFetching}
+          onPageChange={setPage}
+          onLimitChange={(newLimit) => {
+            setLimit(newLimit);
 
             setPage(1);
           }}
-          onEdit={
-            handleEdit
-          }
-          onDelete={(
-            education,
-          ) => {
-            void handleDelete(
-              education,
-            );
+          onEdit={handleEdit}
+          onDelete={(education) => {
+            void handleDelete(education);
           }}
         />
 
         <EducationDialog
-          open={
-            isDialogOpen
-          }
-          education={
-            selectedEducation
-          }
-          onOpenChange={(
-            open,
-          ) => {
+          open={isDialogOpen}
+          education={selectedEducation}
+          onOpenChange={(open) => {
             if (!open) {
-              setSelectedEducation(
-                null,
-              );
+              setSelectedEducation(null);
 
-              setIsDialogOpen(
-                false,
-              );
+              setIsDialogOpen(false);
 
               return;
             }
 
-            setIsDialogOpen(
-              true,
-            );
+            setIsDialogOpen(true);
           }}
           onSuccess={() => {
-            setSelectedEducation(
-              null,
-            );
+            setSelectedEducation(null);
 
-            setIsDialogOpen(
-              false,
-            );
+            setIsDialogOpen(false);
 
             void refetch();
           }}

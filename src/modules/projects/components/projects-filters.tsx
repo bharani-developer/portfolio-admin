@@ -98,9 +98,7 @@ export function ProjectsFilters({
               placeholder="Search projects..."
               aria-label="Search projects"
               className="pl-10"
-              onChange={(event) =>
-                onSearchChange(event.target.value)
-              }
+              onChange={(event) => onSearchChange(event.target.value)}
             />
           </div>
 
@@ -121,15 +119,10 @@ export function ProjectsFilters({
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Categories
-              </SelectItem>
+              <SelectItem value="all">All Categories</SelectItem>
 
               {categories.map((item) => (
-                <SelectItem
-                  key={item}
-                  value={item}
-                >
+                <SelectItem key={item} value={item}>
                   {item}
                 </SelectItem>
               ))}
@@ -153,15 +146,10 @@ export function ProjectsFilters({
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Statuses
-              </SelectItem>
+              <SelectItem value="all">All Statuses</SelectItem>
 
               {statuses.map((item) => (
-                <SelectItem
-                  key={item}
-                  value={item}
-                >
+                <SelectItem key={item} value={item}>
                   {item}
                 </SelectItem>
               ))}
@@ -185,17 +173,11 @@ export function ProjectsFilters({
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Projects
-              </SelectItem>
+              <SelectItem value="all">All Projects</SelectItem>
 
-              <SelectItem value="active">
-                Active
-              </SelectItem>
+              <SelectItem value="active">Active</SelectItem>
 
-              <SelectItem value="inactive">
-                Inactive
-              </SelectItem>
+              <SelectItem value="inactive">Inactive</SelectItem>
             </SelectContent>
           </Select>
         </div>

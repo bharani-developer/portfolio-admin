@@ -2,34 +2,23 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { skillsService } from "../services";
 
-import type {
-  ISkillsQueryParams,
-  ISkillsResponse,
-} from "../types";
+import type { ISkillsQueryParams, ISkillsResponse } from "../types";
 
 /* -------------------------------------------------------------------------- */
 /*                                Use Skills                                  */
 /* -------------------------------------------------------------------------- */
 
-export function useSkills(
-  params: ISkillsQueryParams,
-) {
+export function useSkills(params: ISkillsQueryParams) {
   return useQuery<ISkillsResponse, Error>({
-    queryKey: [
-      ...QUERY_KEYS.SKILLS.LIST,
-      params,
-    ],
+    queryKey: [...QUERY_KEYS.SKILLS.LIST, params],
 
-    queryFn: async () =>
-      skillsService.getSkills(params),
+    queryFn: async () => skillsService.getSkills(params),
 
-    placeholderData: (
-      previousData,
-    ) => previousData,
+    placeholderData: (previousData) => previousData,
 
     staleTime: 1000 * 60 * 5,
 

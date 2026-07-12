@@ -6,12 +6,7 @@ import type { ReactElement } from "react";
 
 import type { ColumnDef } from "@tanstack/react-table";
 
-import {
-  Edit,
-  Eye,
-  EyeOff,
-  Trash2,
-} from "lucide-react";
+import { Edit, Eye, EyeOff, Trash2 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -23,7 +18,7 @@ import { ServerTablePagination } from "@/components/table/server-table-paginatio
 
 import type { IApiMeta } from "@/shared/types";
 
-import { useConfirmation } from "@/shared/hooks/use-confirmation";
+import { useConfirmation } from "@/providers/confirmation/use-confirmation";
 
 import { useDeleteService } from "../hooks";
 
@@ -61,12 +56,9 @@ export function ServicesTable({
 }: ServicesTableProps): ReactElement {
   const confirmation = useConfirmation();
 
-  const deleteServiceMutation =
-    useDeleteService();
+  const deleteServiceMutation = useDeleteService();
 
-  const columns = useMemo<
-    ColumnDef<IService>[]
-  >(
+  const columns = useMemo<ColumnDef<IService>[]>(
     () => [
       {
         accessorKey: "title",
@@ -75,9 +67,7 @@ export function ServicesTable({
 
         cell: ({ row }) => (
           <div>
-            <p className="font-medium">
-              {row.original.title}
-            </p>
+            <p className="font-medium">{row.original.title}</p>
 
             <p
               className="
@@ -134,7 +124,7 @@ export function ServicesTable({
           ),
       },
 
-            {
+      {
         id: "actions",
 
         size: 180,
@@ -194,18 +184,17 @@ export function ServicesTable({
                 aria-label={`Delete ${service.title}`}
                 disabled={deleteServiceMutation.isPending}
                 onClick={async () => {
-                  const confirmed =
-                    await confirmation.confirm({
-                      title: "Delete Service",
+                  const confirmed = await confirmation.confirm({
+                    title: "Delete Service",
 
-                      description: `Are you sure you want to delete "${service.title}"? This action cannot be undone.`,
+                    description: `Are you sure you want to delete "${service.title}"? This action cannot be undone.`,
 
-                      confirmText: "Delete",
+                    confirmText: "Delete",
 
-                      cancelText: "Cancel",
+                    cancelText: "Cancel",
 
-                      destructive: true,
-                    });
+                    destructive: true,
+                  });
 
                   if (!confirmed) {
                     return;
@@ -223,11 +212,7 @@ export function ServicesTable({
         },
       },
     ],
-    [
-      confirmation,
-      deleteServiceMutation,
-      onEdit,
-    ],
+    [confirmation, deleteServiceMutation, onEdit],
   );
 
   return (
@@ -238,7 +223,7 @@ export function ServicesTable({
         isLoading={isLoading}
       />
 
-           {meta ? (
+      {meta ? (
         <ServerTablePagination
           meta={meta}
           isLoading={isLoading}

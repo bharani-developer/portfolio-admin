@@ -2,33 +2,23 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { projectsService } from "../services";
 
-import type {
-  IProjectsQueryParams,
-  IProjectsResponse,
-} from "../types";
+import type { IProjectsQueryParams, IProjectsResponse } from "../types";
 
 /* -------------------------------------------------------------------------- */
 /*                                Use Projects                                */
 /* -------------------------------------------------------------------------- */
 
-export function useProjects(
-  params: IProjectsQueryParams,
-) {
+export function useProjects(params: IProjectsQueryParams) {
   return useQuery<IProjectsResponse, Error>({
-    queryKey: QUERY_KEYS.PROJECTS.LIST(
-      params as Record<string, unknown>,
-    ),
+    queryKey: QUERY_KEYS.PROJECTS.LIST(params as Record<string, unknown>),
 
-    queryFn: async () =>
-      projectsService.getProjects(params),
+    queryFn: async () => projectsService.getProjects(params),
 
-    placeholderData: (
-      previousData,
-    ) => previousData,
+    placeholderData: (previousData) => previousData,
 
     staleTime: 1000 * 60 * 5,
 

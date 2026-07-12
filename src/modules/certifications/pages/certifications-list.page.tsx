@@ -4,17 +4,11 @@ import { useMemo, useState } from "react";
 
 import type { ReactElement } from "react";
 
-import {
-  AlertCircle,
-  Award,
-} from "lucide-react";
+import { AlertCircle, Award } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 import { PageLoader } from "@/components/common/page-loader";
 
@@ -31,52 +25,33 @@ import {
   CertificationsTable,
 } from "../components";
 
-import {
-  useCertifications,
-  useDeleteCertification,
-} from "../hooks";
+import { useCertifications, useDeleteCertification } from "../hooks";
 
-import type {
-  ICertification,
-  ICertificationQueryParams,
-} from "../types";
+import type { ICertification, ICertificationQueryParams } from "../types";
 
 /* -------------------------------------------------------------------------- */
 /*                       Certifications List Page                             */
 /* -------------------------------------------------------------------------- */
 
 export function CertificationsListPage(): ReactElement {
-  const [searchTerm, setSearchTerm] =
-    useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const [statusFilter, setStatusFilter] =
-    useState<
-      "all" | "active" | "inactive"
-    >("all");
+  const [statusFilter, setStatusFilter] = useState<
+    "all" | "active" | "inactive"
+  >("all");
 
-  const [issuerFilter, setIssuerFilter] =
-    useState("all");
+  const [issuerFilter, setIssuerFilter] = useState("all");
 
-  const [
-    selectedCertification,
-    setSelectedCertification,
-  ] = useState<ICertification | null>(
-    null,
-  );
+  const [selectedCertification, setSelectedCertification] =
+    useState<ICertification | null>(null);
 
-  const [isDialogOpen, setIsDialogOpen] =
-    useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   /* ------------------------------------------------------------------------ */
   /*                               Pagination                                 */
   /* ------------------------------------------------------------------------ */
 
-  const {
-    page,
-    limit,
-    setPage,
-    setLimit,
-  } = usePagination({
+  const { page, limit, setPage, setLimit } = usePagination({
     initialPage: 1,
     initialLimit: 10,
   });
@@ -85,15 +60,13 @@ export function CertificationsListPage(): ReactElement {
   /*                               Query Params                               */
   /* ------------------------------------------------------------------------ */
 
-  const query: ICertificationQueryParams =
-    {
-      page,
-      limit,
-    };
+  const query: ICertificationQueryParams = {
+    page,
+    limit,
+  };
 
   if (searchTerm.trim()) {
-    query.searchTerm =
-      searchTerm.trim();
+    query.searchTerm = searchTerm.trim();
   }
 
   if (issuerFilter !== "all") {
@@ -101,35 +74,26 @@ export function CertificationsListPage(): ReactElement {
   }
 
   if (statusFilter !== "all") {
-    query.isActive =
-      statusFilter === "active";
+    query.isActive = statusFilter === "active";
   }
 
   /* ------------------------------------------------------------------------ */
   /*                               API Request                                */
   /* ------------------------------------------------------------------------ */
 
-  const {
-    data,
-    isLoading,
-    isFetching,
-    isError,
-    error,
-    refetch,
-  } = useCertifications(query);
+  const { data, isLoading, isFetching, isError, error, refetch } =
+    useCertifications(query);
 
-  const deleteCertificationMutation =
-    useDeleteCertification();
+  const deleteCertificationMutation = useDeleteCertification();
 
   /* ------------------------------------------------------------------------ */
   /*                                 Data                                     */
   /* ------------------------------------------------------------------------ */
 
-  const certifications =
-    useMemo<ICertification[]>(
-      () => data?.data ?? [],
-      [data],
-    );
+  const certifications = useMemo<ICertification[]>(
+    () => data?.data ?? [],
+    [data],
+  );
 
   /* ------------------------------------------------------------------------ */
   /*                               Statistics                                 */
@@ -137,26 +101,14 @@ export function CertificationsListPage(): ReactElement {
 
   const stats = useMemo(
     () => ({
-      total:
-        data?.meta?.total ?? 0,
+      total: data?.meta?.total ?? 0,
 
-      active:
-        certifications.filter(
-          (
-            certification,
-          ) =>
-            certification.isActive,
-        ).length,
+      active: certifications.filter((certification) => certification.isActive)
+        .length,
 
-      verified:
-        certifications.filter(
-          (
-            certification,
-          ) =>
-            Boolean(
-              certification.credentialUrl,
-            ),
-        ).length,
+      verified: certifications.filter((certification) =>
+        Boolean(certification.credentialUrl),
+      ).length,
     }),
     [data, certifications],
   );
@@ -170,12 +122,7 @@ export function CertificationsListPage(): ReactElement {
       Array.from(
         new Set(
           certifications
-            .map(
-              (
-                certification,
-              ) =>
-                certification.issuer,
-            )
+            .map((certification) => certification.issuer)
             .filter(Boolean),
         ),
       ).sort(),
@@ -186,63 +133,46 @@ export function CertificationsListPage(): ReactElement {
   /*                                Actions                                   */
   /* ------------------------------------------------------------------------ */
 
-  const handleCreate =
-    (): void => {
-      setSelectedCertification(
-        null,
-      );
-
-      setIsDialogOpen(true);
-    };
-
-  const handleEdit = (
-    certification: ICertification,
-  ): void => {
-    setSelectedCertification(
-      certification,
-    );
+  const handleCreate = (): void => {
+    setSelectedCertification(null);
 
     setIsDialogOpen(true);
   };
 
-  const handleDelete =
-    async (
-      certification: ICertification,
-    ): Promise<void> => {
-      await deleteCertificationMutation.mutateAsync(
-        {
-          id: certification._id,
-        },
-      );
+  const handleEdit = (certification: ICertification): void => {
+    setSelectedCertification(certification);
 
-      await refetch();
-    };
+    setIsDialogOpen(true);
+  };
 
-  const handleDialogClose =
-    (): void => {
-      setSelectedCertification(
-        null,
-      );
+  const handleDelete = async (certification: ICertification): Promise<void> => {
+    await deleteCertificationMutation.mutateAsync({
+      id: certification._id,
+    });
 
-      setIsDialogOpen(false);
-    };
+    await refetch();
+  };
+
+  const handleDialogClose = (): void => {
+    setSelectedCertification(null);
+
+    setIsDialogOpen(false);
+  };
 
   /* ------------------------------------------------------------------------ */
   /*                                Loading                                   */
   /* ------------------------------------------------------------------------ */
 
   if (isLoading && !data) {
-    return (
-      <PageLoader message="Loading certifications..." />
-    );
+    return <PageLoader message="Loading certifications..." />;
   }
-    /* ------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------ */
   /*                               Error State                                */
   /* ------------------------------------------------------------------------ */
 
   if (isError) {
     return (
-      <PageContainer ultraWide>
+      <PageContainer>
         <PageTitle
           title="Certifications"
           description="Manage certifications and credentials."
@@ -283,8 +213,7 @@ export function CertificationsListPage(): ReactElement {
                   text-muted-foreground
                 "
               >
-                {error?.message ??
-                  "Something went wrong."}
+                {error?.message ?? "Something went wrong."}
               </p>
             </div>
 
@@ -306,7 +235,7 @@ export function CertificationsListPage(): ReactElement {
   /* ------------------------------------------------------------------------ */
 
   return (
-    <PageContainer ultraWide>
+    <PageContainer>
       <div className="space-y-6">
         <PageTitle
           title="Certifications"
@@ -322,94 +251,64 @@ export function CertificationsListPage(): ReactElement {
         />
 
         <CertificationsActions
-          totalCertifications={
-            stats.total
-          }
-          activeCertifications={
-            stats.active
-          }
-          verifiedCertifications={
-            stats.verified
-          }
-          onCreate={
-            handleCreate
-          }
+          totalCertifications={stats.total}
+          activeCertifications={stats.active}
+          verifiedCertifications={stats.verified}
+          onCreate={handleCreate}
           onRefresh={() => {
             void refetch();
           }}
         />
 
         <CertificationsFilters
-          searchTerm={
-            searchTerm
-          }
-          status={
-            statusFilter
-          }
-          issuer={
-            issuerFilter
-          }
-          issuers={
-            issuers
-          }
-          isLoading={
-            isFetching
-          }
-          onSearchChange={(
-            value,
-          ) => {
-            setSearchTerm(
-              value,
-            );
+          searchTerm={searchTerm}
+          status={statusFilter}
+          issuer={issuerFilter}
+          issuers={issuers}
+          isLoading={isFetching}
+          onSearchChange={(value) => {
+            setSearchTerm(value);
 
             setPage(1);
           }}
-          onStatusChange={(
-            value,
-          ) => {
-            setStatusFilter(
-              value,
-            );
+          onStatusChange={(value) => {
+            setStatusFilter(value);
 
             setPage(1);
           }}
-          onIssuerChange={(
-            value,
-          ) => {
-            setIssuerFilter(
-              value,
-            );
+          onIssuerChange={(value) => {
+            setIssuerFilter(value);
 
             setPage(1);
           }}
         />
-<CertificationsTable
-  certifications={certifications}
-  meta={data?.meta}
-  isLoading={isFetching}
-  onPageChange={setPage}
-  onLimitChange={(newLimit) => {
-    setLimit(newLimit);
-    setPage(1);
-  }}
-  onEdit={handleEdit}
-  onDelete={(certification) => {
-    void handleDelete(certification);
-  }}
-/>
+        <CertificationsTable
+          certifications={certifications}
+          meta={data?.meta}
+          isLoading={isFetching}
+          onPageChange={setPage}
+          onLimitChange={(newLimit) => {
+            setLimit(newLimit);
+            setPage(1);
+          }}
+          onEdit={handleEdit}
+          onDelete={(certification) => {
+            void handleDelete(certification);
+          }}
+        />
 
-<CertificationDialog
-  open={isDialogOpen}
-  certification={selectedCertification}
-  onOpenChange={(open) => {
-    if (!open) {
-      handleDialogClose();
-      return;
-    }
+        <CertificationDialog
+          open={isDialogOpen}
+          certification={selectedCertification}
+          onOpenChange={(open) => {
+            if (!open) {
+              handleDialogClose();
+              return;
+            }
 
-    setIsDialogOpen(true);
-  }}
-/>
+            setIsDialogOpen(true);
+          }}
+        />
       </div>
     </PageContainer>
   );

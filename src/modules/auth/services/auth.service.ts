@@ -14,7 +14,7 @@ import type {
   ILogoutResponse,
   IProfileResponse,
   IRefreshTokenResponse,
-} from "../types/auth.type";
+} from "../types/auth.types";
 
 const AUTH_ENDPOINTS = {
   LOGIN: "/auth/login",
@@ -36,14 +36,11 @@ export const authService = {
   /**
    * Email / Password Login
    */
-  async login(
-    payload: ILoginPayload,
-  ): Promise<ILoginResponse> {
-    const { data } =
-      await httpClient.post<ILoginResponse>(
-        AUTH_ENDPOINTS.LOGIN,
-        payload,
-      );
+  async login(payload: ILoginPayload): Promise<ILoginResponse> {
+    const { data } = await httpClient.post<ILoginResponse>(
+      AUTH_ENDPOINTS.LOGIN,
+      payload,
+    );
 
     return data;
   },
@@ -54,11 +51,10 @@ export const authService = {
   async googleLogin(
     payload: IGoogleLoginPayload,
   ): Promise<IGoogleLoginResponse> {
-    const { data } =
-      await httpClient.post<IGoogleLoginResponse>(
-        AUTH_ENDPOINTS.GOOGLE_LOGIN,
-        payload,
-      );
+    const { data } = await httpClient.post<IGoogleLoginResponse>(
+      AUTH_ENDPOINTS.GOOGLE_LOGIN,
+      payload,
+    );
 
     return data;
   },
@@ -67,10 +63,9 @@ export const authService = {
    * Current User Profile
    */
   async getProfile(): Promise<IProfileResponse> {
-    const { data } =
-      await httpClient.get<IProfileResponse>(
-        AUTH_ENDPOINTS.PROFILE,
-      );
+    const { data } = await httpClient.get<IProfileResponse>(
+      AUTH_ENDPOINTS.PROFILE,
+    );
 
     return data;
   },
@@ -80,22 +75,13 @@ export const authService = {
    */
   async updateProfile(
     payload: Partial<
-      Pick<
-        IAuthUser,
-        | "name"
-        | "givenName"
-        | "familyName"
-        | "locale"
-      >
+      Pick<IAuthUser, "name" | "givenName" | "familyName" | "locale">
     >,
   ): Promise<IApiSuccessResponse<IAuthUser>> {
-    const { data } =
-      await httpClient.patch<
-        IApiSuccessResponse<IAuthUser>
-      >(
-        AUTH_ENDPOINTS.UPDATE_PROFILE,
-        payload,
-      );
+    const { data } = await httpClient.patch<IApiSuccessResponse<IAuthUser>>(
+      AUTH_ENDPOINTS.UPDATE_PROFILE,
+      payload,
+    );
 
     return data;
   },
@@ -106,11 +92,10 @@ export const authService = {
   async changePassword(
     payload: IChangePasswordPayload,
   ): Promise<IChangePasswordResponse> {
-    const { data } =
-      await httpClient.post<IChangePasswordResponse>(
-        AUTH_ENDPOINTS.CHANGE_PASSWORD,
-        payload,
-      );
+    const { data } = await httpClient.post<IChangePasswordResponse>(
+      AUTH_ENDPOINTS.CHANGE_PASSWORD,
+      payload,
+    );
 
     return data;
   },
@@ -119,10 +104,9 @@ export const authService = {
    * Refresh Access Token
    */
   async refreshToken(): Promise<IRefreshTokenResponse> {
-    const { data } =
-      await httpClient.post<IRefreshTokenResponse>(
-        AUTH_ENDPOINTS.REFRESH_TOKEN,
-      );
+    const { data } = await httpClient.post<IRefreshTokenResponse>(
+      AUTH_ENDPOINTS.REFRESH_TOKEN,
+    );
 
     return data;
   },
@@ -131,10 +115,9 @@ export const authService = {
    * Logout
    */
   async logout(): Promise<ILogoutResponse> {
-    const { data } =
-      await httpClient.post<ILogoutResponse>(
-        AUTH_ENDPOINTS.LOGOUT,
-      );
+    const { data } = await httpClient.post<ILogoutResponse>(
+      AUTH_ENDPOINTS.LOGOUT,
+    );
 
     return data;
   },

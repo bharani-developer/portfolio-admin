@@ -12,10 +12,7 @@ import {
 
 import { EducationForm } from "./education-form";
 
-import {
-  useCreateEducation,
-  useUpdateEducation,
-} from "../hooks";
+import { useCreateEducation, useUpdateEducation } from "../hooks";
 
 import {
   buildCreateEducationPayload,
@@ -31,9 +28,7 @@ interface EducationDialogProps {
 
   education?: IEducation | null;
 
-  onOpenChange: (
-    open: boolean,
-  ) => void;
+  onOpenChange: (open: boolean) => void;
 
   onSuccess?: () => void;
 }
@@ -44,119 +39,81 @@ export function EducationDialog({
   onOpenChange,
   onSuccess,
 }: EducationDialogProps): ReactElement {
-  const createEducationMutation =
-    useCreateEducation();
+  const createEducationMutation = useCreateEducation();
 
-  const updateEducationMutation =
-    useUpdateEducation();
+  const updateEducationMutation = useUpdateEducation();
 
-  const isEditMode =
-    education !== null &&
-    education !== undefined;
+  const isEditMode = education !== null && education !== undefined;
 
   const isSubmitting =
-    createEducationMutation.isPending ||
-    updateEducationMutation.isPending;
+    createEducationMutation.isPending || updateEducationMutation.isPending;
 
-  const defaultValues =
-    useMemo<
-      Partial<EducationFormValues> | undefined
-    >(() => {
-      if (!education) {
-        return undefined;
-      }
+  const defaultValues = useMemo<
+    Partial<EducationFormValues> | undefined
+  >(() => {
+    if (!education) {
+      return undefined;
+    }
 
-      return {
-        institution:
-          education.institution,
+    return {
+      institution: education.institution,
 
-        institutionLogo:
-          education.institutionLogo,
+      institutionLogo: education.institutionLogo,
 
-        degree:
-          education.degree,
+      degree: education.degree,
 
-        fieldOfStudy:
-          education.fieldOfStudy,
+      fieldOfStudy: education.fieldOfStudy,
 
-        educationLevel:
-          education.educationLevel,
+      educationLevel: education.educationLevel,
 
-        educationType:
-          education.educationType,
+      educationType: education.educationType,
 
-        location:
-          education.location,
+      location: education.location,
 
-        startDate:
-          education.startDate,
+      startDate: education.startDate,
 
-        endDate:
-          education.endDate ?? "",
+      endDate: education.endDate ?? "",
 
-        isCurrent:
-          education.isCurrent,
+      isCurrent: education.isCurrent,
 
-        gradeType:
-          education.gradeType,
+      gradeType: education.gradeType,
 
-        grade:
-          education.grade ?? "",
+      grade: education.grade ?? "",
 
-        description:
-          education.description ?? "",
+      description: education.description ?? "",
 
-        achievements:
-          education.achievements ?? [],
+      achievements: education.achievements ?? [],
 
-        skills:
-          education.skills ?? [],
+      skills: education.skills ?? [],
 
-        institutionWebsite:
-          education.institutionWebsite ??
-          "",
+      institutionWebsite: education.institutionWebsite ?? "",
 
-        sortOrder:
-          education.sortOrder,
+      sortOrder: education.sortOrder,
 
-        isActive:
-          education.isActive,
-      };
-    }, [education]);
-
-  const handleSubmit =
-    async (
-      values: EducationFormValues,
-    ): Promise<void> => {
-      if (isEditMode && education) {
-        await updateEducationMutation.mutateAsync(
-          {
-            id: education._id,
-
-            payload:
-              buildUpdateEducationPayload(
-                values,
-              ),
-          },
-        );
-      } else {
-        await createEducationMutation.mutateAsync(
-          buildCreateEducationPayload(
-            values,
-          ),
-        );
-      }
-
-      onOpenChange(false);
-
-      onSuccess?.();
+      isActive: education.isActive,
     };
+  }, [education]);
+
+  const handleSubmit = async (values: EducationFormValues): Promise<void> => {
+    if (isEditMode && education) {
+      await updateEducationMutation.mutateAsync({
+        id: education._id,
+
+        payload: buildUpdateEducationPayload(values),
+      });
+    } else {
+      await createEducationMutation.mutateAsync(
+        buildCreateEducationPayload(values),
+      );
+    }
+
+    onOpenChange(false);
+
+    onSuccess?.();
+  };
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className="
           max-h-[90vh]
@@ -166,9 +123,7 @@ export function EducationDialog({
       >
         <DialogHeader>
           <DialogTitle>
-            {isEditMode
-              ? "Update Education"
-              : "Create Education"}
+            {isEditMode ? "Update Education" : "Create Education"}
           </DialogTitle>
 
           <DialogDescription>
@@ -184,17 +139,9 @@ export function EducationDialog({
                 defaultValues,
               }
             : {})}
-          isSubmitting={
-            isSubmitting
-          }
-          submitText={
-            isEditMode
-              ? "Update Education"
-              : "Create Education"
-          }
-          onSubmit={
-            handleSubmit
-          }
+          isSubmitting={isSubmitting}
+          submitText={isEditMode ? "Update Education" : "Create Education"}
+          onSubmit={handleSubmit}
         />
       </DialogContent>
     </Dialog>

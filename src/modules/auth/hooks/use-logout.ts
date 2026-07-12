@@ -5,11 +5,11 @@ import { toast } from "sonner";
 
 import { authService } from "../services/auth.service";
 
-import { ROUTES } from "@/routes/route.constant";
+import { ROUTES } from "@/constants/route.constants";
 
 import { queryClient } from "@/app/query-client";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { authStorage } from "@/shared/lib/auth-storage";
 

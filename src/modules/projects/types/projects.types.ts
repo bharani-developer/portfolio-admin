@@ -1,10 +1,6 @@
 // src/modules/projects/types/projects.type.ts
 
-import type {
-  IApiMeta,
-  IApiResponse,
-  IBaseEntity,
-} from "@/shared/types";
+import type { IApiMeta, IApiResponse, IBaseEntity } from "@/shared/types";
 
 import type { ProjectFormValues } from "../schemas";
 
@@ -162,8 +158,7 @@ export type IUpdateProjectResponse = IApiResponse<IProject>;
 
 export type IDeleteProjectResponse = IApiResponse<IProject>;
 
-export interface IProjectsResponse
-  extends IApiResponse<IProject[]> {
+export interface IProjectsResponse extends IApiResponse<IProject[]> {
   meta: IApiMeta | undefined;
 }
 

@@ -2,29 +2,20 @@
 
 import { type ReactElement } from "react";
 
-import {
-  GoogleLogin,
-  type CredentialResponse,
-} from "@react-oauth/google";
+import { GoogleLogin, type CredentialResponse } from "@react-oauth/google";
 
 import { toast } from "sonner";
 
 import { useGoogleLogin } from "../hooks/use-google-login";
 
 export function GoogleLoginButton(): ReactElement {
-  const googleLoginMutation =
-    useGoogleLogin();
+  const googleLoginMutation = useGoogleLogin();
 
-  const handleSuccess = (
-    credentialResponse: CredentialResponse,
-  ): void => {
-    const credential =
-      credentialResponse.credential;
+  const handleSuccess = (credentialResponse: CredentialResponse): void => {
+    const credential = credentialResponse.credential;
 
     if (!credential) {
-      toast.error(
-        "Google authentication failed.",
-      );
+      toast.error("Google authentication failed.");
 
       return;
     }
@@ -35,9 +26,7 @@ export function GoogleLoginButton(): ReactElement {
   };
 
   const handleError = (): void => {
-    toast.error(
-      "Google authentication failed.",
-    );
+    toast.error("Google authentication failed.");
   };
 
   return (

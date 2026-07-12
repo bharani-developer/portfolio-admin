@@ -1,15 +1,10 @@
 import { useState, type ReactElement } from "react";
 
-import {
-  Check,
-  Loader2,
-  MailCheck,
-  Trash2,
-} from "lucide-react";
+import { Check, Loader2, MailCheck, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-import { useConfirmation } from "@/shared/hooks/use-confirmation";
+import { useConfirmation } from "@/providers/confirmation/use-confirmation";
 
 import {
   useDeleteContact,
@@ -23,84 +18,74 @@ interface ContactActionsProps {
   contact: IContact;
 }
 
-export function ContactActions({
-  contact,
-}: ContactActionsProps): ReactElement {
+export function ContactActions({ contact }: ContactActionsProps): ReactElement {
   const confirmation = useConfirmation();
 
   const markReadMutation = useMarkContactRead();
 
-  const markRepliedMutation =
-    useMarkContactReplied();
+  const markRepliedMutation = useMarkContactReplied();
 
-  const deleteMutation =
-    useDeleteContact();
+  const deleteMutation = useDeleteContact();
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleMarkRead =
-    async (): Promise<void> => {
-      if (contact.isRead) {
-        return;
-      }
+  const handleMarkRead = async (): Promise<void> => {
+    if (contact.isRead) {
+      return;
+    }
 
-      setLoading(true);
+    setLoading(true);
 
-      try {
-        await markReadMutation.mutateAsync({
-          id: contact._id,
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
+    try {
+      await markReadMutation.mutateAsync({
+        id: contact._id,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const handleMarkReplied =
-    async (): Promise<void> => {
-      if (contact.isReplied) {
-        return;
-      }
+  const handleMarkReplied = async (): Promise<void> => {
+    if (contact.isReplied) {
+      return;
+    }
 
-      setLoading(true);
+    setLoading(true);
 
-      try {
-        await markRepliedMutation.mutateAsync({
-          id: contact._id,
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
+    try {
+      await markRepliedMutation.mutateAsync({
+        id: contact._id,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const handleDelete =
-    async (): Promise<void> => {
-      const confirmed =
-        await confirmation.confirm({
-          title: "Delete Contact",
+  const handleDelete = async (): Promise<void> => {
+    const confirmed = await confirmation.confirm({
+      title: "Delete Contact",
 
-          description:
-            "This action cannot be undone.",
+      description: "This action cannot be undone.",
 
-          confirmText: "Delete",
+      confirmText: "Delete",
 
-          destructive: true,
-        });
+      destructive: true,
+    });
 
-      if (!confirmed) {
-        return;
-      }
+    if (!confirmed) {
+      return;
+    }
 
-      setLoading(true);
+    setLoading(true);
 
-      try {
-        await deleteMutation.mutateAsync({
-          id: contact._id,
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
+    try {
+      await deleteMutation.mutateAsync({
+        id: contact._id,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex items-center gap-2">

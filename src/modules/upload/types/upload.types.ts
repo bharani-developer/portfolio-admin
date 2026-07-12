@@ -28,11 +28,9 @@ export interface IDeleteImagePayload {
 /*                                API Responses                               */
 /* -------------------------------------------------------------------------- */
 
-export type IUploadImageResponse =
-  IApiResponse<IUploadedImage>;
+export type IUploadImageResponse = IApiResponse<IUploadedImage>;
 
-export type IDeleteImageResponse =
-  IApiResponse<null>;
+export type IDeleteImageResponse = IApiResponse<null>;
 
 /* -------------------------------------------------------------------------- */
 /*                               Hook Variables                               */
@@ -56,10 +54,7 @@ export interface IImageUploadValue {
   publicId: string;
 }
 
-export type ImageAspectRatio =
-  | "square"
-  | "video"
-  | "portrait";
+export type ImageAspectRatio = "square" | "video" | "portrait";
 
 /* -------------------------------------------------------------------------- */
 /*                              Component Types                               */
@@ -68,9 +63,7 @@ export type ImageAspectRatio =
 export interface IImageUploadProps {
   value?: IImageUploadValue | null;
 
-  onChange: (
-    value: IImageUploadValue | null,
-  ) => void;
+  onChange: (value: IImageUploadValue | null) => void;
 
   disabled?: boolean;
 
@@ -84,9 +77,7 @@ export interface IImageUploadProps {
 export interface IGalleryUploadProps {
   value?: IImageUploadValue[];
 
-  onChange: (
-    value: IImageUploadValue[],
-  ) => void;
+  onChange: (value: IImageUploadValue[]) => void;
 
   disabled?: boolean;
 
@@ -110,9 +101,7 @@ export interface IImagePreviewProps {
 }
 
 export interface IFileUploadProps {
-  onChange: (
-    file: File | null,
-  ) => void;
+  onChange: (file: File | null) => void;
 
   accept?: string;
 
@@ -125,11 +114,7 @@ export interface IFileUploadProps {
 /*                               Utility Types                                */
 /* -------------------------------------------------------------------------- */
 
-export type UploadStatus =
-  | "idle"
-  | "uploading"
-  | "success"
-  | "error";
+export type UploadStatus = "idle" | "uploading" | "success" | "error";
 
 export interface IUploadState {
   status: UploadStatus;

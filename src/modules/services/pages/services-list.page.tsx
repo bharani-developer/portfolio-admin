@@ -120,7 +120,7 @@ export function ServicesListPage(): ReactElement {
 
   if (isError) {
     return (
-      <PageContainer ultraWide>
+      <PageContainer>
         <PageTitle
           title="Services"
           description="Manage your portfolio services and professional offerings."
@@ -183,7 +183,7 @@ export function ServicesListPage(): ReactElement {
   /* ------------------------------------------------------------------------ */
 
   return (
-    <PageContainer ultraWide>
+    <PageContainer>
       <div className="space-y-6">
         <PageTitle
           title="Services"

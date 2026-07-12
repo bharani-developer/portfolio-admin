@@ -3,7 +3,7 @@ import type { RouteObject } from "react-router-dom";
 import { LoginPage } from "../pages/login.page";
 import { ProfilePage } from "../pages/profile.page";
 
-import { ROUTES } from "@/routes/route.constant";
+import { ROUTES } from "@/constants/route.constants";
 
 export const authPublicRoutes: RouteObject[] = [
   {

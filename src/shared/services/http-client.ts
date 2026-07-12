@@ -9,9 +9,9 @@ import type {
   InternalAxiosRequestConfig,
 } from "axios";
 
-import { API_CONFIG, API_PREFIX } from "@/shared/constants/api.constant";
+import { API_CONFIG, API_PREFIX } from "@/constants/api.constants";
 
-import { STORAGE_KEYS } from "@/shared/constants/storage.constant";
+import { STORAGE_KEYS } from "@/constants/storage.constants";
 
 import { storage } from "@/shared/lib/storage";
 

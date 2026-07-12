@@ -28,7 +28,7 @@ import SettingsPage from "@/modules/settings/pages/settings.page";
 
 import { NotFoundPage } from "@/modules/not-found/pages/not-found.page";
 
-import { ROUTES } from "@/routes/route.constant";
+import { ROUTES } from "@/constants/route.constants";
 
 export const router = createBrowserRouter([
   /*

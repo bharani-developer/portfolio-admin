@@ -1,10 +1,6 @@
 // src/modules/certifications/types/certifications.type.ts
 
-import type {
-  IApiMeta,
-  IApiResponse,
-  IBaseEntity,
-} from "@/shared/types";
+import type { IApiMeta, IApiResponse, IBaseEntity } from "@/shared/types";
 
 import type { CertificationFormValues } from "../schemas";
 
@@ -84,8 +80,7 @@ export interface ICreateCertificationPayload {
 /*                           Update Payload                                   */
 /* -------------------------------------------------------------------------- */
 
-export type IUpdateCertificationPayload =
-  Partial<ICreateCertificationPayload>;
+export type IUpdateCertificationPayload = Partial<ICreateCertificationPayload>;
 
 /* -------------------------------------------------------------------------- */
 /*                            Query Parameters                                */
@@ -137,20 +132,17 @@ export interface ICertificationSkillParams {
 /*                                Responses                                   */
 /* -------------------------------------------------------------------------- */
 
-export type ICertificationResponse =
-  IApiResponse<ICertification>;
+export type ICertificationResponse = IApiResponse<ICertification>;
 
-export type ICreateCertificationResponse =
-  IApiResponse<ICertification>;
+export type ICreateCertificationResponse = IApiResponse<ICertification>;
 
-export type IUpdateCertificationResponse =
-  IApiResponse<ICertification>;
+export type IUpdateCertificationResponse = IApiResponse<ICertification>;
 
-export type IDeleteCertificationResponse =
-  IApiResponse<ICertification>;
+export type IDeleteCertificationResponse = IApiResponse<ICertification>;
 
-export interface ICertificationsResponse
-  extends IApiResponse<ICertification[]> {
+export interface ICertificationsResponse extends IApiResponse<
+  ICertification[]
+> {
   meta?: IApiMeta;
 }
 
@@ -172,45 +164,40 @@ export interface IDeleteCertificationVariables {
 /*                              Select Options                                */
 /* -------------------------------------------------------------------------- */
 
-export const CERTIFICATION_STATUS = [
-  "Active",
-  "Inactive",
-] as const;
+export const CERTIFICATION_STATUS = ["Active", "Inactive"] as const;
 
 /* -------------------------------------------------------------------------- */
 /*                               Type Aliases                                 */
 /* -------------------------------------------------------------------------- */
 
-export type TCertificationStatus =
-  (typeof CERTIFICATION_STATUS)[number];
+export type TCertificationStatus = (typeof CERTIFICATION_STATUS)[number];
 
 /* -------------------------------------------------------------------------- */
 /*                             Default Values                                 */
 /* -------------------------------------------------------------------------- */
 
-export const CERTIFICATION_DEFAULT_VALUES: CertificationFormValues =
-  {
-    title: "",
+export const CERTIFICATION_DEFAULT_VALUES: CertificationFormValues = {
+  title: "",
 
-    issuer: "",
+  issuer: "",
 
-    certificateImage: undefined,
+  certificateImage: undefined,
 
-    credentialId: "",
+  credentialId: "",
 
-    credentialUrl: "",
+  credentialUrl: "",
 
-    issueDate: "",
+  issueDate: "",
 
-    expiryDate: "",
+  expiryDate: "",
 
-    neverExpires: false,
+  neverExpires: false,
 
-    description: "",
+  description: "",
 
-    skills: [],
+  skills: [],
 
-    sortOrder: 0,
+  sortOrder: 0,
 
-    isActive: true,
-  };
+  isActive: true,
+};

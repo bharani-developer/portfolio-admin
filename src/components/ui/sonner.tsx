@@ -10,8 +10,7 @@ import {
 } from "lucide-react";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 
-const toasterStyle: React.CSSProperties &
-  Record<`--${string}`, string> = {
+const toasterStyle: React.CSSProperties & Record<`--${string}`, string> = {
   "--normal-bg": "var(--popover)",
   "--normal-text": "var(--popover-foreground)",
   "--normal-border": "var(--border)",

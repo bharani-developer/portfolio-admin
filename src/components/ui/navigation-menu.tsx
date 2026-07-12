@@ -1,18 +1,24 @@
 import * as React from "react";
-import { cva } from "class-variance-authority";
+
+import { ChevronDownIcon } from "lucide-react";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 
-import { cn } from "@/shared/lib/utils";
-import { ChevronDownIcon } from "lucide-react";
+import { navigationMenuTriggerStyle } from "./navigation-menu-variants";
 
-function NavigationMenu({
+import { cn } from "@/shared/lib/utils";
+
+export interface NavigationMenuProps extends React.ComponentProps<
+  typeof NavigationMenuPrimitive.Root
+> {
+  viewport?: boolean;
+}
+
+export function NavigationMenu({
   className,
   children,
   viewport = true,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Root> & {
-  viewport?: boolean;
-}) {
+}: NavigationMenuProps): React.JSX.Element {
   return (
     <NavigationMenuPrimitive.Root
       data-slot="navigation-menu"
@@ -24,15 +30,18 @@ function NavigationMenu({
       {...props}
     >
       {children}
+
       {viewport && <NavigationMenuViewport />}
     </NavigationMenuPrimitive.Root>
   );
 }
 
-function NavigationMenuList({
+export function NavigationMenuList({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.List>) {
+}: React.ComponentProps<
+  typeof NavigationMenuPrimitive.List
+>): React.JSX.Element {
   return (
     <NavigationMenuPrimitive.List
       data-slot="navigation-menu-list"
@@ -45,10 +54,12 @@ function NavigationMenuList({
   );
 }
 
-function NavigationMenuItem({
+export function NavigationMenuItem({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Item>) {
+}: React.ComponentProps<
+  typeof NavigationMenuPrimitive.Item
+>): React.JSX.Element {
   return (
     <NavigationMenuPrimitive.Item
       data-slot="navigation-menu-item"
@@ -58,34 +69,35 @@ function NavigationMenuItem({
   );
 }
 
-const navigationMenuTriggerStyle = cva(
-  "group/navigation-menu-trigger inline-flex h-9 w-max items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-popup-open:bg-muted/50 data-popup-open:hover:bg-muted data-open:bg-muted/50 data-open:hover:bg-muted data-open:focus:bg-muted",
-);
-
-function NavigationMenuTrigger({
+export function NavigationMenuTrigger({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Trigger>) {
+}: React.ComponentProps<
+  typeof NavigationMenuPrimitive.Trigger
+>): React.JSX.Element {
   return (
     <NavigationMenuPrimitive.Trigger
       data-slot="navigation-menu-trigger"
       className={cn(navigationMenuTriggerStyle(), "group", className)}
       {...props}
     >
-      {children}{" "}
+      {children}
+
       <ChevronDownIcon
-        className="relative top-px ml-1 size-3 transition duration-300 group-data-popup-open/navigation-menu-trigger:rotate-180 group-data-open/navigation-menu-trigger:rotate-180"
         aria-hidden="true"
+        className="relative top-px ml-1 size-3 transition-transform duration-300 group-data-popup-open/navigation-menu-trigger:rotate-180 group-data-open/navigation-menu-trigger:rotate-180"
       />
     </NavigationMenuPrimitive.Trigger>
   );
 }
 
-function NavigationMenuContent({
+export function NavigationMenuContent({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Content>) {
+}: React.ComponentProps<
+  typeof NavigationMenuPrimitive.Content
+>): React.JSX.Element {
   return (
     <NavigationMenuPrimitive.Content
       data-slot="navigation-menu-content"
@@ -98,16 +110,14 @@ function NavigationMenuContent({
   );
 }
 
-function NavigationMenuViewport({
+export function NavigationMenuViewport({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {
+}: React.ComponentProps<
+  typeof NavigationMenuPrimitive.Viewport
+>): React.JSX.Element {
   return (
-    <div
-      className={cn(
-        "absolute top-full left-0 isolate z-50 flex justify-center",
-      )}
-    >
+    <div className="absolute top-full left-0 isolate z-50 flex justify-center">
       <NavigationMenuPrimitive.Viewport
         data-slot="navigation-menu-viewport"
         className={cn(
@@ -120,10 +130,12 @@ function NavigationMenuViewport({
   );
 }
 
-function NavigationMenuLink({
+export function NavigationMenuLink({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Link>) {
+}: React.ComponentProps<
+  typeof NavigationMenuPrimitive.Link
+>): React.JSX.Element {
   return (
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"
@@ -136,10 +148,12 @@ function NavigationMenuLink({
   );
 }
 
-function NavigationMenuIndicator({
+export function NavigationMenuIndicator({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Indicator>) {
+}: React.ComponentProps<
+  typeof NavigationMenuPrimitive.Indicator
+>): React.JSX.Element {
   return (
     <NavigationMenuPrimitive.Indicator
       data-slot="navigation-menu-indicator"
@@ -153,15 +167,3 @@ function NavigationMenuIndicator({
     </NavigationMenuPrimitive.Indicator>
   );
 }
-
-export {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuContent,
-  NavigationMenuTrigger,
-  NavigationMenuLink,
-  NavigationMenuIndicator,
-  NavigationMenuViewport,
-  navigationMenuTriggerStyle,
-};

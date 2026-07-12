@@ -1,6 +1,6 @@
 // src/modules/certifications/services/certifications.service.ts
 
-import { API_ENDPOINTS } from "@/shared/constants/api-endpoints";
+import { API_ENDPOINTS } from "@/constants/api-endpoints.constants";
 
 import { httpClient } from "@/shared/services/http-client";
 
@@ -27,13 +27,12 @@ class CertificationService {
   async getCertifications(
     params?: ICertificationQueryParams,
   ): Promise<ICertificationsResponse> {
-    const response =
-      await httpClient.get<ICertificationsResponse>(
-        API_ENDPOINTS.CERTIFICATIONS,
-        {
-          params,
-        },
-      );
+    const response = await httpClient.get<ICertificationsResponse>(
+      API_ENDPOINTS.CERTIFICATIONS,
+      {
+        params,
+      },
+    );
 
     return response.data;
   }
@@ -42,13 +41,10 @@ class CertificationService {
   /*                          Get Certification By Id                         */
   /* ------------------------------------------------------------------------ */
 
-  async getCertificationById(
-    id: string,
-  ): Promise<ICertificationResponse> {
-    const response =
-      await httpClient.get<ICertificationResponse>(
-        `${API_ENDPOINTS.CERTIFICATIONS}/${id}`,
-      );
+  async getCertificationById(id: string): Promise<ICertificationResponse> {
+    const response = await httpClient.get<ICertificationResponse>(
+      `${API_ENDPOINTS.CERTIFICATIONS}/${id}`,
+    );
 
     return response.data;
   }
@@ -57,13 +53,10 @@ class CertificationService {
   /*                        Get Certification By Slug                         */
   /* ------------------------------------------------------------------------ */
 
-  async getCertificationBySlug(
-    slug: string,
-  ): Promise<ICertificationResponse> {
-    const response =
-      await httpClient.get<ICertificationResponse>(
-        `${API_ENDPOINTS.CERTIFICATIONS}/slug/${slug}`,
-      );
+  async getCertificationBySlug(slug: string): Promise<ICertificationResponse> {
+    const response = await httpClient.get<ICertificationResponse>(
+      `${API_ENDPOINTS.CERTIFICATIONS}/slug/${slug}`,
+    );
 
     return response.data;
   }
@@ -73,10 +66,9 @@ class CertificationService {
   /* ------------------------------------------------------------------------ */
 
   async getActiveCertifications(): Promise<ICertificationsResponse> {
-    const response =
-      await httpClient.get<ICertificationsResponse>(
-        `${API_ENDPOINTS.CERTIFICATIONS}/active`,
-      );
+    const response = await httpClient.get<ICertificationsResponse>(
+      `${API_ENDPOINTS.CERTIFICATIONS}/active`,
+    );
 
     return response.data;
   }
@@ -86,10 +78,9 @@ class CertificationService {
   /* ------------------------------------------------------------------------ */
 
   async getValidCertifications(): Promise<ICertificationsResponse> {
-    const response =
-      await httpClient.get<ICertificationsResponse>(
-        `${API_ENDPOINTS.CERTIFICATIONS}/valid`,
-      );
+    const response = await httpClient.get<ICertificationsResponse>(
+      `${API_ENDPOINTS.CERTIFICATIONS}/valid`,
+    );
 
     return response.data;
   }
@@ -99,10 +90,9 @@ class CertificationService {
   /* ------------------------------------------------------------------------ */
 
   async getExpiredCertifications(): Promise<ICertificationsResponse> {
-    const response =
-      await httpClient.get<ICertificationsResponse>(
-        `${API_ENDPOINTS.CERTIFICATIONS}/expired`,
-      );
+    const response = await httpClient.get<ICertificationsResponse>(
+      `${API_ENDPOINTS.CERTIFICATIONS}/expired`,
+    );
 
     return response.data;
   }
@@ -114,10 +104,9 @@ class CertificationService {
   async getCertificationsByIssuer(
     issuer: string,
   ): Promise<ICertificationsResponse> {
-    const response =
-      await httpClient.get<ICertificationsResponse>(
-        `${API_ENDPOINTS.CERTIFICATIONS}/issuer/${issuer}`,
-      );
+    const response = await httpClient.get<ICertificationsResponse>(
+      `${API_ENDPOINTS.CERTIFICATIONS}/issuer/${issuer}`,
+    );
 
     return response.data;
   }
@@ -129,10 +118,9 @@ class CertificationService {
   async getCertificationsBySkill(
     skill: string,
   ): Promise<ICertificationsResponse> {
-    const response =
-      await httpClient.get<ICertificationsResponse>(
-        `${API_ENDPOINTS.CERTIFICATIONS}/skill/${skill}`,
-      );
+    const response = await httpClient.get<ICertificationsResponse>(
+      `${API_ENDPOINTS.CERTIFICATIONS}/skill/${skill}`,
+    );
 
     return response.data;
   }
@@ -144,11 +132,10 @@ class CertificationService {
   async createCertification(
     payload: ICreateCertificationPayload,
   ): Promise<ICreateCertificationResponse> {
-    const response =
-      await httpClient.post<ICreateCertificationResponse>(
-        API_ENDPOINTS.CERTIFICATIONS,
-        payload,
-      );
+    const response = await httpClient.post<ICreateCertificationResponse>(
+      API_ENDPOINTS.CERTIFICATIONS,
+      payload,
+    );
 
     return response.data;
   }
@@ -161,11 +148,10 @@ class CertificationService {
     id: string,
     payload: IUpdateCertificationPayload,
   ): Promise<IUpdateCertificationResponse> {
-    const response =
-      await httpClient.patch<IUpdateCertificationResponse>(
-        `${API_ENDPOINTS.CERTIFICATIONS}/${id}`,
-        payload,
-      );
+    const response = await httpClient.patch<IUpdateCertificationResponse>(
+      `${API_ENDPOINTS.CERTIFICATIONS}/${id}`,
+      payload,
+    );
 
     return response.data;
   }
@@ -174,13 +160,10 @@ class CertificationService {
   /*                         Delete Certification                             */
   /* ------------------------------------------------------------------------ */
 
-  async deleteCertification(
-    id: string,
-  ): Promise<IDeleteCertificationResponse> {
-    const response =
-      await httpClient.delete<IDeleteCertificationResponse>(
-        `${API_ENDPOINTS.CERTIFICATIONS}/${id}`,
-      );
+  async deleteCertification(id: string): Promise<IDeleteCertificationResponse> {
+    const response = await httpClient.delete<IDeleteCertificationResponse>(
+      `${API_ENDPOINTS.CERTIFICATIONS}/${id}`,
+    );
 
     return response.data;
   }
@@ -190,5 +173,4 @@ class CertificationService {
 /*                                   Export                                   */
 /* -------------------------------------------------------------------------- */
 
-export const certificationService =
-  new CertificationService();
+export const certificationService = new CertificationService();

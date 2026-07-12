@@ -6,13 +6,7 @@ import type { ReactElement } from "react";
 
 import type { ColumnDef } from "@tanstack/react-table";
 
-import {
-  Edit,
-  Eye,
-  Star,
-  Trash2,
-  UserRound,
-} from "lucide-react";
+import { Edit, Eye, Star, Trash2, UserRound } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -39,17 +33,11 @@ interface TestimonialsTableProps {
 
   onLimitChange: (limit: number) => void;
 
-  onView?: (
-    testimonial: ITestimonial,
-  ) => void;
+  onView?: (testimonial: ITestimonial) => void;
 
-  onEdit: (
-    testimonial: ITestimonial,
-  ) => void;
+  onEdit: (testimonial: ITestimonial) => void;
 
-  onDelete: (
-    testimonial: ITestimonial,
-  ) => void;
+  onDelete: (testimonial: ITestimonial) => void;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -66,9 +54,7 @@ export function TestimonialsTable({
   onEdit,
   onDelete,
 }: TestimonialsTableProps): ReactElement {
-  const columns = useMemo<
-    ColumnDef<ITestimonial>[]
-  >(
+  const columns = useMemo<ColumnDef<ITestimonial>[]>(
     () => [
       {
         accessorKey: "clientName",
@@ -76,8 +62,7 @@ export function TestimonialsTable({
         header: "Client",
 
         cell: ({ row }) => {
-          const testimonial =
-            row.original;
+          const testimonial = row.original;
 
           return (
             <div className="flex items-center gap-3">
@@ -105,17 +90,12 @@ export function TestimonialsTable({
                     border
                   "
                 >
-                  <UserRound
-                    className="size-5"
-                    aria-hidden="true"
-                  />
+                  <UserRound className="size-5" aria-hidden="true" />
                 </div>
               )}
 
               <div className="min-w-0">
-                <p className="truncate font-medium">
-                  {testimonial.clientName}
-                </p>
+                <p className="truncate font-medium">{testimonial.clientName}</p>
 
                 <p
                   className="
@@ -124,8 +104,7 @@ export function TestimonialsTable({
                     text-muted-foreground
                   "
                 >
-                  {testimonial.clientPosition ??
-                    "-"}
+                  {testimonial.clientPosition ?? "-"}
                 </p>
               </div>
             </div>
@@ -138,9 +117,7 @@ export function TestimonialsTable({
 
         header: "Company",
 
-        cell: ({ row }) =>
-          row.original.clientCompany ??
-          "-",
+        cell: ({ row }) => row.original.clientCompany ?? "-",
       },
 
       {
@@ -149,9 +126,7 @@ export function TestimonialsTable({
         header: "Type",
 
         cell: ({ row }) => (
-          <Badge variant="secondary">
-            {row.original.clientType}
-          </Badge>
+          <Badge variant="secondary">{row.original.clientType}</Badge>
         ),
       },
 
@@ -170,9 +145,7 @@ export function TestimonialsTable({
               "
             />
 
-            <span>
-              {row.original.rating}/5
-            </span>
+            <span>{row.original.rating}/5</span>
           </div>
         ),
       },
@@ -183,16 +156,8 @@ export function TestimonialsTable({
         header: "Featured",
 
         cell: ({ row }) => (
-          <Badge
-            variant={
-              row.original.isFeatured
-                ? "default"
-                : "secondary"
-            }
-          >
-            {row.original.isFeatured
-              ? "Featured"
-              : "No"}
+          <Badge variant={row.original.isFeatured ? "default" : "secondary"}>
+            {row.original.isFeatured ? "Featured" : "No"}
           </Badge>
         ),
       },
@@ -203,16 +168,8 @@ export function TestimonialsTable({
         header: "Status",
 
         cell: ({ row }) => (
-          <Badge
-            variant={
-              row.original.isActive
-                ? "default"
-                : "secondary"
-            }
-          >
-            {row.original.isActive
-              ? "Active"
-              : "Inactive"}
+          <Badge variant={row.original.isActive ? "default" : "secondary"}>
+            {row.original.isActive ? "Active" : "Inactive"}
           </Badge>
         ),
       },
@@ -226,11 +183,7 @@ export function TestimonialsTable({
       {
         id: "actions",
 
-        header: () => (
-          <div className="flex justify-center">
-            Actions
-          </div>
-        ),
+        header: () => <div className="flex justify-center">Actions</div>,
 
         size: 180,
 
@@ -241,8 +194,7 @@ export function TestimonialsTable({
         enableSorting: false,
 
         cell: ({ row }) => {
-          const testimonial =
-            row.original;
+          const testimonial = row.original;
 
           return (
             <div
@@ -259,9 +211,7 @@ export function TestimonialsTable({
                   variant="ghost"
                   size="icon"
                   aria-label={`View ${testimonial.clientName}`}
-                  onClick={() =>
-                    onView(testimonial)
-                  }
+                  onClick={() => onView(testimonial)}
                 >
                   <Eye className="size-4" />
                 </Button>
@@ -272,9 +222,7 @@ export function TestimonialsTable({
                 variant="outline"
                 size="icon"
                 aria-label={`Edit ${testimonial.clientName}`}
-                onClick={() =>
-                  onEdit(testimonial)
-                }
+                onClick={() => onEdit(testimonial)}
               >
                 <Edit className="size-4" />
               </Button>
@@ -284,9 +232,7 @@ export function TestimonialsTable({
                 variant="destructive"
                 size="icon"
                 aria-label={`Delete ${testimonial.clientName}`}
-                onClick={() =>
-                  onDelete(testimonial)
-                }
+                onClick={() => onDelete(testimonial)}
               >
                 <Trash2 className="size-4" />
               </Button>
@@ -295,11 +241,7 @@ export function TestimonialsTable({
         },
       },
     ],
-    [
-      onDelete,
-      onEdit,
-      onView,
-    ],
+    [onDelete, onEdit, onView],
   );
 
   return (

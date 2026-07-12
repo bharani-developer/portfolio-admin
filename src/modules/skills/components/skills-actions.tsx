@@ -2,13 +2,7 @@
 
 import type { ReactElement } from "react";
 
-import {
-  Activity,
-  Plus,
-  RefreshCw,
-  Sparkles,
-  TrendingUp,
-} from "lucide-react";
+import { Activity, Plus, RefreshCw, Sparkles, TrendingUp } from "lucide-react";
 
 import { useIsFetching } from "@tanstack/react-query";
 
@@ -16,7 +10,7 @@ import { Button } from "@/components/ui/button";
 
 import { Card, CardContent } from "@/components/ui/card";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */
@@ -47,15 +41,10 @@ export function SkillsActions({
       queryKey: QUERY_KEYS.SKILLS.ALL,
     }) > 0;
 
-  const inactiveSkills = Math.max(
-    totalSkills - activeSkills,
-    0,
-  );
+  const inactiveSkills = Math.max(totalSkills - activeSkills, 0);
 
   const activePercentage =
-    totalSkills > 0
-      ? Math.round((activeSkills / totalSkills) * 100)
-      : 0;
+    totalSkills > 0 ? Math.round((activeSkills / totalSkills) * 100) : 0;
 
   return (
     <Card
@@ -313,17 +302,11 @@ export function SkillsActions({
                   ${isFetching ? "animate-spin" : ""}
                 `}
               />
-
               Refresh
             </Button>
 
-            <Button
-              type="button"
-              size="default"
-              onClick={onCreate}
-            >
+            <Button type="button" size="default" onClick={onCreate}>
               <Plus className="mr-2 size-4" />
-
               Add Skill
             </Button>
           </div>

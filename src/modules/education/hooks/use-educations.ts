@@ -2,29 +2,23 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { educationService } from "../services";
 
-import type {
-  IEducationQueryParams,
-  IEducationsResponse,
-} from "../types";
+import type { IEducationQueryParams, IEducationsResponse } from "../types";
 
 /* -------------------------------------------------------------------------- */
 /*                             Use Educations                                 */
 /* -------------------------------------------------------------------------- */
 
-export function useEducations(
-  params?: IEducationQueryParams,
-) {
+export function useEducations(params?: IEducationQueryParams) {
   return useQuery<IEducationsResponse, Error>({
     queryKey: QUERY_KEYS.EDUCATION.LIST(
       params as Record<string, unknown> | undefined,
     ),
 
-    queryFn: async () =>
-      educationService.getEducations(params),
+    queryFn: async () => educationService.getEducations(params),
 
     placeholderData: (previousData) => previousData,
 

@@ -250,24 +250,24 @@ export function ExperienceTable({
     [deleteMutation, onEdit],
   );
 
-return (
-  <div className="space-y-4">
-    <DataTable<IExperience>
-      data={experiences}
-      columns={columns}
-      isLoading={isLoading}
-    />
-
-    {meta ? (
-      <ServerTablePagination
-        meta={meta}
+  return (
+    <div className="space-y-4">
+      <DataTable<IExperience>
+        data={experiences}
+        columns={columns}
         isLoading={isLoading}
-        onPageChange={onPageChange}
-        onLimitChange={onLimitChange}
       />
-    ) : null}
-  </div>
-);
+
+      {meta ? (
+        <ServerTablePagination
+          meta={meta}
+          isLoading={isLoading}
+          onPageChange={onPageChange}
+          onLimitChange={onLimitChange}
+        />
+      ) : null}
+    </div>
+  );
 }
 
 export default ExperienceTable;

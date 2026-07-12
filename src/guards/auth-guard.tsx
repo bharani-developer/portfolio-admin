@@ -6,7 +6,7 @@ import { FullScreenLoader } from "@/components/common/full-screen-loader";
 
 import { useProfile } from "@/modules/auth/hooks/use-profile";
 
-import { ROUTES } from "@/routes/route.constant";
+import { ROUTES } from "@/constants/route.constants";
 
 export function AuthGuard(): JSX.Element {
   const location = useLocation();

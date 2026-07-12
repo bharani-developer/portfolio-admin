@@ -16,7 +16,7 @@ import { HeroForm } from "../components/hero-form";
 
 export function HeroPage(): ReactElement {
   return (
-    <PageContainer ultraWide>
+    <PageContainer>
       <div className="space-y-6">
         <PageTitle
           title="Hero Section"

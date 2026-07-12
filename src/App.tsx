@@ -2,7 +2,7 @@ import { RouterProvider } from "react-router-dom";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-import { router } from "@/app/router";
+import { router } from "@/app/AppRouter";
 
 import { QueryProvider } from "@/providers/query-provider";
 import { ThemeProvider } from "@/providers/theme-provider";

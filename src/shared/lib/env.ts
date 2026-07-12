@@ -22,5 +22,4 @@ export const env = {
   IS_PRODUCTION: import.meta.env.PROD,
 
   GOOGLE_CLIENT_ID: import.meta.env.GOOGLE_CLIENT_ID,
-
 } as const;

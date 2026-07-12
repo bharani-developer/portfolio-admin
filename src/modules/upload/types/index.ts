@@ -13,4 +13,4 @@ export type {
   IFileUploadProps,
   IUploadState,
   UploadStatus,
-} from "./upload.type";
+} from "./upload.types";

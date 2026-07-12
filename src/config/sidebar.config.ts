@@ -16,7 +16,7 @@ import {
   Zap,
 } from "lucide-react";
 
-import { ROUTES } from "@/routes/route.constant";
+import { ROUTES } from "@/constants/route.constants";
 
 export interface SidebarItem {
   title: string;

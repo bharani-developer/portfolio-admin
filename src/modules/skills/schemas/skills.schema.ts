@@ -81,10 +81,7 @@ const sortOrderSchema = z
   })
   .int("Sort order must be a whole number.")
   .min(0, "Sort order cannot be negative.")
-  .max(
-    MAX_SORT_ORDER,
-    `Sort order cannot exceed ${MAX_SORT_ORDER}.`,
-  );
+  .max(MAX_SORT_ORDER, `Sort order cannot exceed ${MAX_SORT_ORDER}.`);
 
 const isActiveSchema = z.boolean();
 
@@ -160,22 +157,12 @@ export const skillsQuerySchema = z.object({
 
 export type SkillImageSchema = z.infer<typeof imageSchema>;
 
-export type SkillCategorySchema = z.infer<
-  typeof skillCategorySchema
->;
+export type SkillCategorySchema = z.infer<typeof skillCategorySchema>;
 
-export type CreateSkillSchema = z.infer<
-  typeof createSkillSchema
->;
+export type CreateSkillSchema = z.infer<typeof createSkillSchema>;
 
-export type UpdateSkillSchema = z.infer<
-  typeof updateSkillSchema
->;
+export type UpdateSkillSchema = z.infer<typeof updateSkillSchema>;
 
-export type SkillFormValues = z.infer<
-  typeof skillFormSchema
->;
+export type SkillFormValues = z.infer<typeof skillFormSchema>;
 
-export type SkillsQuerySchema = z.infer<
-  typeof skillsQuerySchema
->;
+export type SkillsQuerySchema = z.infer<typeof skillsQuerySchema>;

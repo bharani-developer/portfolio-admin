@@ -1,10 +1,6 @@
 // src/modules/experience/types/experience.type.ts
 
-import type {
-  IApiMeta,
-  IApiResponse,
-  IBaseEntity,
-} from "@/shared/types";
+import type { IApiMeta, IApiResponse, IBaseEntity } from "@/shared/types";
 
 import type { ExperienceFormValues } from "../schemas";
 
@@ -40,10 +36,7 @@ export interface IExperience extends IBaseEntity {
     | "Apprenticeship"
     | "Temporary";
 
-  workMode:
-    | "Remote"
-    | "Hybrid"
-    | "Onsite";
+  workMode: "Remote" | "Hybrid" | "Onsite";
 
   location: string;
 
@@ -86,10 +79,7 @@ export interface ICreateExperiencePayload {
     | "Apprenticeship"
     | "Temporary";
 
-  workMode:
-    | "Remote"
-    | "Hybrid"
-    | "Onsite";
+  workMode: "Remote" | "Hybrid" | "Onsite";
 
   location: string;
 
@@ -116,8 +106,7 @@ export interface ICreateExperiencePayload {
 /*                              Update Payload                                */
 /* -------------------------------------------------------------------------- */
 
-export type IUpdateExperiencePayload =
-  Partial<ICreateExperiencePayload>;
+export type IUpdateExperiencePayload = Partial<ICreateExperiencePayload>;
 
 /* -------------------------------------------------------------------------- */
 /*                              Query Parameters                              */
@@ -173,20 +162,15 @@ export interface IExperienceTechnologyParams {
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export type IExperienceResponse =
-  IApiResponse<IExperience>;
+export type IExperienceResponse = IApiResponse<IExperience>;
 
-export type ICreateExperienceResponse =
-  IApiResponse<IExperience>;
+export type ICreateExperienceResponse = IApiResponse<IExperience>;
 
-export type IUpdateExperienceResponse =
-  IApiResponse<IExperience>;
+export type IUpdateExperienceResponse = IApiResponse<IExperience>;
 
-export type IDeleteExperienceResponse =
-  IApiResponse<IExperience>;
+export type IDeleteExperienceResponse = IApiResponse<IExperience>;
 
-export interface IExperiencesResponse
-  extends IApiResponse<IExperience[]> {
+export interface IExperiencesResponse extends IApiResponse<IExperience[]> {
   meta: IApiMeta | undefined;
 }
 
@@ -218,17 +202,11 @@ export const EMPLOYMENT_TYPES = [
   "Temporary",
 ] as const;
 
-export const WORK_MODES = [
-  "Remote",
-  "Hybrid",
-  "Onsite",
-] as const;
+export const WORK_MODES = ["Remote", "Hybrid", "Onsite"] as const;
 
-export type TEmploymentType =
-  (typeof EMPLOYMENT_TYPES)[number];
+export type TEmploymentType = (typeof EMPLOYMENT_TYPES)[number];
 
-export type TWorkMode =
-  (typeof WORK_MODES)[number];
+export type TWorkMode = (typeof WORK_MODES)[number];
 
 /* -------------------------------------------------------------------------- */
 /*                               Default Values                               */

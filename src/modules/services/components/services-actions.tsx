@@ -2,13 +2,7 @@
 
 import type { ReactElement } from "react";
 
-import {
-  Activity,
-  Plus,
-  RefreshCw,
-  Sparkles,
-  TrendingUp,
-} from "lucide-react";
+import { Activity, Plus, RefreshCw, Sparkles, TrendingUp } from "lucide-react";
 
 import { useIsFetching } from "@tanstack/react-query";
 
@@ -16,7 +10,7 @@ import { Button } from "@/components/ui/button";
 
 import { Card, CardContent } from "@/components/ui/card";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */
@@ -47,15 +41,10 @@ export function ServicesActions({
       queryKey: QUERY_KEYS.SERVICES.ALL,
     }) > 0;
 
-  const inactiveServices = Math.max(
-    totalServices - activeServices,
-    0,
-  );
+  const inactiveServices = Math.max(totalServices - activeServices, 0);
 
   const activePercentage =
-    totalServices > 0
-      ? Math.round((activeServices / totalServices) * 100)
-      : 0;
+    totalServices > 0 ? Math.round((activeServices / totalServices) * 100) : 0;
 
   return (
     <Card
@@ -313,16 +302,11 @@ export function ServicesActions({
                   ${isFetching ? "animate-spin" : ""}
                 `}
               />
-
               Refresh
             </Button>
 
-            <Button
-              type="button"
-              onClick={onCreate}
-            >
+            <Button type="button" onClick={onCreate}>
               <Plus className="mr-2 size-4" />
-
               Add Service
             </Button>
           </div>

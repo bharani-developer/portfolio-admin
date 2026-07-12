@@ -25,7 +25,7 @@ import {
   SubmitButton,
 } from "@/components/forms";
 
-import { useConfirmation } from "@/shared/hooks";
+import { useConfirmation } from "@/providers/confirmation/use-confirmation";
 
 import { serviceFormSchema, type ServiceFormValues } from "../schemas";
 

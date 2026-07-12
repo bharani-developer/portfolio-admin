@@ -19,10 +19,7 @@ export const MAX_TECHNOLOGIES = 20;
 export const heroImageSchema = z.object({
   url: z.string().url("Profile image URL must be a valid URL."),
 
-  publicId: z
-    .string()
-    .trim()
-    .min(1, "Profile image public ID is required."),
+  publicId: z.string().trim().min(1, "Profile image public ID is required."),
 });
 
 /* -------------------------------------------------------------------------- */
@@ -33,10 +30,7 @@ const titleSchema = z
   .string()
   .trim()
   .min(1, "Title is required.")
-  .max(
-    TITLE_MAX_LENGTH,
-    `Title cannot exceed ${TITLE_MAX_LENGTH} characters.`,
-  );
+  .max(TITLE_MAX_LENGTH, `Title cannot exceed ${TITLE_MAX_LENGTH} characters.`);
 
 const subtitleSchema = z
   .string()
@@ -63,12 +57,9 @@ const resumeUrlSchema = z
     CTA_LINK_MAX_LENGTH,
     `Resume URL cannot exceed ${CTA_LINK_MAX_LENGTH} characters.`,
   )
-  .refine(
-    (value) => !value || z.string().url().safeParse(value).success,
-    {
-      message: "Resume URL must be a valid URL.",
-    },
-  );
+  .refine((value) => !value || z.string().url().safeParse(value).success, {
+    message: "Resume URL must be a valid URL.",
+  });
 
 const ctaButtonTextSchema = z
   .string()
@@ -85,12 +76,9 @@ const ctaButtonLinkSchema = z
     CTA_LINK_MAX_LENGTH,
     `CTA button link cannot exceed ${CTA_LINK_MAX_LENGTH} characters.`,
   )
-  .refine(
-    (value) => !value || z.string().url().safeParse(value).success,
-    {
-      message: "CTA button link must be a valid URL.",
-    },
-  );
+  .refine((value) => !value || z.string().url().safeParse(value).success, {
+    message: "CTA button link must be a valid URL.",
+  });
 
 const technologySchema = z
   .string()
@@ -136,29 +124,27 @@ const heroApiSchema = z.object({
 /*                           Create Hero Schema                               */
 /* -------------------------------------------------------------------------- */
 
-export const createHeroSchema = heroApiSchema.superRefine(
-  (data, ctx) => {
-    const hasText = Boolean(data.ctaButtonText?.trim());
+export const createHeroSchema = heroApiSchema.superRefine((data, ctx) => {
+  const hasText = Boolean(data.ctaButtonText?.trim());
 
-    const hasLink = Boolean(data.ctaButtonLink?.trim());
+  const hasLink = Boolean(data.ctaButtonLink?.trim());
 
-    if (hasText && !hasLink) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["ctaButtonLink"],
-        message: "CTA button link is required.",
-      });
-    }
+  if (hasText && !hasLink) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["ctaButtonLink"],
+      message: "CTA button link is required.",
+    });
+  }
 
-    if (hasLink && !hasText) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["ctaButtonText"],
-        message: "CTA button text is required.",
-      });
-    }
-  },
-);
+  if (hasLink && !hasText) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["ctaButtonText"],
+      message: "CTA button text is required.",
+    });
+  }
+});
 
 /* -------------------------------------------------------------------------- */
 /*                           Update Hero Schema                               */

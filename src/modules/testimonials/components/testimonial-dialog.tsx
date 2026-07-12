@@ -23,9 +23,7 @@ interface TestimonialDialogProps {
 
   testimonial?: ITestimonial | null;
 
-  onOpenChange: (
-    open: boolean,
-  ) => void;
+  onOpenChange: (open: boolean) => void;
 
   onSuccess?: () => void;
 }
@@ -40,18 +38,14 @@ export function TestimonialDialog({
   onOpenChange,
   onSuccess,
 }: TestimonialDialogProps): ReactElement {
-  const handleSuccess =
-    (): void => {
-      onSuccess?.();
+  const handleSuccess = (): void => {
+    onSuccess?.();
 
-      onOpenChange(false);
-    };
+    onOpenChange(false);
+  };
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className="
           max-h-[90vh]
@@ -61,9 +55,7 @@ export function TestimonialDialog({
       >
         <DialogHeader>
           <DialogTitle>
-            {testimonial
-              ? "Update Testimonial"
-              : "Create Testimonial"}
+            {testimonial ? "Update Testimonial" : "Create Testimonial"}
           </DialogTitle>
 
           <DialogDescription>
@@ -75,19 +67,11 @@ export function TestimonialDialog({
 
         {testimonial ? (
           <TestimonialForm
-            testimonial={
-              testimonial
-            }
-            onSuccess={
-              handleSuccess
-            }
+            testimonial={testimonial}
+            onSuccess={handleSuccess}
           />
         ) : (
-          <TestimonialForm
-            onSuccess={
-              handleSuccess
-            }
-          />
+          <TestimonialForm onSuccess={handleSuccess} />
         )}
       </DialogContent>
     </Dialog>

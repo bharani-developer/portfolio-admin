@@ -35,13 +35,9 @@ interface SkillsFiltersProps {
 
   onSearchChange: (value: string) => void;
 
-  onCategoryChange: (
-    value: TSkillCategory | "all",
-  ) => void;
+  onCategoryChange: (value: TSkillCategory | "all") => void;
 
-  onStatusChange: (
-    value: "all" | "active" | "inactive",
-  ) => void;
+  onStatusChange: (value: "all" | "active" | "inactive") => void;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -91,9 +87,7 @@ export function SkillsFilters({
               disabled={isLoading}
               placeholder="Search skills..."
               className="pl-10"
-              onChange={(event) =>
-                onSearchChange(event.target.value)
-              }
+              onChange={(event) => onSearchChange(event.target.value)}
             />
           </div>
 
@@ -101,9 +95,7 @@ export function SkillsFilters({
             value={category}
             disabled={isLoading}
             onValueChange={(value) =>
-              onCategoryChange(
-                value as TSkillCategory | "all",
-              )
+              onCategoryChange(value as TSkillCategory | "all")
             }
           >
             <SelectTrigger className="w-full lg:w-[220px]">
@@ -111,15 +103,10 @@ export function SkillsFilters({
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Categories
-              </SelectItem>
+              <SelectItem value="all">All Categories</SelectItem>
 
               {SKILL_CATEGORIES.map((item) => (
-                <SelectItem
-                  key={item}
-                  value={item}
-                >
+                <SelectItem key={item} value={item}>
                   {item}
                 </SelectItem>
               ))}
@@ -130,12 +117,7 @@ export function SkillsFilters({
             value={status}
             disabled={isLoading}
             onValueChange={(value) =>
-              onStatusChange(
-                value as
-                  | "all"
-                  | "active"
-                  | "inactive",
-              )
+              onStatusChange(value as "all" | "active" | "inactive")
             }
           >
             <SelectTrigger className="w-full lg:w-[180px]">
@@ -143,17 +125,11 @@ export function SkillsFilters({
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Status
-              </SelectItem>
+              <SelectItem value="all">All Status</SelectItem>
 
-              <SelectItem value="active">
-                Active
-              </SelectItem>
+              <SelectItem value="active">Active</SelectItem>
 
-              <SelectItem value="inactive">
-                Inactive
-              </SelectItem>
+              <SelectItem value="inactive">Inactive</SelectItem>
             </SelectContent>
           </Select>
         </div>

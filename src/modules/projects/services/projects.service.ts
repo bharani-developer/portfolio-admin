@@ -1,6 +1,6 @@
 // src/modules/projects/services/projects.service.ts
 
-import { API_ENDPOINTS } from "@/shared/constants/api-endpoints";
+import { API_ENDPOINTS } from "@/constants/api-endpoints.constants";
 
 import { httpClient } from "@/shared/services/http-client";
 
@@ -24,9 +24,7 @@ class ProjectsService {
   /*                             Get Projects List                            */
   /* ------------------------------------------------------------------------ */
 
-  async getProjects(
-    params: IProjectsQueryParams,
-  ): Promise<IProjectsResponse> {
+  async getProjects(params: IProjectsQueryParams): Promise<IProjectsResponse> {
     const response = await httpClient.get<IProjectsResponse>(
       API_ENDPOINTS.PROJECTS,
       {
@@ -41,9 +39,7 @@ class ProjectsService {
   /*                            Get Project By Id                             */
   /* ------------------------------------------------------------------------ */
 
-  async getProjectById(
-    id: string,
-  ): Promise<IProjectResponse> {
+  async getProjectById(id: string): Promise<IProjectResponse> {
     const response = await httpClient.get<IProjectResponse>(
       `${API_ENDPOINTS.PROJECTS}/${id}`,
     );
@@ -55,9 +51,7 @@ class ProjectsService {
   /*                           Get Project By Slug                            */
   /* ------------------------------------------------------------------------ */
 
-  async getProjectBySlug(
-    slug: string,
-  ): Promise<IProjectResponse> {
+  async getProjectBySlug(slug: string): Promise<IProjectResponse> {
     const response = await httpClient.get<IProjectResponse>(
       `${API_ENDPOINTS.PROJECTS}/slug/${slug}`,
     );
@@ -93,9 +87,7 @@ class ProjectsService {
   /*                        Get Projects By Category                          */
   /* ------------------------------------------------------------------------ */
 
-  async getProjectsByCategory(
-    category: string,
-  ): Promise<IProjectsResponse> {
+  async getProjectsByCategory(category: string): Promise<IProjectsResponse> {
     const response = await httpClient.get<IProjectsResponse>(
       `${API_ENDPOINTS.PROJECTS}/category/${category}`,
     );
@@ -121,9 +113,7 @@ class ProjectsService {
   /*                         Get Projects By Status                           */
   /* ------------------------------------------------------------------------ */
 
-  async getProjectsByStatus(
-    status: string,
-  ): Promise<IProjectsResponse> {
+  async getProjectsByStatus(status: string): Promise<IProjectsResponse> {
     const response = await httpClient.get<IProjectsResponse>(
       `${API_ENDPOINTS.PROJECTS}/status/${status}`,
     );
@@ -166,9 +156,7 @@ class ProjectsService {
   /*                             Delete Project                               */
   /* ------------------------------------------------------------------------ */
 
-  async deleteProject(
-    id: string,
-  ): Promise<IDeleteProjectResponse> {
+  async deleteProject(id: string): Promise<IDeleteProjectResponse> {
     const response = await httpClient.delete<IDeleteProjectResponse>(
       `${API_ENDPOINTS.PROJECTS}/${id}`,
     );

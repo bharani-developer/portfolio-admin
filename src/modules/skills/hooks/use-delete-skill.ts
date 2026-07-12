@@ -5,16 +5,12 @@ import { toast } from "sonner";
 
 import { queryClient } from "@/app/query-client";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 import { getErrorMessage } from "@/shared/lib/handle-error";
 
 import { skillsService } from "../services";
 
-import type {
-  IDeleteSkillResponse,
-  ISkill,
-  ISkillsResponse,
-} from "../types";
+import type { IDeleteSkillResponse, ISkill, ISkillsResponse } from "../types";
 
 interface DeleteSkillVariables {
   id: string;
@@ -23,9 +19,7 @@ interface DeleteSkillVariables {
 interface DeleteSkillContext {
   previousSkill: ISkill | undefined;
 
-  previousLists: Array<
-    [readonly unknown[], ISkillsResponse | undefined]
-  >;
+  previousLists: Array<[readonly unknown[], ISkillsResponse | undefined]>;
 }
 
 export function useDeleteSkill() {
@@ -44,15 +38,13 @@ export function useDeleteSkill() {
         queryKey: QUERY_KEYS.SKILLS.ALL,
       });
 
-      const previousSkill =
-        queryClient.getQueryData<ISkill>(
-          QUERY_KEYS.SKILLS.DETAIL(id),
-        );
+      const previousSkill = queryClient.getQueryData<ISkill>(
+        QUERY_KEYS.SKILLS.DETAIL(id),
+      );
 
-      const previousLists =
-        queryClient.getQueriesData<ISkillsResponse>({
-          queryKey: QUERY_KEYS.SKILLS.LIST,
-        });
+      const previousLists = queryClient.getQueriesData<ISkillsResponse>({
+        queryKey: QUERY_KEYS.SKILLS.LIST,
+      });
 
       queryClient.removeQueries({
         queryKey: QUERY_KEYS.SKILLS.DETAIL(id),
@@ -70,9 +62,7 @@ export function useDeleteSkill() {
           return {
             ...oldData,
 
-            data: oldData.data.filter(
-              (skill) => skill._id !== id,
-            ),
+            data: oldData.data.filter((skill) => skill._id !== id),
           };
         },
       );
@@ -85,56 +75,34 @@ export function useDeleteSkill() {
 
     onSuccess: (response, variables) => {
       queryClient.removeQueries({
-        queryKey: QUERY_KEYS.SKILLS.DETAIL(
-          variables.id,
-        ),
+        queryKey: QUERY_KEYS.SKILLS.DETAIL(variables.id),
       });
 
-      toast.success(
-        response.message ??
-          "Skill deleted successfully.",
-      );
+      toast.success(response.message ?? "Skill deleted successfully.");
     },
 
-    onError: (
-      error,
-      variables,
-      context,
-    ) => {
+    onError: (error, variables, context) => {
       if (context?.previousSkill) {
         queryClient.setQueryData<ISkill>(
-          QUERY_KEYS.SKILLS.DETAIL(
-            variables.id,
-          ),
+          QUERY_KEYS.SKILLS.DETAIL(variables.id),
           context.previousSkill,
         );
       }
 
-      context?.previousLists.forEach(
-        ([queryKey, data]) => {
-          queryClient.setQueryData(
-            queryKey,
-            data,
-          );
-        },
-      );
+      context?.previousLists.forEach(([queryKey, data]) => {
+        queryClient.setQueryData(queryKey, data);
+      });
 
       toast.error(getErrorMessage(error));
     },
 
-    onSettled: (
-      _data,
-      _error,
-      variables,
-    ) => {
+    onSettled: (_data, _error, variables) => {
       queryClient.invalidateQueries({
         queryKey: QUERY_KEYS.SKILLS.LIST,
       });
 
       queryClient.invalidateQueries({
-        queryKey: QUERY_KEYS.SKILLS.DETAIL(
-          variables.id,
-        ),
+        queryKey: QUERY_KEYS.SKILLS.DETAIL(variables.id),
       });
 
       queryClient.invalidateQueries({

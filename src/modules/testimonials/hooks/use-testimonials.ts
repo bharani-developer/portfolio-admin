@@ -2,33 +2,23 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { testimonialService } from "../services";
 
-import type {
-  ITestimonialQueryParams,
-  ITestimonialsResponse,
-} from "../types";
+import type { ITestimonialQueryParams, ITestimonialsResponse } from "../types";
 
 /* -------------------------------------------------------------------------- */
 /*                            Use Testimonials                                */
 /* -------------------------------------------------------------------------- */
 
-export function useTestimonials(
-  params?: ITestimonialQueryParams,
-) {
-  return useQuery<
-    ITestimonialsResponse,
-    Error,
-    ITestimonialsResponse
-  >({
+export function useTestimonials(params?: ITestimonialQueryParams) {
+  return useQuery<ITestimonialsResponse, Error, ITestimonialsResponse>({
     queryKey: QUERY_KEYS.TESTIMONIALS.LIST(
       params as Record<string, unknown> | undefined,
     ),
 
-    queryFn: async () =>
-      testimonialService.getTestimonials(params),
+    queryFn: async () => testimonialService.getTestimonials(params),
 
     placeholderData: (previousData) => previousData,
 

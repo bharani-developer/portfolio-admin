@@ -44,19 +44,13 @@ type PageItem = number | "...";
 /*                              Helper Function                               */
 /* -------------------------------------------------------------------------- */
 
-function buildPagination(
-  currentPage: number,
-  totalPages: number,
-): PageItem[] {
+function buildPagination(currentPage: number, totalPages: number): PageItem[] {
   if (totalPages <= 1) {
     return [1];
   }
 
   if (totalPages <= 7) {
-    return Array.from(
-      { length: totalPages },
-      (_, index) => index + 1,
-    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
 
   if (currentPage <= 4) {
@@ -97,35 +91,20 @@ export function ServerTablePagination({
   onPageChange,
   onLimitChange,
 }: ServerTablePaginationProps): React.JSX.Element {
-  const {
-    page,
-    limit,
-    total,
-    totalPage,
-  } = meta;
+  const { page, limit, total, totalPage } = meta;
 
   const pages = useMemo(
     () => buildPagination(page, totalPage),
     [page, totalPage],
   );
 
-  const canPrevious =
-    !isLoading &&
-    page > 1;
+  const canPrevious = !isLoading && page > 1;
 
-  const canNext =
-    !isLoading &&
-    page < totalPage;
+  const canNext = !isLoading && page < totalPage;
 
-  const startRecord =
-    total === 0
-      ? 0
-      : (page - 1) * limit + 1;
+  const startRecord = total === 0 ? 0 : (page - 1) * limit + 1;
 
-  const endRecord =
-    total === 0
-      ? 0
-      : Math.min(page * limit, total);
+  const endRecord = total === 0 ? 0 : Math.min(page * limit, total);
 
   return (
     <div
@@ -148,18 +127,9 @@ export function ServerTablePagination({
         "
       >
         Showing{" "}
-        <span className="font-semibold text-foreground">
-          {startRecord}
-        </span>{" "}
-        -{" "}
-        <span className="font-semibold text-foreground">
-          {endRecord}
-        </span>{" "}
-        of{" "}
-        <span className="font-semibold text-foreground">
-          {total}
-        </span>{" "}
-        records
+        <span className="font-semibold text-foreground">{startRecord}</span> -{" "}
+        <span className="font-semibold text-foreground">{endRecord}</span> of{" "}
+        <span className="font-semibold text-foreground">{total}</span> records
       </div>
 
       <div
@@ -191,10 +161,7 @@ export function ServerTablePagination({
 
           <SelectContent>
             {pageSizeOptions.map((size) => (
-              <SelectItem
-                key={size}
-                value={String(size)}
-              >
+              <SelectItem key={size} value={String(size)}>
                 {size}
               </SelectItem>
             ))}
@@ -242,11 +209,7 @@ export function ServerTablePagination({
           ) : (
             <Button
               key={item}
-              variant={
-                item === page
-                  ? "default"
-                  : "outline"
-              }
+              variant={item === page ? "default" : "outline"}
               size="icon"
               disabled={isLoading}
               onClick={() => onPageChange(item)}

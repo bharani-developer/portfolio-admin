@@ -16,10 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import {
-  CLIENT_TYPES,
-  type TClientType,
-} from "../types";
+import { CLIENT_TYPES, type TClientType } from "../types";
 
 interface TestimonialsFiltersProps {
   searchTerm: string;
@@ -28,34 +25,17 @@ interface TestimonialsFiltersProps {
 
   status: "all" | "active" | "inactive";
 
-  featured:
-    | "all"
-    | "featured"
-    | "not-featured";
+  featured: "all" | "featured" | "not-featured";
 
   isLoading?: boolean;
 
-  onSearchChange: (
-    value: string,
-  ) => void;
+  onSearchChange: (value: string) => void;
 
-  onClientTypeChange: (
-    value: TClientType | "all",
-  ) => void;
+  onClientTypeChange: (value: TClientType | "all") => void;
 
-  onStatusChange: (
-    value:
-      | "all"
-      | "active"
-      | "inactive",
-  ) => void;
+  onStatusChange: (value: "all" | "active" | "inactive") => void;
 
-  onFeaturedChange: (
-    value:
-      | "all"
-      | "featured"
-      | "not-featured",
-  ) => void;
+  onFeaturedChange: (value: "all" | "featured" | "not-featured") => void;
 }
 
 export function TestimonialsFilters({
@@ -103,11 +83,7 @@ export function TestimonialsFilters({
               disabled={isLoading}
               placeholder="Search testimonials..."
               className="pl-10"
-              onChange={(event) =>
-                onSearchChange(
-                  event.target.value,
-                )
-              }
+              onChange={(event) => onSearchChange(event.target.value)}
             />
           </div>
 
@@ -115,11 +91,7 @@ export function TestimonialsFilters({
             value={clientType}
             disabled={isLoading}
             onValueChange={(value) =>
-              onClientTypeChange(
-                value as
-                  | TClientType
-                  | "all",
-              )
+              onClientTypeChange(value as TClientType | "all")
             }
           >
             <SelectTrigger className="w-full xl:w-[220px]">
@@ -127,20 +99,13 @@ export function TestimonialsFilters({
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Types
-              </SelectItem>
+              <SelectItem value="all">All Types</SelectItem>
 
-              {CLIENT_TYPES.map(
-                (type) => (
-                  <SelectItem
-                    key={type}
-                    value={type}
-                  >
-                    {type}
-                  </SelectItem>
-                ),
-              )}
+              {CLIENT_TYPES.map((type) => (
+                <SelectItem key={type} value={type}>
+                  {type}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
 
@@ -148,12 +113,7 @@ export function TestimonialsFilters({
             value={status}
             disabled={isLoading}
             onValueChange={(value) =>
-              onStatusChange(
-                value as
-                  | "all"
-                  | "active"
-                  | "inactive",
-              )
+              onStatusChange(value as "all" | "active" | "inactive")
             }
           >
             <SelectTrigger className="w-full xl:w-[180px]">
@@ -161,17 +121,11 @@ export function TestimonialsFilters({
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Status
-              </SelectItem>
+              <SelectItem value="all">All Status</SelectItem>
 
-              <SelectItem value="active">
-                Active
-              </SelectItem>
+              <SelectItem value="active">Active</SelectItem>
 
-              <SelectItem value="inactive">
-                Inactive
-              </SelectItem>
+              <SelectItem value="inactive">Inactive</SelectItem>
             </SelectContent>
           </Select>
 
@@ -179,12 +133,7 @@ export function TestimonialsFilters({
             value={featured}
             disabled={isLoading}
             onValueChange={(value) =>
-              onFeaturedChange(
-                value as
-                  | "all"
-                  | "featured"
-                  | "not-featured",
-              )
+              onFeaturedChange(value as "all" | "featured" | "not-featured")
             }
           >
             <SelectTrigger className="w-full xl:w-[180px]">
@@ -192,17 +141,11 @@ export function TestimonialsFilters({
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All
-              </SelectItem>
+              <SelectItem value="all">All</SelectItem>
 
-              <SelectItem value="featured">
-                Featured
-              </SelectItem>
+              <SelectItem value="featured">Featured</SelectItem>
 
-              <SelectItem value="not-featured">
-                Not Featured
-              </SelectItem>
+              <SelectItem value="not-featured">Not Featured</SelectItem>
             </SelectContent>
           </Select>
         </div>

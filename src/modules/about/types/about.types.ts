@@ -53,7 +53,6 @@ export interface ICreateAboutPayload {
 
   images: IImage[];
 
-
   fullName: string;
 
   designation: string;
@@ -116,7 +115,6 @@ export type IDeleteAboutResponse = IApiResponse<null>;
 /* -------------------------------------------------------------------------- */
 
 export const ABOUT_DEFAULT_VALUES: AboutFormValues = {
-
   profileImage: undefined,
 
   images: [],

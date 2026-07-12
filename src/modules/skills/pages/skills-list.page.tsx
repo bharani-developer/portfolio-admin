@@ -110,7 +110,7 @@ export function SkillsListPage(): ReactElement {
 
   if (isError) {
     return (
-      <PageContainer ultraWide>
+      <PageContainer>
         <PageTitle
           title="Skills"
           description="Manage your portfolio skills and technology stack."
@@ -173,7 +173,7 @@ export function SkillsListPage(): ReactElement {
   /* ------------------------------------------------------------------------ */
 
   return (
-    <PageContainer ultraWide>
+    <PageContainer>
       <div className="space-y-6">
         <PageTitle
           title="Skills"

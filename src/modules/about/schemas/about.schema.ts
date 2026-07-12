@@ -32,23 +32,14 @@ const MAX_YEARS_OF_EXPERIENCE = 100;
 /* -------------------------------------------------------------------------- */
 
 export const aboutImageSchema = z.object({
-  url: z
-    .string()
-    .trim()
-    .url("Image URL must be a valid URL."),
+  url: z.string().trim().url("Image URL must be a valid URL."),
 
-  publicId: z
-    .string()
-    .trim()
-    .min(1, "Image public ID is required."),
+  publicId: z.string().trim().min(1, "Image public ID is required."),
 });
 const aboutImagesSchema = z
   .array(aboutImageSchema)
   .min(1, "At least one image is required.")
-  .max(
-    MAX_IMAGES_COUNT,
-    `Maximum ${MAX_IMAGES_COUNT} images are allowed.`,
-  )
+  .max(MAX_IMAGES_COUNT, `Maximum ${MAX_IMAGES_COUNT} images are allowed.`)
   .superRefine((images, ctx) => {
     const publicIds = new Set<string>();
     const urls = new Set<string>();
@@ -167,7 +158,7 @@ const resumeUrlSchema = z
     {
       message: "Resume URL must be a valid URL or relative path.",
     },
-  )
+  );
 
 const yearsOfExperienceSchema = z
   .number({
@@ -194,7 +185,6 @@ export const createAboutSchema = z.object({
 
   bio: bioSchema,
 
-
   email: emailSchema.optional(),
 
   phone: phoneSchema.optional(),
@@ -205,30 +195,27 @@ export const createAboutSchema = z.object({
 
   yearsOfExperience: yearsOfExperienceSchema.optional(),
 
-stats: z
-  .array(aboutStatSchema)
-  .max(
-    MAX_STATS_COUNT,
-    `Maximum ${MAX_STATS_COUNT} stats are allowed.`,
-  )
-  .superRefine((stats, ctx) => {
-    const labels = new Set<string>();
+  stats: z
+    .array(aboutStatSchema)
+    .max(MAX_STATS_COUNT, `Maximum ${MAX_STATS_COUNT} stats are allowed.`)
+    .superRefine((stats, ctx) => {
+      const labels = new Set<string>();
 
-    stats.forEach((stat, index) => {
-      const label = stat.label.toLowerCase();
+      stats.forEach((stat, index) => {
+        const label = stat.label.toLowerCase();
 
-      if (labels.has(label)) {
-        ctx.addIssue({
-          code: "custom",
-          path: [index, "label"],
-          message: "Duplicate stat labels are not allowed.",
-        });
-      }
+        if (labels.has(label)) {
+          ctx.addIssue({
+            code: "custom",
+            path: [index, "label"],
+            message: "Duplicate stat labels are not allowed.",
+          });
+        }
 
-      labels.add(label);
-    });
-  })
-  .optional(),
+        labels.add(label);
+      });
+    })
+    .optional(),
 
   isActive: z.boolean().default(true),
 });
@@ -237,11 +224,9 @@ stats: z
 /*                             Update About Schema                            */
 /* -------------------------------------------------------------------------- */
 
-export const updateAboutSchema = createAboutSchema
-  .partial()
-  .extend({
-    images: aboutImagesSchema.optional(),
-  });
+export const updateAboutSchema = createAboutSchema.partial().extend({
+  images: aboutImagesSchema.optional(),
+});
 /* -------------------------------------------------------------------------- */
 /*                              About Form Schema                             */
 /* -------------------------------------------------------------------------- */
@@ -269,10 +254,7 @@ export const aboutFormSchema = z.object({
 
   stats: z
     .array(aboutStatSchema)
-    .max(
-      MAX_STATS_COUNT,
-      `Maximum ${MAX_STATS_COUNT} stats are allowed.`,
-    )
+    .max(MAX_STATS_COUNT, `Maximum ${MAX_STATS_COUNT} stats are allowed.`)
     .superRefine((stats, ctx) => {
       const labels = new Set<string>();
 

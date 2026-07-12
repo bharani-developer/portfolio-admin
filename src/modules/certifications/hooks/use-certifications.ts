@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { certificationService } from "../services";
 
@@ -15,16 +15,13 @@ import type {
 /*                           Use Certifications                               */
 /* -------------------------------------------------------------------------- */
 
-export function useCertifications(
-  params?: ICertificationQueryParams,
-) {
+export function useCertifications(params?: ICertificationQueryParams) {
   return useQuery<ICertificationsResponse, Error>({
     queryKey: QUERY_KEYS.CERTIFICATIONS.LIST(
       params as Record<string, unknown> | undefined,
     ),
 
-    queryFn: async () =>
-      certificationService.getCertifications(params),
+    queryFn: async () => certificationService.getCertifications(params),
 
     placeholderData: (previousData) => previousData,
 

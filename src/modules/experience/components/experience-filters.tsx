@@ -29,21 +29,13 @@ interface ExperienceFiltersProps {
 
   workModes: string[];
 
-  onSearchChange: (
-    value: string,
-  ) => void;
+  onSearchChange: (value: string) => void;
 
-  onEmploymentTypeChange: (
-    value: string,
-  ) => void;
+  onEmploymentTypeChange: (value: string) => void;
 
-  onWorkModeChange: (
-    value: string,
-  ) => void;
+  onWorkModeChange: (value: string) => void;
 
-  onStatusChange: (
-    value: string,
-  ) => void;
+  onStatusChange: (value: string) => void;
 }
 
 export function ExperienceFilters({
@@ -93,95 +85,65 @@ export function ExperienceFilters({
               disabled={isLoading}
               placeholder="Search experiences..."
               className="pl-10"
-              onChange={(event) =>
-                onSearchChange(
-                  event.target.value,
-                )
-              }
+              onChange={(event) => onSearchChange(event.target.value)}
             />
           </div>
 
           <Select
             value={employmentType}
             disabled={isLoading}
-            onValueChange={
-              onEmploymentTypeChange
-            }
+            onValueChange={onEmploymentTypeChange}
           >
             <SelectTrigger className="w-full xl:w-[220px]">
               <SelectValue placeholder="Employment" />
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Employment
-              </SelectItem>
+              <SelectItem value="all">All Employment</SelectItem>
 
-              {employmentTypes.map(
-                (item) => (
-                  <SelectItem
-                    key={item}
-                    value={item}
-                  >
-                    {item}
-                  </SelectItem>
-                ),
-              )}
+              {employmentTypes.map((item) => (
+                <SelectItem key={item} value={item}>
+                  {item}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
 
           <Select
             value={workMode}
             disabled={isLoading}
-            onValueChange={
-              onWorkModeChange
-            }
+            onValueChange={onWorkModeChange}
           >
             <SelectTrigger className="w-full xl:w-[180px]">
               <SelectValue placeholder="Work Mode" />
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Modes
-              </SelectItem>
+              <SelectItem value="all">All Modes</SelectItem>
 
-              {workModes.map(
-                (item) => (
-                  <SelectItem
-                    key={item}
-                    value={item}
-                  >
-                    {item}
-                  </SelectItem>
-                ),
-              )}
+              {workModes.map((item) => (
+                <SelectItem key={item} value={item}>
+                  {item}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
 
           <Select
             value={status}
             disabled={isLoading}
-            onValueChange={
-              onStatusChange
-            }
+            onValueChange={onStatusChange}
           >
             <SelectTrigger className="w-full xl:w-[180px]">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Status
-              </SelectItem>
+              <SelectItem value="all">All Status</SelectItem>
 
-              <SelectItem value="active">
-                Active
-              </SelectItem>
+              <SelectItem value="active">Active</SelectItem>
 
-              <SelectItem value="inactive">
-                Inactive
-              </SelectItem>
+              <SelectItem value="inactive">Inactive</SelectItem>
             </SelectContent>
           </Select>
         </div>

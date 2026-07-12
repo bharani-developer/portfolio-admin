@@ -1,5 +1,5 @@
 // src\app\index.ts
 
-export * from "./router";
-export * from "./providers";
+export * from "./AppRouter";
+export * from "./AppProviders";
 export * from "./query-client";

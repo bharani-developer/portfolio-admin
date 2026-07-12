@@ -16,7 +16,6 @@ import { Separator } from "@/components/ui/separator";
 
 import { Link } from "react-router-dom";
 
-
 import { useProfile } from "@/modules/auth/hooks/use-profile";
 import { useLogout } from "@/modules/auth/hooks/use-logout";
 

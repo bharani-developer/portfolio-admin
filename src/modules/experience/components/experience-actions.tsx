@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 
 import { Card, CardContent } from "@/components/ui/card";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */
@@ -50,16 +50,11 @@ export function ExperienceActions({
       queryKey: QUERY_KEYS.EXPERIENCE.ALL,
     }) > 0;
 
-  const inactiveExperiences = Math.max(
-    totalExperiences - activeExperiences,
-    0,
-  );
+  const inactiveExperiences = Math.max(totalExperiences - activeExperiences, 0);
 
   const activePercentage =
     totalExperiences > 0
-      ? Math.round(
-          (activeExperiences / totalExperiences) * 100,
-        )
+      ? Math.round((activeExperiences / totalExperiences) * 100)
       : 0;
 
   return (
@@ -328,16 +323,11 @@ export function ExperienceActions({
                   ${isFetching ? "animate-spin" : ""}
                 `}
               />
-
               Refresh
             </Button>
 
-            <Button
-              type="button"
-              onClick={onCreate}
-            >
+            <Button type="button" onClick={onCreate}>
               <Plus className="mr-2 size-4" />
-
               Add Experience
             </Button>
           </div>

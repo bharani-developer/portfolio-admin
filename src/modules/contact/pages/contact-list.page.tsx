@@ -120,7 +120,7 @@ export function ContactsPage(): ReactElement {
 
   if (isError) {
     return (
-      <PageContainer ultraWide>
+      <PageContainer>
         <PageTitle
           title="Contacts"
           description="Manage incoming contact messages and inquiries."
@@ -186,7 +186,7 @@ export function ContactsPage(): ReactElement {
   /* ---------------------------------------------------------------------- */
 
   return (
-    <PageContainer ultraWide>
+    <PageContainer>
       <div className="space-y-6">
         <PageTitle
           title="Contacts"

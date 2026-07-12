@@ -1,3 +1,3 @@
 // src\modules\experience\types\index.ts
 
-export * from "./experience.type";
+export * from "./experience.types";

@@ -1,6 +1,6 @@
 // src/modules/services/services/services.service.ts
 
-import { API_ENDPOINTS } from "@/shared/constants/api-endpoints";
+import { API_ENDPOINTS } from "@/constants/api-endpoints.constants";
 
 import { httpClient } from "@/shared/services/http-client";
 
@@ -24,16 +24,13 @@ class ServicesService {
   /*                              Get Services                                */
   /* ------------------------------------------------------------------------ */
 
-  async getServices(
-    params: IServicesQueryParams,
-  ): Promise<IServicesResponse> {
-    const response =
-      await httpClient.get<IServicesResponse>(
-        API_ENDPOINTS.SERVICES,
-        {
-          params,
-        },
-      );
+  async getServices(params: IServicesQueryParams): Promise<IServicesResponse> {
+    const response = await httpClient.get<IServicesResponse>(
+      API_ENDPOINTS.SERVICES,
+      {
+        params,
+      },
+    );
 
     return response.data;
   }
@@ -42,13 +39,10 @@ class ServicesService {
   /*                              Get Service                                 */
   /* ------------------------------------------------------------------------ */
 
-  async getServiceById(
-    id: string,
-  ): Promise<IServiceResponse> {
-    const response =
-      await httpClient.get<IServiceResponse>(
-        `${API_ENDPOINTS.SERVICES}/${id}`,
-      );
+  async getServiceById(id: string): Promise<IServiceResponse> {
+    const response = await httpClient.get<IServiceResponse>(
+      `${API_ENDPOINTS.SERVICES}/${id}`,
+    );
 
     return response.data;
   }
@@ -60,11 +54,10 @@ class ServicesService {
   async createService(
     payload: ICreateServicePayload,
   ): Promise<ICreateServiceResponse> {
-    const response =
-      await httpClient.post<ICreateServiceResponse>(
-        API_ENDPOINTS.SERVICES,
-        payload,
-      );
+    const response = await httpClient.post<ICreateServiceResponse>(
+      API_ENDPOINTS.SERVICES,
+      payload,
+    );
 
     return response.data;
   }
@@ -77,11 +70,10 @@ class ServicesService {
     id: string,
     payload: IUpdateServicePayload,
   ): Promise<IUpdateServiceResponse> {
-    const response =
-      await httpClient.patch<IUpdateServiceResponse>(
-        `${API_ENDPOINTS.SERVICES}/${id}`,
-        payload,
-      );
+    const response = await httpClient.patch<IUpdateServiceResponse>(
+      `${API_ENDPOINTS.SERVICES}/${id}`,
+      payload,
+    );
 
     return response.data;
   }
@@ -90,13 +82,10 @@ class ServicesService {
   /*                             Delete Service                               */
   /* ------------------------------------------------------------------------ */
 
-  async deleteService(
-    id: string,
-  ): Promise<IDeleteServiceResponse> {
-    const response =
-      await httpClient.delete<IDeleteServiceResponse>(
-        `${API_ENDPOINTS.SERVICES}/${id}`,
-      );
+  async deleteService(id: string): Promise<IDeleteServiceResponse> {
+    const response = await httpClient.delete<IDeleteServiceResponse>(
+      `${API_ENDPOINTS.SERVICES}/${id}`,
+    );
 
     return response.data;
   }
@@ -106,7 +95,6 @@ class ServicesService {
 /*                                   Export                                   */
 /* -------------------------------------------------------------------------- */
 
-export const servicesService =
-  new ServicesService();
+export const servicesService = new ServicesService();
 
 export default servicesService;

@@ -6,9 +6,9 @@ import { toast } from "sonner";
 
 import { queryClient } from "@/app/query-client";
 
-import { ROUTES } from "@/routes/route.constant";
+import { ROUTES } from "@/constants/route.constants";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { authStorage } from "@/shared/lib/auth-storage";
 import { getErrorMessage } from "@/shared/lib/handle-error";
@@ -19,7 +19,7 @@ import type {
   ILoginPayload,
   ILoginResponse,
   IProfileResponse,
-} from "../types/auth.type";
+} from "../types/auth.types";
 
 interface ILocationState {
   from?: {

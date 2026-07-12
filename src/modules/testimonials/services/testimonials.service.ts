@@ -1,6 +1,6 @@
 // src/modules/testimonials/services/testimonials.service.ts
 
-import { API_ENDPOINTS } from "@/shared/constants/api-endpoints";
+import { API_ENDPOINTS } from "@/constants/api-endpoints.constants";
 import { httpClient } from "@/shared/services/http-client";
 
 import type {
@@ -42,9 +42,7 @@ class TestimonialService {
   /*                          Get Testimonial By Id                           */
   /* ------------------------------------------------------------------------ */
 
-  async getTestimonialById(
-    id: string,
-  ): Promise<ITestimonialResponse> {
+  async getTestimonialById(id: string): Promise<ITestimonialResponse> {
     const { data } = await httpClient.get<ITestimonialResponse>(
       `${API_ENDPOINTS.TESTIMONIALS}/${id}`,
     );
@@ -165,9 +163,7 @@ class TestimonialService {
   /*                          Delete Testimonial                              */
   /* ------------------------------------------------------------------------ */
 
-  async deleteTestimonial(
-    id: string,
-  ): Promise<IDeleteTestimonialResponse> {
+  async deleteTestimonial(id: string): Promise<IDeleteTestimonialResponse> {
     const { data } = await httpClient.delete<IDeleteTestimonialResponse>(
       `${API_ENDPOINTS.TESTIMONIALS}/${id}`,
     );

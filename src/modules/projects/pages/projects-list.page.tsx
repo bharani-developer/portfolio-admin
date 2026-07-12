@@ -91,8 +91,6 @@ export function ProjectsListPage(): ReactElement {
     [projects],
   );
 
-
-
   const handleCreate = (): void => {
     setSelectedProject(null);
 
@@ -116,7 +114,7 @@ export function ProjectsListPage(): ReactElement {
 
   if (isError) {
     return (
-      <PageContainer ultraWide>
+      <PageContainer>
         <PageTitle
           title="Projects"
           description="Manage portfolio projects and showcase work."
@@ -175,7 +173,7 @@ export function ProjectsListPage(): ReactElement {
   }
 
   return (
-    <PageContainer ultraWide>
+    <PageContainer>
       <div className="space-y-6">
         <PageTitle
           title="Projects"

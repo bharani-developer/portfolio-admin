@@ -8,9 +8,9 @@ import { toast } from "sonner";
 
 import { queryClient } from "@/app/query-client";
 
-import { ROUTES } from "@/routes/route.constant";
+import { ROUTES } from "@/constants/route.constants";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { authStorage } from "@/shared/lib/auth-storage";
 import { getErrorMessage } from "@/shared/lib/handle-error";
@@ -21,16 +21,12 @@ import type {
   IGoogleLoginPayload,
   IGoogleLoginResponse,
   IProfileResponse,
-} from "../types/auth.type";
+} from "../types/auth.types";
 
 export function useGoogleLogin() {
   const navigate = useNavigate();
 
-  return useMutation<
-    IGoogleLoginResponse,
-    Error,
-    IGoogleLoginPayload
-  >({
+  return useMutation<IGoogleLoginResponse, Error, IGoogleLoginPayload>({
     mutationKey: ["auth", "google-login"],
 
     mutationFn: async (
@@ -49,12 +45,9 @@ export function useGoogleLogin() {
 
     onSuccess: async (response) => {
       try {
-        authStorage.setAccessToken(
-          response.data.accessToken,
-        );
+        authStorage.setAccessToken(response.data.accessToken);
 
-        const profile =
-          await authService.getProfile();
+        const profile = await authService.getProfile();
 
         authStorage.setUser(profile.data);
 
@@ -67,10 +60,7 @@ export function useGoogleLogin() {
           queryKey: QUERY_KEYS.AUTH.PROFILE,
         });
 
-        toast.success(
-          response.message ??
-            "Google login successful.",
-        );
+        toast.success(response.message ?? "Google login successful.");
 
         navigate(ROUTES.DASHBOARD, {
           replace: true,
@@ -82,9 +72,7 @@ export function useGoogleLogin() {
           queryKey: QUERY_KEYS.AUTH.PROFILE,
         });
 
-        toast.error(
-          getErrorMessage(error),
-        );
+        toast.error(getErrorMessage(error));
       }
     },
 
@@ -95,9 +83,7 @@ export function useGoogleLogin() {
         queryKey: QUERY_KEYS.AUTH.PROFILE,
       });
 
-      toast.error(
-        getErrorMessage(error),
-      );
+      toast.error(getErrorMessage(error));
     },
   });
 }

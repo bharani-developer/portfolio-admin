@@ -2,34 +2,23 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { servicesService } from "../services";
 
-import type {
-  IServicesQueryParams,
-  IServicesResponse,
-} from "../types";
+import type { IServicesQueryParams, IServicesResponse } from "../types";
 
 /* -------------------------------------------------------------------------- */
 /*                               Use Services                                 */
 /* -------------------------------------------------------------------------- */
 
-export function useServices(
-  params: IServicesQueryParams,
-) {
+export function useServices(params: IServicesQueryParams) {
   return useQuery<IServicesResponse, Error>({
-    queryKey: [
-      ...QUERY_KEYS.SERVICES.LIST,
-      params,
-    ],
+    queryKey: [...QUERY_KEYS.SERVICES.LIST, params],
 
-    queryFn: async () =>
-      servicesService.getServices(params),
+    queryFn: async () => servicesService.getServices(params),
 
-    placeholderData: (
-      previousData,
-    ) => previousData,
+    placeholderData: (previousData) => previousData,
 
     staleTime: 1000 * 60 * 5,
 

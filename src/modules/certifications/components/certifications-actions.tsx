@@ -2,24 +2,15 @@
 
 import type { ReactElement } from "react";
 
-import {
-  Activity,
-  Award,
-  Plus,
-  RefreshCw,
-  Sparkles,
-} from "lucide-react";
+import { Activity, Award, Plus, RefreshCw, Sparkles } from "lucide-react";
 
 import { useIsFetching } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui/button";
 
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */
@@ -50,8 +41,7 @@ export function CertificationsActions({
 }: CertificationsActionsProps): ReactElement {
   const isFetching =
     useIsFetching({
-      queryKey:
-        QUERY_KEYS.CERTIFICATIONS.ALL,
+      queryKey: QUERY_KEYS.CERTIFICATIONS.ALL,
     }) > 0;
 
   // const inactiveCertifications =
@@ -63,11 +53,7 @@ export function CertificationsActions({
 
   const activePercentage =
     totalCertifications > 0
-      ? Math.round(
-          (activeCertifications /
-            totalCertifications) *
-            100,
-        )
+      ? Math.round((activeCertifications / totalCertifications) * 100)
       : 0;
 
   return (
@@ -315,23 +301,14 @@ export function CertificationsActions({
                 className={`
                   mr-2
                   size-4
-                  ${
-                    isFetching
-                      ? "animate-spin"
-                      : ""
-                  }
+                  ${isFetching ? "animate-spin" : ""}
                 `}
               />
-
               Refresh
             </Button>
 
-            <Button
-              type="button"
-              onClick={onCreate}
-            >
+            <Button type="button" onClick={onCreate}>
               <Plus className="mr-2 size-4" />
-
               Add Certification
             </Button>
           </div>

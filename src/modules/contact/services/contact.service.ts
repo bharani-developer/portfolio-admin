@@ -1,6 +1,6 @@
 // src/modules/contact/services/contact.service.ts
 
-import { API_ENDPOINTS } from "@/shared/constants/api-endpoints";
+import { API_ENDPOINTS } from "@/constants/api-endpoints.constants";
 import { httpClient } from "@/shared/services/http-client";
 
 import type {
@@ -34,15 +34,10 @@ class ContactService {
   /*                               Get Contacts                               */
   /* ------------------------------------------------------------------------ */
 
-  async getContacts(
-    params?: IContactQueryParams,
-  ): Promise<IContactsResponse> {
-    const { data } = await httpClient.get<IContactsResponse>(
-      this.endpoint,
-      {
-        params,
-      },
-    );
+  async getContacts(params?: IContactQueryParams): Promise<IContactsResponse> {
+    const { data } = await httpClient.get<IContactsResponse>(this.endpoint, {
+      params,
+    });
 
     return data;
   }
@@ -51,13 +46,8 @@ class ContactService {
   /*                              Get Contact                                 */
   /* ------------------------------------------------------------------------ */
 
-  async getContactById(
-    id: string,
-  ): Promise<IContactResponse> {
-    const { data } =
-      await httpClient.get<IContactResponse>(
-        this.byId(id),
-      );
+  async getContactById(id: string): Promise<IContactResponse> {
+    const { data } = await httpClient.get<IContactResponse>(this.byId(id));
 
     return data;
   }
@@ -67,10 +57,9 @@ class ContactService {
   /* ------------------------------------------------------------------------ */
 
   async getContactStats(): Promise<IContactStatsResponse> {
-    const { data } =
-      await httpClient.get<IContactStatsResponse>(
-        `${this.endpoint}/stats`,
-      );
+    const { data } = await httpClient.get<IContactStatsResponse>(
+      `${this.endpoint}/stats`,
+    );
 
     return data;
   }
@@ -80,10 +69,9 @@ class ContactService {
   /* ------------------------------------------------------------------------ */
 
   async getActiveContacts(): Promise<IContactsResponse> {
-    const { data } =
-      await httpClient.get<IContactsResponse>(
-        `${this.endpoint}/active`,
-      );
+    const { data } = await httpClient.get<IContactsResponse>(
+      `${this.endpoint}/active`,
+    );
 
     return data;
   }
@@ -93,10 +81,9 @@ class ContactService {
   /* ------------------------------------------------------------------------ */
 
   async getUnreadContacts(): Promise<IContactsResponse> {
-    const { data } =
-      await httpClient.get<IContactsResponse>(
-        `${this.endpoint}/unread`,
-      );
+    const { data } = await httpClient.get<IContactsResponse>(
+      `${this.endpoint}/unread`,
+    );
 
     return data;
   }
@@ -106,10 +93,9 @@ class ContactService {
   /* ------------------------------------------------------------------------ */
 
   async getReadContacts(): Promise<IContactsResponse> {
-    const { data } =
-      await httpClient.get<IContactsResponse>(
-        `${this.endpoint}/read`,
-      );
+    const { data } = await httpClient.get<IContactsResponse>(
+      `${this.endpoint}/read`,
+    );
 
     return data;
   }
@@ -119,10 +105,9 @@ class ContactService {
   /* ------------------------------------------------------------------------ */
 
   async getRepliedContacts(): Promise<IContactsResponse> {
-    const { data } =
-      await httpClient.get<IContactsResponse>(
-        `${this.endpoint}/replied`,
-      );
+    const { data } = await httpClient.get<IContactsResponse>(
+      `${this.endpoint}/replied`,
+    );
 
     return data;
   }
@@ -134,11 +119,10 @@ class ContactService {
   async createContact(
     payload: ICreateContactPayload,
   ): Promise<ICreateContactResponse> {
-    const { data } =
-      await httpClient.post<ICreateContactResponse>(
-        this.endpoint,
-        payload,
-      );
+    const { data } = await httpClient.post<ICreateContactResponse>(
+      this.endpoint,
+      payload,
+    );
 
     return data;
   }
@@ -151,11 +135,10 @@ class ContactService {
     id: string,
     payload: IUpdateContactPayload,
   ): Promise<IUpdateContactResponse> {
-    const { data } =
-      await httpClient.patch<IUpdateContactResponse>(
-        this.byId(id),
-        payload,
-      );
+    const { data } = await httpClient.patch<IUpdateContactResponse>(
+      this.byId(id),
+      payload,
+    );
 
     return data;
   }
@@ -164,13 +147,10 @@ class ContactService {
   /*                              Delete Contact                              */
   /* ------------------------------------------------------------------------ */
 
-  async deleteContact(
-    id: string,
-  ): Promise<IDeleteContactResponse> {
-    const { data } =
-      await httpClient.delete<IDeleteContactResponse>(
-        this.byId(id),
-      );
+  async deleteContact(id: string): Promise<IDeleteContactResponse> {
+    const { data } = await httpClient.delete<IDeleteContactResponse>(
+      this.byId(id),
+    );
 
     return data;
   }
@@ -179,13 +159,10 @@ class ContactService {
   /*                              Mark As Read                                */
   /* ------------------------------------------------------------------------ */
 
-  async markAsRead(
-    id: string,
-  ): Promise<IUpdateContactResponse> {
-    const { data } =
-      await httpClient.patch<IUpdateContactResponse>(
-        `${this.byId(id)}/read`,
-      );
+  async markAsRead(id: string): Promise<IUpdateContactResponse> {
+    const { data } = await httpClient.patch<IUpdateContactResponse>(
+      `${this.byId(id)}/read`,
+    );
 
     return data;
   }
@@ -194,13 +171,10 @@ class ContactService {
   /*                            Mark As Replied                               */
   /* ------------------------------------------------------------------------ */
 
-  async markAsReplied(
-    id: string,
-  ): Promise<IUpdateContactResponse> {
-    const { data } =
-      await httpClient.patch<IUpdateContactResponse>(
-        `${this.byId(id)}/replied`,
-      );
+  async markAsReplied(id: string): Promise<IUpdateContactResponse> {
+    const { data } = await httpClient.patch<IUpdateContactResponse>(
+      `${this.byId(id)}/replied`,
+    );
 
     return data;
   }
@@ -210,5 +184,4 @@ class ContactService {
 /*                                   Export                                   */
 /* -------------------------------------------------------------------------- */
 
-export const contactService =
-  new ContactService();
+export const contactService = new ContactService();

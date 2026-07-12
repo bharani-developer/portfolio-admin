@@ -1,9 +1,9 @@
 // src\shared\types\index.ts
 
-export type * from "./api-response.type";
-export type * from "./auth.type";
-export type * from "./breadcrumb.type";
-export type * from "./common.type";
-export type * from "./image.type";
-export type * from "./sidebar-item.type";
-export type * from "./user.type";
+export type * from "./api-response.types";
+export type * from "./auth.types";
+export type * from "./breadcrumb.types";
+export type * from "./common.types";
+export type * from "./image.types";
+export type * from "./sidebar-item.types";
+export type * from "./user.types";

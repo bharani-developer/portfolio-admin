@@ -1,14 +1,8 @@
 // src/modules/contact/types/contact.type.ts
 
-import type {
-  IApiMeta,
-  IApiResponse,
-  IBaseEntity,
-} from "@/shared/types";
+import type { IApiMeta, IApiResponse, IBaseEntity } from "@/shared/types";
 
-import type {
-  ContactFormValues,
-} from "../schemas";
+import type { ContactFormValues } from "../schemas";
 
 /* -------------------------------------------------------------------------- */
 /*                               Constants                                    */
@@ -21,12 +15,7 @@ export const CONTACT_STATUS = [
   "Closed",
 ] as const;
 
-export const CONTACT_PRIORITY = [
-  "Low",
-  "Medium",
-  "High",
-  "Urgent",
-] as const;
+export const CONTACT_PRIORITY = ["Low", "Medium", "High", "Urgent"] as const;
 
 export const CONTACT_SOURCE = [
   "Website",
@@ -41,21 +30,17 @@ export const CONTACT_SOURCE = [
 /*                               Type Aliases                                 */
 /* -------------------------------------------------------------------------- */
 
-export type TContactStatus =
-  (typeof CONTACT_STATUS)[number];
+export type TContactStatus = (typeof CONTACT_STATUS)[number];
 
-export type TContactPriority =
-  (typeof CONTACT_PRIORITY)[number];
+export type TContactPriority = (typeof CONTACT_PRIORITY)[number];
 
-export type TContactSource =
-  (typeof CONTACT_SOURCE)[number];
+export type TContactSource = (typeof CONTACT_SOURCE)[number];
 
 /* -------------------------------------------------------------------------- */
 /*                              Contact Entity                                */
 /* -------------------------------------------------------------------------- */
 
-export interface IContact
-  extends IBaseEntity {
+export interface IContact extends IBaseEntity {
   /**
    * Full Name
    */
@@ -351,20 +336,15 @@ export interface IContactStats {
 /*                                Responses                                   */
 /* -------------------------------------------------------------------------- */
 
-export type IContactResponse =
-  IApiResponse<IContact>;
+export type IContactResponse = IApiResponse<IContact>;
 
-export type ICreateContactResponse =
-  IApiResponse<IContact>;
+export type ICreateContactResponse = IApiResponse<IContact>;
 
-export type IUpdateContactResponse =
-  IApiResponse<IContact>;
+export type IUpdateContactResponse = IApiResponse<IContact>;
 
-export type IDeleteContactResponse =
-  IApiResponse<IContact>;
+export type IDeleteContactResponse = IApiResponse<IContact>;
 
-export interface IContactsResponse
-  extends IApiResponse<IContact[]> {
+export interface IContactsResponse extends IApiResponse<IContact[]> {
   /**
    * Pagination metadata.
    * Keep optional only if your backend sometimes omits it.
@@ -375,8 +355,7 @@ export interface IContactsResponse
   meta?: IApiMeta;
 }
 
-export type IContactStatsResponse =
-  IApiResponse<IContactStats>;
+export type IContactStatsResponse = IApiResponse<IContactStats>;
 
 /* -------------------------------------------------------------------------- */
 /*                              Mutation Types                                */
@@ -403,33 +382,21 @@ export interface IMarkContactRepliedVariables {
 /*                              Filter Options                                */
 /* -------------------------------------------------------------------------- */
 
-export const CONTACT_READ_STATUS = [
-  "Read",
-  "Unread",
-] as const;
+export const CONTACT_READ_STATUS = ["Read", "Unread"] as const;
 
-export const CONTACT_REPLY_STATUS = [
-  "Replied",
-  "Not Replied",
-] as const;
+export const CONTACT_REPLY_STATUS = ["Replied", "Not Replied"] as const;
 
-export const CONTACT_ACTIVE_STATUS = [
-  "Active",
-  "Inactive",
-] as const;
+export const CONTACT_ACTIVE_STATUS = ["Active", "Inactive"] as const;
 
 /* -------------------------------------------------------------------------- */
 /*                               Filter Types                                 */
 /* -------------------------------------------------------------------------- */
 
-export type TContactReadStatus =
-  (typeof CONTACT_READ_STATUS)[number];
+export type TContactReadStatus = (typeof CONTACT_READ_STATUS)[number];
 
-export type TContactReplyStatus =
-  (typeof CONTACT_REPLY_STATUS)[number];
+export type TContactReplyStatus = (typeof CONTACT_REPLY_STATUS)[number];
 
-export type TContactActiveStatus =
-  (typeof CONTACT_ACTIVE_STATUS)[number];
+export type TContactActiveStatus = (typeof CONTACT_ACTIVE_STATUS)[number];
 
 /* -------------------------------------------------------------------------- */
 /*                             Default Values                                 */

@@ -50,71 +50,52 @@ export function TestimonialsListPage(): ReactElement {
     initialLimit: 10,
   });
 
+  /* -------------------------------------------------------------------------- */
+  /*                              Query Parameters                              */
+  /* -------------------------------------------------------------------------- */
 
-/* -------------------------------------------------------------------------- */
-/*                              Query Parameters                              */
-/* -------------------------------------------------------------------------- */
+  const query = useMemo<ITestimonialQueryParams>(() => {
+    const params: ITestimonialQueryParams = {
+      page,
+      limit,
+    };
 
-const query = useMemo<ITestimonialQueryParams>(() => {
-  const params: ITestimonialQueryParams = {
-    page,
-    limit,
-  };
+    if (searchTerm.trim()) {
+      params.searchTerm = searchTerm.trim();
+    }
 
-  if (searchTerm.trim()) {
-    params.searchTerm = searchTerm.trim();
-  }
+    if (clientType !== "all") {
+      params.clientType = clientType;
+    }
 
-  if (clientType !== "all") {
-    params.clientType = clientType;
-  }
+    if (status !== "all") {
+      params.isActive = status === "active";
+    }
 
-  if (status !== "all") {
-    params.isActive = status === "active";
-  }
+    if (featured !== "all") {
+      params.isFeatured = featured === "featured";
+    }
 
-  if (featured !== "all") {
-    params.isFeatured = featured === "featured";
-  }
+    return params;
+  }, [page, limit, searchTerm, clientType, status, featured]);
 
-  return params;
-}, [
-  page,
-  limit,
-  searchTerm,
-  clientType,
-  status,
-  featured,
-]);
-
-const {
-  data,
-  isLoading,
-  isFetching,
-  isError,
-  error,
-  refetch,
-} = useTestimonials(query);
+  const { data, isLoading, isFetching, isError, error, refetch } =
+    useTestimonials(query);
   const deleteMutation = useDeleteTestimonial();
 
   const testimonials = useMemo<ITestimonial[]>(() => data?.data ?? [], [data]);
 
-const stats = useMemo(
-  () => ({
-    total: data?.meta?.total ?? 0,
+  const stats = useMemo(
+    () => ({
+      total: data?.meta?.total ?? 0,
 
-    active: testimonials.filter(
-      (testimonial) => testimonial.isActive,
-    ).length,
+      active: testimonials.filter((testimonial) => testimonial.isActive).length,
 
-    featured: testimonials.filter(
-      (testimonial) => testimonial.isFeatured,
-    ).length,
-  }),
-  [data, testimonials],
-);
-
-
+      featured: testimonials.filter((testimonial) => testimonial.isFeatured)
+        .length,
+    }),
+    [data, testimonials],
+  );
 
   const handleCreate = (): void => {
     setSelectedTestimonial(null);
@@ -148,7 +129,7 @@ const stats = useMemo(
 
   if (isError) {
     return (
-      <PageContainer ultraWide>
+      <PageContainer>
         <PageTitle
           title="Testimonials"
           description="Manage client testimonials and portfolio reviews."
@@ -207,7 +188,7 @@ const stats = useMemo(
   }
 
   return (
-    <PageContainer ultraWide>
+    <PageContainer>
       <div className="space-y-6">
         <PageTitle
           title="Testimonials"

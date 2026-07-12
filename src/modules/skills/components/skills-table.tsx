@@ -16,7 +16,7 @@ import { Progress } from "@/components/ui/progress";
 
 import { DataTable } from "@/components/table/data-table";
 
-import { useConfirmation } from "@/shared/hooks/use-confirmation";
+import { useConfirmation } from "@/providers/confirmation/use-confirmation";
 
 import { useDeleteSkill } from "../hooks";
 

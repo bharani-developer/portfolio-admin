@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 import { Card, CardContent } from "@/components/ui/card";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 interface ContactToolbarProps {
   onRefresh?: () => void;
@@ -32,13 +32,8 @@ export function ContactToolbar({
           onClick={onRefresh}
         >
           <RefreshCw
-            className={`mr-2 size-4 ${
-              isFetching
-                ? "animate-spin"
-                : ""
-            }`}
+            className={`mr-2 size-4 ${isFetching ? "animate-spin" : ""}`}
           />
-
           Refresh
         </Button>
       </CardContent>

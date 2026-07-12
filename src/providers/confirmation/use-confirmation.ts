@@ -1,28 +1,22 @@
-import { createContext } from "react";
+// src\shared\hooks\use-confirmation.ts
+
+import { useContext } from "react";
+
+import {
+  ConfirmationContext,
+  type ConfirmationContextValue,
+} from "@/providers/confirmation/confirmation.context";
 
 /* -------------------------------------------------------------------------- */
-/*                                   Types                                    */
+/*                            Use Confirmation Hook                           */
 /* -------------------------------------------------------------------------- */
 
-export interface ConfirmationOptions {
-  title: string;
+export function useConfirmation(): ConfirmationContextValue {
+  const context = useContext(ConfirmationContext);
 
-  description?: string;
+  if (!context) {
+    throw new Error("useConfirmation must be used within ConfirmationProvider");
+  }
 
-  confirmText?: string;
-
-  cancelText?: string;
-
-  destructive?: boolean;
+  return context;
 }
-
-export interface ConfirmationContextValue {
-  confirm: (options: ConfirmationOptions) => Promise<boolean>;
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                  Context                                   */
-/* -------------------------------------------------------------------------- */
-
-export const ConfirmationContext =
-  createContext<ConfirmationContextValue | null>(null);

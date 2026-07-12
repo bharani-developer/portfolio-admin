@@ -6,18 +6,14 @@ import { FullScreenLoader } from "@/components/common/full-screen-loader";
 
 import { useProfile } from "@/modules/auth/hooks/use-profile";
 
-import { ROUTES } from "@/routes/route.constant";
+import { ROUTES } from "@/constants/route.constants";
 
 import { authStorage } from "@/shared/lib/auth-storage";
 
 export function GuestGuard(): JSX.Element {
   const hasToken = authStorage.isAuthenticated();
 
-  const {
-    data: user,
-    isPending,
-    isFetching,
-  } = useProfile();
+  const { data: user, isPending, isFetching } = useProfile();
 
   /*
    * Only display a loader while validating
@@ -32,12 +28,7 @@ export function GuestGuard(): JSX.Element {
    * access guest-only pages.
    */
   if (user) {
-    return (
-      <Navigate
-        to={ROUTES.DASHBOARD}
-        replace
-      />
-    );
+    return <Navigate to={ROUTES.DASHBOARD} replace />;
   }
 
   /*

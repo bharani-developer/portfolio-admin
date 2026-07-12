@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 import { queryClient } from "@/app/query-client";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { getErrorMessage } from "@/shared/lib/handle-error";
 
@@ -37,8 +37,7 @@ export function useUpdateSkill() {
   return useMutation<IUpdateSkillResponse, Error, UpdateSkillVariables>({
     mutationKey: [...QUERY_KEYS.SKILLS.ALL, "update"],
 
-    mutationFn: ({ id, payload }) =>
-      skillsService.updateSkill(id, payload),
+    mutationFn: ({ id, payload }) => skillsService.updateSkill(id, payload),
 
     onSuccess: (response, variables) => {
       const updatedSkill = response.data;
@@ -61,9 +60,7 @@ export function useUpdateSkill() {
             ...oldData,
 
             data: oldData.data.map((skill) =>
-              skill._id === updatedSkill._id
-                ? updatedSkill
-                : skill,
+              skill._id === updatedSkill._id ? updatedSkill : skill,
             ),
           };
         },
@@ -74,15 +71,10 @@ export function useUpdateSkill() {
       });
 
       queryClient.invalidateQueries({
-        queryKey: QUERY_KEYS.SKILLS.DETAIL(
-          variables.id,
-        ),
+        queryKey: QUERY_KEYS.SKILLS.DETAIL(variables.id),
       });
 
-      toast.success(
-        response.message ??
-          "Skill updated successfully.",
-      );
+      toast.success(response.message ?? "Skill updated successfully.");
     },
 
     onError: (error) => {

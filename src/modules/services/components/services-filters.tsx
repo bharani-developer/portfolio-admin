@@ -23,9 +23,7 @@ interface ServicesFiltersProps {
 
   onSearchChange: (value: string) => void;
 
-  onStatusChange: (
-    value: "all" | "active" | "inactive",
-  ) => void;
+  onStatusChange: (value: "all" | "active" | "inactive") => void;
 }
 
 export function ServicesFilters({
@@ -69,9 +67,7 @@ export function ServicesFilters({
               disabled={isLoading}
               placeholder="Search services..."
               className="pl-10"
-              onChange={(event) =>
-                onSearchChange(event.target.value)
-              }
+              onChange={(event) => onSearchChange(event.target.value)}
             />
           </div>
 
@@ -79,12 +75,7 @@ export function ServicesFilters({
             value={status}
             disabled={isLoading}
             onValueChange={(value) =>
-              onStatusChange(
-                value as
-                  | "all"
-                  | "active"
-                  | "inactive",
-              )
+              onStatusChange(value as "all" | "active" | "inactive")
             }
           >
             <SelectTrigger className="w-full lg:w-[180px]">
@@ -92,17 +83,11 @@ export function ServicesFilters({
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Status
-              </SelectItem>
+              <SelectItem value="all">All Status</SelectItem>
 
-              <SelectItem value="active">
-                Active
-              </SelectItem>
+              <SelectItem value="active">Active</SelectItem>
 
-              <SelectItem value="inactive">
-                Inactive
-              </SelectItem>
+              <SelectItem value="inactive">Inactive</SelectItem>
             </SelectContent>
           </Select>
         </div>

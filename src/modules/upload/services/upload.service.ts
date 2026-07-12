@@ -1,5 +1,5 @@
 // src\modules\upload\services\upload.service.ts
-import { API_ENDPOINTS } from "@/shared/constants/api-endpoints";
+import { API_ENDPOINTS } from "@/constants/api-endpoints.constants";
 
 import { httpClient } from "@/shared/services/http-client";
 

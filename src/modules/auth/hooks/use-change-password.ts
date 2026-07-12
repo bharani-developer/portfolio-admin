@@ -8,9 +8,9 @@ import { getErrorMessage } from "@/shared/lib/handle-error";
 
 import { queryClient } from "@/app/query-client";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
-import type { IChangePasswordPayload } from "../types/auth.type";
+import type { IChangePasswordPayload } from "../types/auth.types";
 
 export function useChangePassword() {
   return useMutation({

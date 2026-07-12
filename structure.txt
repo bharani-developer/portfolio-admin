@@ -3,15 +3,14 @@
 ¦   +-- icons.svg
 +-- src
 ¦   +-- app
+¦   ¦   +-- AppProviders.tsx
+¦   ¦   +-- AppRouter.tsx
 ¦   ¦   +-- index.ts
-¦   ¦   +-- providers.tsx
 ¦   ¦   +-- query-client.ts
-¦   ¦   +-- router.tsx
 ¦   +-- assets
 ¦   ¦   +-- fonts
 ¦   ¦   ¦   +-- GeistMonoVariable.woff2
 ¦   ¦   ¦   +-- GeistVariable.woff2
-¦   ¦   +-- icons
 ¦   ¦   +-- images
 ¦   ¦       +-- hero.png
 ¦   +-- components
@@ -21,7 +20,6 @@
 ¦   ¦   ¦   +-- error-boundary.tsx
 ¦   ¦   ¦   +-- error-state.tsx
 ¦   ¦   ¦   +-- full-screen-loader.tsx
-¦   ¦   ¦   +-- page-container.tsx
 ¦   ¦   ¦   +-- page-loader.tsx
 ¦   ¦   ¦   +-- page-title.tsx
 ¦   ¦   ¦   +-- skills-input.tsx
@@ -45,6 +43,7 @@
 ¦   ¦   +-- table
 ¦   ¦   ¦   +-- data-table.tsx
 ¦   ¦   ¦   +-- delete-dialog.tsx
+¦   ¦   ¦   +-- server-table-pagination.tsx
 ¦   ¦   ¦   +-- table-pagination.tsx
 ¦   ¦   ¦   +-- table-search.tsx
 ¦   ¦   +-- ui
@@ -52,8 +51,10 @@
 ¦   ¦       +-- alert-dialog.tsx
 ¦   ¦       +-- avatar.tsx
 ¦   ¦       +-- badge.tsx
+¦   ¦       +-- badge-variants.ts
 ¦   ¦       +-- breadcrumb.tsx
 ¦   ¦       +-- button.tsx
+¦   ¦       +-- button-variants.ts
 ¦   ¦       +-- card.tsx
 ¦   ¦       +-- checkbox.tsx
 ¦   ¦       +-- collapsible.tsx
@@ -63,6 +64,7 @@
 ¦   ¦       +-- input.tsx
 ¦   ¦       +-- label.tsx
 ¦   ¦       +-- navigation-menu.tsx
+¦   ¦       +-- navigation-menu-variants.ts
 ¦   ¦       +-- pagination.tsx
 ¦   ¦       +-- progress.tsx
 ¦   ¦       +-- scroll-area.tsx
@@ -74,16 +76,27 @@
 ¦   ¦       +-- switch.tsx
 ¦   ¦       +-- table.tsx
 ¦   ¦       +-- tabs.tsx
+¦   ¦       +-- tabs-variants.ts
 ¦   ¦       +-- textarea.tsx
 ¦   ¦       +-- tooltip.tsx
-¦   +-- config
+¦   +-- configs
 ¦   ¦   +-- dashboard.config.ts
 ¦   ¦   +-- index.ts
 ¦   ¦   +-- navigation.config.ts
 ¦   ¦   +-- sidebar.config.ts
+¦   +-- constants
+¦   ¦   +-- api.constants.ts
+¦   ¦   +-- api-endpoints.constants.ts
+¦   ¦   +-- app.constants.ts
+¦   ¦   +-- index.ts
+¦   ¦   +-- message.constants.ts
+¦   ¦   +-- query.constants.ts
+¦   ¦   +-- query-keys.constants.ts
+¦   ¦   +-- storage.constants.ts
 ¦   +-- guards
 ¦   ¦   +-- auth-guard.tsx
 ¦   ¦   +-- guest-guard.tsx
+¦   ¦   +-- root-redirect.tsx
 ¦   +-- layouts
 ¦   ¦   +-- auth-layout.tsx
 ¦   ¦   +-- dashboard-layout.tsx
@@ -102,7 +115,6 @@
 ¦   ¦   ¦   ¦   +-- about.page.tsx
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- routes
-¦   ¦   ¦   ¦   +-- about.route-config.tsx
 ¦   ¦   ¦   ¦   +-- about.routes.tsx
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- schemas
@@ -112,17 +124,19 @@
 ¦   ¦   ¦   ¦   +-- about.service.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- types
-¦   ¦   ¦   ¦   +-- about.type.ts
+¦   ¦   ¦   ¦   +-- about.types.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- auth
 ¦   ¦   ¦   +-- components
 ¦   ¦   ¦   ¦   +-- change-password-form.tsx
+¦   ¦   ¦   ¦   +-- google-login-button.tsx
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   ¦   +-- login-form.tsx
 ¦   ¦   ¦   +-- hooks
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   ¦   +-- use-change-password.ts
+¦   ¦   ¦   ¦   +-- use-google-login.ts
 ¦   ¦   ¦   ¦   +-- use-login.ts
 ¦   ¦   ¦   ¦   +-- use-logout.ts
 ¦   ¦   ¦   ¦   +-- use-profile.ts
@@ -141,7 +155,7 @@
 ¦   ¦   ¦   ¦   +-- auth.service.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- types
-¦   ¦   ¦   ¦   +-- auth.type.ts
+¦   ¦   ¦   ¦   +-- auth.types.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- blogs
@@ -166,7 +180,7 @@
 ¦   ¦   ¦   +-- services
 ¦   ¦   ¦   ¦   +-- blogs.service.ts
 ¦   ¦   ¦   +-- types
-¦   ¦   ¦   ¦   +-- blogs.type.ts
+¦   ¦   ¦   ¦   +-- blogs.types.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- certifications
 ¦   ¦   ¦   +-- components
@@ -198,7 +212,7 @@
 ¦   ¦   ¦   ¦   +-- certifications.service.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- types
-¦   ¦   ¦   ¦   +-- certifications.type.ts
+¦   ¦   ¦   ¦   +-- certifications.types.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- contact
@@ -211,6 +225,7 @@
 ¦   ¦   ¦   ¦   +-- contact-priority-badge.tsx
 ¦   ¦   ¦   ¦   +-- contact-status-badge.tsx
 ¦   ¦   ¦   ¦   +-- contact-table.tsx
+¦   ¦   ¦   ¦   +-- contact-toolbar.tsx
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- hooks
 ¦   ¦   ¦   ¦   +-- index.ts
@@ -238,7 +253,7 @@
 ¦   ¦   ¦   ¦   +-- contact.service.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- types
-¦   ¦   ¦   ¦   +-- contact.type.ts
+¦   ¦   ¦   ¦   +-- contact.types.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- dashboard
@@ -249,7 +264,7 @@
 ¦   ¦   ¦   ¦   +-- recent-blogs-card.tsx
 ¦   ¦   ¦   ¦   +-- recent-contacts-card.tsx
 ¦   ¦   ¦   ¦   +-- recent-projects-card.tsx
-¦   ¦   ¦   ¦   +-- stats-card.tsx.tsx
+¦   ¦   ¦   ¦   +-- stats-card.tsx
 ¦   ¦   ¦   +-- hooks
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   ¦   +-- use-dashboard.ts
@@ -263,7 +278,7 @@
 ¦   ¦   ¦   ¦   +-- dashboard.service.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- types
-¦   ¦   ¦   ¦   +-- dashboard.type.ts
+¦   ¦   ¦   ¦   +-- dashboard.types.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- education
@@ -296,7 +311,7 @@
 ¦   ¦   ¦   ¦   +-- education.service.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- types
-¦   ¦   ¦   ¦   +-- education.type.ts
+¦   ¦   ¦   ¦   +-- education.types.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- utils
 ¦   ¦   ¦   ¦   +-- build-education-payload.ts
@@ -331,7 +346,7 @@
 ¦   ¦   ¦   ¦   +-- experience.service.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- types
-¦   ¦   ¦   ¦   +-- experience.type.ts
+¦   ¦   ¦   ¦   +-- experience.types.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- hero
@@ -357,7 +372,7 @@
 ¦   ¦   ¦   ¦   +-- hero.service.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- types
-¦   ¦   ¦   ¦   +-- hero.type.ts
+¦   ¦   ¦   ¦   +-- hero.types.ts
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- not-found
@@ -397,7 +412,7 @@
 ¦   ¦   ¦   ¦   +-- projects.service.ts
 ¦   ¦   ¦   +-- types
 ¦   ¦   ¦   ¦   +-- index.ts
-¦   ¦   ¦   ¦   +-- projects.type.ts
+¦   ¦   ¦   ¦   +-- projects.types.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- services
 ¦   ¦   ¦   +-- components
@@ -427,10 +442,10 @@
 ¦   ¦   ¦   ¦   +-- services.schema.ts
 ¦   ¦   ¦   +-- services
 ¦   ¦   ¦   ¦   +-- index.ts
-¦   ¦   ¦   ¦   +-- services.service.ts
+¦   ¦   ¦   ¦   +-- service.service.ts
 ¦   ¦   ¦   +-- types
 ¦   ¦   ¦   ¦   +-- index.ts
-¦   ¦   ¦   ¦   +-- services.type.ts
+¦   ¦   ¦   ¦   +-- services.types.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- settings
 ¦   ¦   ¦   +-- components
@@ -454,7 +469,7 @@
 ¦   ¦   ¦   ¦   +-- settings.service.ts
 ¦   ¦   ¦   +-- types
 ¦   ¦   ¦   ¦   +-- index.ts
-¦   ¦   ¦   ¦   +-- settings.type.ts
+¦   ¦   ¦   ¦   +-- settings.types.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- skills
 ¦   ¦   ¦   +-- components
@@ -471,8 +486,6 @@
 ¦   ¦   ¦   ¦   +-- use-skills.ts
 ¦   ¦   ¦   ¦   +-- use-update-skill.ts
 ¦   ¦   ¦   +-- pages
-¦   ¦   ¦   ¦   +-- create-skill.page.tsx
-¦   ¦   ¦   ¦   +-- edit-skill.page.tsx
 ¦   ¦   ¦   ¦   +-- index.ts
 ¦   ¦   ¦   ¦   +-- skills-list.page.tsx
 ¦   ¦   ¦   +-- routes
@@ -486,7 +499,7 @@
 ¦   ¦   ¦   ¦   +-- skills.service.ts
 ¦   ¦   ¦   +-- types
 ¦   ¦   ¦   ¦   +-- index.ts
-¦   ¦   ¦   ¦   +-- skills.type.ts
+¦   ¦   ¦   ¦   +-- skills.types.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- testimonials
 ¦   ¦   ¦   +-- components
@@ -519,7 +532,7 @@
 ¦   ¦   ¦   ¦   +-- testimonials.service.ts
 ¦   ¦   ¦   +-- types
 ¦   ¦   ¦   ¦   +-- index.ts
-¦   ¦   ¦   ¦   +-- testimonials.type.ts
+¦   ¦   ¦   ¦   +-- testimonials.types.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- upload
 ¦   ¦       +-- components
@@ -539,7 +552,7 @@
 ¦   ¦       ¦   +-- upload.service.ts
 ¦   ¦       +-- types
 ¦   ¦       ¦   +-- index.ts
-¦   ¦       ¦   +-- upload.type.ts
+¦   ¦       ¦   +-- upload.types.ts
 ¦   ¦       +-- index.ts
 ¦   +-- providers
 ¦   ¦   +-- confirmation
@@ -551,22 +564,12 @@
 ¦   ¦   +-- theme-provider.tsx
 ¦   ¦   +-- tooltip-provider.tsx
 ¦   +-- routes
-¦   ¦   +-- route.constant.ts
+¦   ¦   +-- route.constants.ts
 ¦   +-- shared
 ¦   ¦   +-- config
 ¦   ¦   ¦   +-- api.config.ts
-¦   ¦   +-- constants
-¦   ¦   ¦   +-- api.constant.ts
-¦   ¦   ¦   +-- api-endpoints.ts
-¦   ¦   ¦   +-- app.constant.ts
-¦   ¦   ¦   +-- index.ts
-¦   ¦   ¦   +-- message.constant.ts
-¦   ¦   ¦   +-- query.constant.ts
-¦   ¦   ¦   +-- query-keys.ts
-¦   ¦   ¦   +-- storage.constant.ts
 ¦   ¦   +-- hooks
 ¦   ¦   ¦   +-- index.ts
-¦   ¦   ¦   +-- use-confirmation.ts
 ¦   ¦   ¦   +-- use-debounce.ts
 ¦   ¦   ¦   +-- use-pagination.ts
 ¦   ¦   +-- lib
@@ -588,16 +591,16 @@
 ¦   ¦   ¦   +-- http-client.ts
 ¦   ¦   ¦   +-- index.ts
 ¦   ¦   +-- types
-¦   ¦       +-- api-response.type.ts
-¦   ¦       +-- auth.type.ts
-¦   ¦       +-- breadcrumb.type.ts
-¦   ¦       +-- common.type.ts
-¦   ¦       +-- error.type.ts
-¦   ¦       +-- image.type.ts
+¦   ¦       +-- api-response.types.ts
+¦   ¦       +-- auth.types.ts
+¦   ¦       +-- breadcrumb.types.ts
+¦   ¦       +-- common.types.ts
+¦   ¦       +-- error.types.ts
+¦   ¦       +-- image.types.ts
 ¦   ¦       +-- index.ts
-¦   ¦       +-- pagination.type.ts
-¦   ¦       +-- sidebar-item.type.ts
-¦   ¦       +-- user.type.ts
+¦   ¦       +-- pagination.types.ts
+¦   ¦       +-- sidebar-item.types.ts
+¦   ¦       +-- user.types.ts
 ¦   +-- styles
 ¦   ¦   +-- globals.css
 ¦   ¦   +-- index.css

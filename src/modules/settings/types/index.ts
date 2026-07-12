@@ -1,1 +1,1 @@
-export * from "./settings.type";
+export * from "./settings.types";

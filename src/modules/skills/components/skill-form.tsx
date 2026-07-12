@@ -4,11 +4,7 @@ import { useEffect, useMemo, type ReactElement } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import {
-  Save,
-  Trash2,
-  Wrench,
-} from "lucide-react";
+import { Save, Trash2, Wrench } from "lucide-react";
 
 import { useForm } from "react-hook-form";
 
@@ -32,24 +28,13 @@ import {
 
 import { ImageUpload } from "@/modules/upload/components/image-upload";
 
-import { useConfirmation } from "@/shared/hooks";
+import { useConfirmation } from "@/providers/confirmation/use-confirmation";
 
-import {
-  skillFormSchema,
-  type SkillFormValues,
-} from "../schemas";
+import { skillFormSchema, type SkillFormValues } from "../schemas";
 
-import {
-  useCreateSkill,
-  useDeleteSkill,
-  useUpdateSkill,
-} from "../hooks";
+import { useCreateSkill, useDeleteSkill, useUpdateSkill } from "../hooks";
 
-import {
-  SKILL_CATEGORIES,
-  SKILL_DEFAULT_VALUES,
-  type ISkill,
-} from "../types";
+import { SKILL_CATEGORIES, SKILL_DEFAULT_VALUES, type ISkill } from "../types";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */
@@ -102,19 +87,9 @@ export function SkillForm({
     mode: "onChange",
   });
 
-  const {
-    control,
-    watch,
-    reset,
-    setValue,
-    handleSubmit,
-    formState,
-  } = form;
+  const { control, watch, reset, setValue, handleSubmit, formState } = form;
 
-  const {
-    isDirty,
-    isSubmitting,
-  } = formState;
+  const { isDirty, isSubmitting } = formState;
 
   /* ------------------------------------------------------------------------ */
   /*                               Watch Fields                               */
@@ -187,9 +162,7 @@ export function SkillForm({
   /*                               Submit Form                                */
   /* ------------------------------------------------------------------------ */
 
-  const onSubmit = async (
-    values: SkillFormValues,
-  ): Promise<void> => {
+  const onSubmit = async (values: SkillFormValues): Promise<void> => {
     const payload = {
       name: values.name.trim(),
 
@@ -268,9 +241,7 @@ export function SkillForm({
   /*                           Image Upload Handler                           */
   /* ------------------------------------------------------------------------ */
 
-  const handleImageChange = (
-    value: SkillFormValues["image"],
-  ): void => {
+  const handleImageChange = (value: SkillFormValues["image"]): void => {
     setValue("image", value, {
       shouldDirty: true,
 
@@ -312,10 +283,7 @@ export function SkillForm({
         </DialogHeader>
 
         <Form {...form}>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="space-y-6"
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* ---------------------------------------------------------------- */}
             {/* Basic Information                                                */}
             {/* ---------------------------------------------------------------- */}
@@ -374,14 +342,11 @@ export function SkillForm({
 
             <div className="space-y-3">
               <div className="space-y-1">
-                <h3 className="text-sm font-medium">
-                  Skill Image
-                </h3>
+                <h3 className="text-sm font-medium">Skill Image</h3>
 
                 <p className="text-muted-foreground text-sm">
-                  Upload the technology logo that will be displayed
-                  on your portfolio. Supported formats: JPG, PNG,
-                  SVG and WEBP.
+                  Upload the technology logo that will be displayed on your
+                  portfolio. Supported formats: JPG, PNG, SVG and WEBP.
                 </p>
               </div>
 
@@ -435,7 +400,6 @@ export function SkillForm({
                     disabled={isLoading}
                   >
                     <Trash2 className="size-4" />
-
                     Delete Skill
                   </SubmitButton>
                 ) : null}
@@ -445,20 +409,13 @@ export function SkillForm({
                 type="submit"
                 isLoading={isLoading}
                 loadingText={
-                  isEditMode
-                    ? "Updating Skill..."
-                    : "Creating Skill..."
+                  isEditMode ? "Updating Skill..." : "Creating Skill..."
                 }
-                disabled={
-                  isLoading ||
-                  (isEditMode && !isDirty)
-                }
+                disabled={isLoading || (isEditMode && !isDirty)}
               >
                 <Save className="size-4" />
 
-                {isEditMode
-                  ? "Update Skill"
-                  : "Create Skill"}
+                {isEditMode ? "Update Skill" : "Create Skill"}
               </SubmitButton>
             </div>
           </form>

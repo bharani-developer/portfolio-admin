@@ -1,1 +1,1 @@
-export * from "./contact.type";
+export * from "./contact.types";

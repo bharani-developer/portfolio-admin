@@ -29,20 +29,11 @@ interface CertificationsFiltersProps {
 
   isLoading?: boolean;
 
-  onSearchChange: (
-    value: string,
-  ) => void;
+  onSearchChange: (value: string) => void;
 
-  onStatusChange: (
-    value:
-      | "all"
-      | "active"
-      | "inactive",
-  ) => void;
+  onStatusChange: (value: "all" | "active" | "inactive") => void;
 
-  onIssuerChange: (
-    value: string,
-  ) => void;
+  onIssuerChange: (value: string) => void;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -93,40 +84,27 @@ export function CertificationsFilters({
               disabled={isLoading}
               placeholder="Search certifications..."
               className="pl-10"
-              onChange={(event) =>
-                onSearchChange(
-                  event.target.value,
-                )
-              }
+              onChange={(event) => onSearchChange(event.target.value)}
             />
           </div>
 
           <Select
             value={issuer}
             disabled={isLoading}
-            onValueChange={
-              onIssuerChange
-            }
+            onValueChange={onIssuerChange}
           >
             <SelectTrigger className="w-full xl:w-[240px]">
               <SelectValue placeholder="Issuer" />
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Issuers
-              </SelectItem>
+              <SelectItem value="all">All Issuers</SelectItem>
 
-              {issuers.map(
-                (issuerItem) => (
-                  <SelectItem
-                    key={issuerItem}
-                    value={issuerItem}
-                  >
-                    {issuerItem}
-                  </SelectItem>
-                ),
-              )}
+              {issuers.map((issuerItem) => (
+                <SelectItem key={issuerItem} value={issuerItem}>
+                  {issuerItem}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
 
@@ -134,12 +112,7 @@ export function CertificationsFilters({
             value={status}
             disabled={isLoading}
             onValueChange={(value) =>
-              onStatusChange(
-                value as
-                  | "all"
-                  | "active"
-                  | "inactive",
-              )
+              onStatusChange(value as "all" | "active" | "inactive")
             }
           >
             <SelectTrigger className="w-full xl:w-[180px]">
@@ -147,17 +120,11 @@ export function CertificationsFilters({
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="all">
-                All Status
-              </SelectItem>
+              <SelectItem value="all">All Status</SelectItem>
 
-              <SelectItem value="active">
-                Active
-              </SelectItem>
+              <SelectItem value="active">Active</SelectItem>
 
-              <SelectItem value="inactive">
-                Inactive
-              </SelectItem>
+              <SelectItem value="inactive">Inactive</SelectItem>
             </SelectContent>
           </Select>
         </div>

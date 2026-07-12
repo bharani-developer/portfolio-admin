@@ -1,14 +1,6 @@
-import {
-  useState,
-  type ReactElement,
-} from "react";
+import { useState, type ReactElement } from "react";
 
-import {
-  Eye,
-  EyeOff,
-  LockKeyhole,
-  ShieldCheck,
-} from "lucide-react";
+import { Eye, EyeOff, LockKeyhole, ShieldCheck } from "lucide-react";
 
 import { useForm } from "react-hook-form";
 
@@ -20,37 +12,29 @@ import { Form } from "@/components/ui/form";
 import { FormInput } from "@/components/forms/form-input";
 import { SubmitButton } from "@/components/forms/submit-button";
 
-import {
-  loginSchema,
-  type LoginFormValues,
-} from "../schemas/login.schema";
+import { loginSchema, type LoginFormValues } from "../schemas/login.schema";
 
 import { useLogin } from "../hooks/use-login";
 
 import { GoogleLoginButton } from "./google-login-button";
 
 export function LoginForm(): ReactElement {
-  const [showPassword, setShowPassword] =
-    useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const loginMutation = useLogin();
 
-  const form =
-    useForm<LoginFormValues>({
-      resolver:
-        zodResolver(loginSchema),
+  const form = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
 
-      defaultValues: {
-        email: "",
-        password: "",
-      },
+    defaultValues: {
+      email: "",
+      password: "",
+    },
 
-      mode: "onSubmit",
-    });
+    mode: "onSubmit",
+  });
 
-  const onSubmit = (
-    values: LoginFormValues,
-  ): void => {
+  const onSubmit = (values: LoginFormValues): void => {
     loginMutation.mutate(values);
   };
 
@@ -112,9 +96,7 @@ export function LoginForm(): ReactElement {
         >
           <LockKeyhole className="size-3.5" />
 
-          <span>
-            Secure Authentication
-          </span>
+          <span>Secure Authentication</span>
         </div>
 
         <h1
@@ -138,12 +120,8 @@ export function LoginForm(): ReactElement {
             leading-7
           "
         >
-          Sign in to access your
-          portfolio administration
-          dashboard and manage your
-          projects, blogs, services,
-          skills, and portfolio
-          content.
+          Sign in to access your portfolio administration dashboard and manage
+          your projects, blogs, services, skills, and portfolio content.
         </p>
       </div>
 
@@ -151,9 +129,7 @@ export function LoginForm(): ReactElement {
 
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(
-            onSubmit,
-          )}
+          onSubmit={form.handleSubmit(onSubmit)}
           className="
             flex
             flex-1
@@ -170,9 +146,7 @@ export function LoginForm(): ReactElement {
             placeholder="admin@example.com"
             type="email"
             autoComplete="email"
-            disabled={
-              loginMutation.isPending
-            }
+            disabled={loginMutation.isPending}
             required
           />
 
@@ -182,15 +156,9 @@ export function LoginForm(): ReactElement {
               name="password"
               label="Password"
               placeholder="Enter your password"
-              type={
-                showPassword
-                  ? "text"
-                  : "password"
-              }
+              type={showPassword ? "text" : "password"}
               autoComplete="current-password"
-              disabled={
-                loginMutation.isPending
-              }
+              disabled={loginMutation.isPending}
               required
             />
 
@@ -199,11 +167,7 @@ export function LoginForm(): ReactElement {
               variant="ghost"
               size="icon"
               tabIndex={-1}
-              aria-label={
-                showPassword
-                  ? "Hide password"
-                  : "Show password"
-              }
+              aria-label={showPassword ? "Hide password" : "Show password"}
               className="
                 absolute
                 right-2
@@ -212,12 +176,7 @@ export function LoginForm(): ReactElement {
                 w-8
                 rounded-lg
               "
-              onClick={() =>
-                setShowPassword(
-                  (previous) =>
-                    !previous,
-                )
-              }
+              onClick={() => setShowPassword((previous) => !previous)}
             >
               {showPassword ? (
                 <EyeOff className="size-4" />
@@ -234,9 +193,7 @@ export function LoginForm(): ReactElement {
               text-sm
               font-semibold
             "
-            isLoading={
-              loginMutation.isPending
-            }
+            isLoading={loginMutation.isPending}
             loadingText="Signing in..."
           >
             Sign In
@@ -292,10 +249,7 @@ export function LoginForm(): ReactElement {
       >
         <ShieldCheck className="size-3.5 shrink-0" />
 
-        <span>
-          Protected administration
-          area. Authorized users only.
-        </span>
+        <span>Protected administration area. Authorized users only.</span>
       </div>
     </div>
   );

@@ -6,12 +6,7 @@ import type { ReactElement } from "react";
 
 import type { ColumnDef } from "@tanstack/react-table";
 
-import {
-  Award,
-  Edit,
-  Eye,
-  Trash2,
-} from "lucide-react";
+import { Award, Edit, Eye, Trash2 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -38,34 +33,23 @@ interface CertificationsTableProps {
 
   onLimitChange: (limit: number) => void;
 
-  onView?: (
-    certification: ICertification,
-  ) => void;
+  onView?: (certification: ICertification) => void;
 
-  onEdit: (
-    certification: ICertification,
-  ) => void;
+  onEdit: (certification: ICertification) => void;
 
-  onDelete: (
-    certification: ICertification,
-  ) => void;
+  onDelete: (certification: ICertification) => void;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                             Helper Functions                               */
 /* -------------------------------------------------------------------------- */
 
-function formatDate(
-  date: string,
-): string {
-  return new Intl.DateTimeFormat(
-    "en-IN",
-    {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    },
-  ).format(new Date(date));
+function formatDate(date: string): string {
+  return new Intl.DateTimeFormat("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(new Date(date));
 }
 
 /* -------------------------------------------------------------------------- */
@@ -82,9 +66,7 @@ export function CertificationsTable({
   onEdit,
   onDelete,
 }: CertificationsTableProps): ReactElement {
-  const columns = useMemo<
-    ColumnDef<ICertification>[]
-  >(
+  const columns = useMemo<ColumnDef<ICertification>[]>(
     () => [
       {
         accessorKey: "title",
@@ -92,21 +74,14 @@ export function CertificationsTable({
         header: "Certification",
 
         cell: ({ row }) => {
-          const certification =
-            row.original;
+          const certification = row.original;
 
           return (
             <div className="flex items-center gap-3">
-              {certification
-                .certificateImage?.url ? (
+              {certification.certificateImage?.url ? (
                 <img
-                  src={
-                    certification
-                      .certificateImage.url
-                  }
-                  alt={
-                    certification.title
-                  }
+                  src={certification.certificateImage.url}
+                  alt={certification.title}
                   className="
                     size-12
                     rounded-lg
@@ -131,9 +106,7 @@ export function CertificationsTable({
               )}
 
               <div>
-                <p className="font-medium">
-                  {certification.title}
-                </p>
+                <p className="font-medium">{certification.title}</p>
 
                 <p
                   className="
@@ -161,27 +134,18 @@ export function CertificationsTable({
         header: "Skills",
 
         cell: ({ row }) => {
-          const skills =
-            row.original.skills;
+          const skills = row.original.skills;
 
           return (
             <div className="flex flex-wrap gap-1">
-              {skills
-                .slice(0, 3)
-                .map((skill) => (
-                  <Badge
-                    key={skill}
-                    variant="secondary"
-                  >
-                    {skill}
-                  </Badge>
-                ))}
+              {skills.slice(0, 3).map((skill) => (
+                <Badge key={skill} variant="secondary">
+                  {skill}
+                </Badge>
+              ))}
 
               {skills.length > 3 ? (
-                <Badge variant="outline">
-                  +
-                  {skills.length - 3}
-                </Badge>
+                <Badge variant="outline">+{skills.length - 3}</Badge>
               ) : null}
             </div>
           );
@@ -193,10 +157,7 @@ export function CertificationsTable({
 
         header: "Issued",
 
-        cell: ({ row }) =>
-          formatDate(
-            row.original.issueDate,
-          ),
+        cell: ({ row }) => formatDate(row.original.issueDate),
       },
 
       {
@@ -205,23 +166,14 @@ export function CertificationsTable({
         header: "Expiry",
 
         cell: ({ row }) => {
-          const certification =
-            row.original;
+          const certification = row.original;
 
-          if (
-            certification.neverExpires
-          ) {
-            return (
-              <Badge variant="outline">
-                Never
-              </Badge>
-            );
+          if (certification.neverExpires) {
+            return <Badge variant="outline">Never</Badge>;
           }
 
           return certification.expiryDate
-            ? formatDate(
-                certification.expiryDate,
-              )
+            ? formatDate(certification.expiryDate)
             : "-";
         },
       },
@@ -232,16 +184,8 @@ export function CertificationsTable({
         header: "Status",
 
         cell: ({ row }) => (
-          <Badge
-            variant={
-              row.original.isActive
-                ? "default"
-                : "secondary"
-            }
-          >
-            {row.original.isActive
-              ? "Active"
-              : "Inactive"}
+          <Badge variant={row.original.isActive ? "default" : "secondary"}>
+            {row.original.isActive ? "Active" : "Inactive"}
           </Badge>
         ),
       },
@@ -249,11 +193,7 @@ export function CertificationsTable({
       {
         id: "actions",
 
-        header: () => (
-          <div className="flex justify-center">
-            Actions
-          </div>
-        ),
+        header: () => <div className="flex justify-center">Actions</div>,
 
         size: 180,
 
@@ -264,8 +204,7 @@ export function CertificationsTable({
         enableSorting: false,
 
         cell: ({ row }) => {
-          const certification =
-            row.original;
+          const certification = row.original;
 
           return (
             <div
@@ -282,11 +221,7 @@ export function CertificationsTable({
                   variant="ghost"
                   size="icon"
                   aria-label={`View ${certification.title}`}
-                  onClick={() =>
-                    onView(
-                      certification,
-                    )
-                  }
+                  onClick={() => onView(certification)}
                 >
                   <Eye className="size-4" />
                 </Button>
@@ -297,11 +232,7 @@ export function CertificationsTable({
                 variant="outline"
                 size="icon"
                 aria-label={`Edit ${certification.title}`}
-                onClick={() =>
-                  onEdit(
-                    certification,
-                  )
-                }
+                onClick={() => onEdit(certification)}
               >
                 <Edit className="size-4" />
               </Button>
@@ -311,11 +242,7 @@ export function CertificationsTable({
                 variant="destructive"
                 size="icon"
                 aria-label={`Delete ${certification.title}`}
-                onClick={() =>
-                  onDelete(
-                    certification,
-                  )
-                }
+                onClick={() => onDelete(certification)}
               >
                 <Trash2 className="size-4" />
               </Button>
@@ -324,11 +251,7 @@ export function CertificationsTable({
         },
       },
     ],
-    [
-      onDelete,
-      onEdit,
-      onView,
-    ],
+    [onDelete, onEdit, onView],
   );
 
   return (

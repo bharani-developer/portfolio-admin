@@ -1,6 +1,6 @@
 // src/modules/experience/services/experience.service.ts
 
-import { API_ENDPOINTS } from "@/shared/constants/api-endpoints";
+import { API_ENDPOINTS } from "@/constants/api-endpoints.constants";
 
 import { httpClient } from "@/shared/services/http-client";
 
@@ -41,9 +41,7 @@ class ExperienceService {
   /*                           Get Experience By Id                           */
   /* ------------------------------------------------------------------------ */
 
-  async getExperienceById(
-    id: string,
-  ): Promise<IExperienceResponse> {
+  async getExperienceById(id: string): Promise<IExperienceResponse> {
     const response = await httpClient.get<IExperienceResponse>(
       `${API_ENDPOINTS.EXPERIENCE}/${id}`,
     );
@@ -55,9 +53,7 @@ class ExperienceService {
   /*                         Get Experience By Slug                           */
   /* ------------------------------------------------------------------------ */
 
-  async getExperienceBySlug(
-    slug: string,
-  ): Promise<IExperienceResponse> {
+  async getExperienceBySlug(slug: string): Promise<IExperienceResponse> {
     const response = await httpClient.get<IExperienceResponse>(
       `${API_ENDPOINTS.EXPERIENCE}/slug/${slug}`,
     );
@@ -124,11 +120,10 @@ class ExperienceService {
   async createExperience(
     payload: ICreateExperiencePayload,
   ): Promise<ICreateExperienceResponse> {
-    const response =
-      await httpClient.post<ICreateExperienceResponse>(
-        API_ENDPOINTS.EXPERIENCE,
-        payload,
-      );
+    const response = await httpClient.post<ICreateExperienceResponse>(
+      API_ENDPOINTS.EXPERIENCE,
+      payload,
+    );
 
     return response.data;
   }
@@ -141,11 +136,10 @@ class ExperienceService {
     id: string,
     payload: IUpdateExperiencePayload,
   ): Promise<IUpdateExperienceResponse> {
-    const response =
-      await httpClient.patch<IUpdateExperienceResponse>(
-        `${API_ENDPOINTS.EXPERIENCE}/${id}`,
-        payload,
-      );
+    const response = await httpClient.patch<IUpdateExperienceResponse>(
+      `${API_ENDPOINTS.EXPERIENCE}/${id}`,
+      payload,
+    );
 
     return response.data;
   }
@@ -154,13 +148,10 @@ class ExperienceService {
   /*                           Delete Experience                              */
   /* ------------------------------------------------------------------------ */
 
-  async deleteExperience(
-    id: string,
-  ): Promise<IDeleteExperienceResponse> {
-    const response =
-      await httpClient.delete<IDeleteExperienceResponse>(
-        `${API_ENDPOINTS.EXPERIENCE}/${id}`,
-      );
+  async deleteExperience(id: string): Promise<IDeleteExperienceResponse> {
+    const response = await httpClient.delete<IDeleteExperienceResponse>(
+      `${API_ENDPOINTS.EXPERIENCE}/${id}`,
+    );
 
     return response.data;
   }

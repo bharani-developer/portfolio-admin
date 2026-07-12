@@ -12,19 +12,11 @@ import {
 
 import { CertificationForm } from "./certification-form";
 
-import {
-  useCreateCertification,
-  useUpdateCertification,
-} from "../hooks";
+import { useCreateCertification, useUpdateCertification } from "../hooks";
 
-import type {
-  CertificationFormValues,
-} from "../schemas";
+import type { CertificationFormValues } from "../schemas";
 
-import type {
-  ICertification,
-  ICreateCertificationPayload,
-} from "../types";
+import type { ICertification, ICreateCertificationPayload } from "../types";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */
@@ -35,9 +27,7 @@ interface CertificationDialogProps {
 
   certification?: ICertification | null;
 
-  onOpenChange: (
-    open: boolean,
-  ) => void;
+  onOpenChange: (open: boolean) => void;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -49,11 +39,9 @@ export function CertificationDialog({
   certification = null,
   onOpenChange,
 }: CertificationDialogProps): ReactElement {
-  const createCertificationMutation =
-    useCreateCertification();
+  const createCertificationMutation = useCreateCertification();
 
-  const updateCertificationMutation =
-    useUpdateCertification();
+  const updateCertificationMutation = useUpdateCertification();
 
   const isSubmitting =
     createCertificationMutation.isPending ||
@@ -66,66 +54,47 @@ export function CertificationDialog({
   const handleSubmit = async (
     values: CertificationFormValues,
   ): Promise<void> => {
-    const payload: ICreateCertificationPayload =
-      {
-        title: values.title,
+    const payload: ICreateCertificationPayload = {
+      title: values.title,
 
-        issuer: values.issuer,
+      issuer: values.issuer,
 
-        issueDate: values.issueDate,
+      issueDate: values.issueDate,
 
-        expiryDate:
-          values.neverExpires
-            ? null
-            : values.expiryDate,
+      expiryDate: values.neverExpires ? null : values.expiryDate,
 
-        neverExpires:
-          values.neverExpires,
+      neverExpires: values.neverExpires,
 
-        skills: values.skills,
+      skills: values.skills,
 
-        sortOrder: values.sortOrder,
+      sortOrder: values.sortOrder,
 
-        isActive: values.isActive,
-      };
+      isActive: values.isActive,
+    };
 
     if (values.certificateImage) {
-      payload.certificateImage =
-        values.certificateImage;
+      payload.certificateImage = values.certificateImage;
     }
 
-    if (
-      values.credentialId.trim()
-    ) {
-      payload.credentialId =
-        values.credentialId;
+    if (values.credentialId.trim()) {
+      payload.credentialId = values.credentialId;
     }
 
-    if (
-      values.credentialUrl.trim()
-    ) {
-      payload.credentialUrl =
-        values.credentialUrl;
+    if (values.credentialUrl.trim()) {
+      payload.credentialUrl = values.credentialUrl;
     }
 
-    if (
-      values.description.trim()
-    ) {
-      payload.description =
-        values.description;
+    if (values.description.trim()) {
+      payload.description = values.description;
     }
 
     if (certification) {
-      await updateCertificationMutation.mutateAsync(
-        {
-          id: certification._id,
-          payload,
-        },
-      );
-    } else {
-      await createCertificationMutation.mutateAsync(
+      await updateCertificationMutation.mutateAsync({
+        id: certification._id,
         payload,
-      );
+      });
+    } else {
+      await createCertificationMutation.mutateAsync(payload);
     }
 
     onOpenChange(false);
@@ -136,10 +105,7 @@ export function CertificationDialog({
   /* ------------------------------------------------------------------------ */
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className="
           max-h-[90vh]
@@ -149,9 +115,7 @@ export function CertificationDialog({
       >
         <DialogHeader>
           <DialogTitle>
-            {certification
-              ? "Update Certification"
-              : "Create Certification"}
+            {certification ? "Update Certification" : "Create Certification"}
           </DialogTitle>
 
           <DialogDescription>
@@ -162,20 +126,12 @@ export function CertificationDialog({
         </DialogHeader>
 
         <CertificationForm
-          initialData={
-            certification
-          }
-          isSubmitting={
-            isSubmitting
-          }
+          initialData={certification}
+          isSubmitting={isSubmitting}
           submitLabel={
-            certification
-              ? "Update Certification"
-              : "Create Certification"
+            certification ? "Update Certification" : "Create Certification"
           }
-          onSubmit={
-            handleSubmit
-          }
+          onSubmit={handleSubmit}
         />
       </DialogContent>
     </Dialog>

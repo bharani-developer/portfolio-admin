@@ -152,7 +152,7 @@ export function ExperienceListPage(): ReactElement {
 
   if (isError) {
     return (
-      <PageContainer ultraWide>
+      <PageContainer>
         <PageTitle
           title="Experience"
           description="Manage your professional experience history."
@@ -215,7 +215,7 @@ export function ExperienceListPage(): ReactElement {
   /* ------------------------------------------------------------------------ */
 
   return (
-    <PageContainer ultraWide>
+    <PageContainer>
       <div className="space-y-6">
         <PageTitle
           title="Experience"

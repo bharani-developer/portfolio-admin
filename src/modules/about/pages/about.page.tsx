@@ -16,7 +16,7 @@ import { AboutForm } from "../components/about-form";
 
 export function AboutPage(): ReactElement {
   return (
-    <PageContainer ultraWide>
+    <PageContainer>
       <div className="space-y-6">
         <PageTitle
           title="About"

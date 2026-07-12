@@ -1,6 +1,6 @@
 // src/shared/lib/auth-storage.ts
 
-import { STORAGE_KEYS } from "@/shared/constants/storage.constant";
+import { STORAGE_KEYS } from "@/constants/storage.constants";
 
 import { storage } from "./storage";
 
@@ -48,66 +48,43 @@ export interface AuthUser {
 
 export const authStorage = {
   getAccessToken(): string | null {
-    return storage.get<string>(
-      STORAGE_KEYS.AUTH.ACCESS_TOKEN,
-    );
+    return storage.get<string>(STORAGE_KEYS.AUTH.ACCESS_TOKEN);
   },
 
   setAccessToken(token: string): void {
-    storage.set(
-      STORAGE_KEYS.AUTH.ACCESS_TOKEN,
-      token,
-    );
+    storage.set(STORAGE_KEYS.AUTH.ACCESS_TOKEN, token);
   },
 
   removeAccessToken(): void {
-    storage.remove(
-      STORAGE_KEYS.AUTH.ACCESS_TOKEN,
-    );
+    storage.remove(STORAGE_KEYS.AUTH.ACCESS_TOKEN);
   },
 
   getRefreshToken(): string | null {
-    return storage.get<string>(
-      STORAGE_KEYS.AUTH.REFRESH_TOKEN,
-    );
+    return storage.get<string>(STORAGE_KEYS.AUTH.REFRESH_TOKEN);
   },
 
   setRefreshToken(token: string): void {
-    storage.set(
-      STORAGE_KEYS.AUTH.REFRESH_TOKEN,
-      token,
-    );
+    storage.set(STORAGE_KEYS.AUTH.REFRESH_TOKEN, token);
   },
 
   removeRefreshToken(): void {
-    storage.remove(
-      STORAGE_KEYS.AUTH.REFRESH_TOKEN,
-    );
+    storage.remove(STORAGE_KEYS.AUTH.REFRESH_TOKEN);
   },
 
   getUser(): AuthUser | null {
-    return storage.get<AuthUser>(
-      STORAGE_KEYS.AUTH.USER,
-    );
+    return storage.get<AuthUser>(STORAGE_KEYS.AUTH.USER);
   },
 
   setUser(user: AuthUser): void {
-    storage.set(
-      STORAGE_KEYS.AUTH.USER,
-      user,
-    );
+    storage.set(STORAGE_KEYS.AUTH.USER, user);
   },
 
   removeUser(): void {
-    storage.remove(
-      STORAGE_KEYS.AUTH.USER,
-    );
+    storage.remove(STORAGE_KEYS.AUTH.USER);
   },
 
   isAuthenticated(): boolean {
-    return Boolean(
-      this.getAccessToken(),
-    );
+    return Boolean(this.getAccessToken());
   },
 
   clear(): void {

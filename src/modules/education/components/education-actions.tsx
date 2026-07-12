@@ -13,12 +13,9 @@ import { useIsFetching } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui/button";
 
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 interface EducationActionsProps {
   totalEducations?: number;
@@ -41,24 +38,14 @@ export function EducationActions({
 }: EducationActionsProps): ReactElement {
   const isFetching =
     useIsFetching({
-      queryKey:
-        QUERY_KEYS.EDUCATION.ALL,
+      queryKey: QUERY_KEYS.EDUCATION.ALL,
     }) > 0;
 
-  const inactiveEducations =
-    Math.max(
-      totalEducations -
-        activeEducations,
-      0,
-    );
+  const inactiveEducations = Math.max(totalEducations - activeEducations, 0);
 
   const activePercentage =
     totalEducations > 0
-      ? Math.round(
-          (activeEducations /
-            totalEducations) *
-            100,
-        )
+      ? Math.round((activeEducations / totalEducations) * 100)
       : 0;
 
   return (
@@ -259,9 +246,7 @@ export function EducationActions({
                   text-muted-foreground
                 "
               >
-                {inactiveEducations}
-                {" "}
-                inactive
+                {inactiveEducations} inactive
               </p>
             </div>
           </div>
@@ -284,23 +269,14 @@ export function EducationActions({
                 className={`
                   mr-2
                   size-4
-                  ${
-                    isFetching
-                      ? "animate-spin"
-                      : ""
-                  }
+                  ${isFetching ? "animate-spin" : ""}
                 `}
               />
-
               Refresh
             </Button>
 
-            <Button
-              type="button"
-              onClick={onCreate}
-            >
+            <Button type="button" onClick={onCreate}>
               <Plus className="mr-2 size-4" />
-
               Add Education
             </Button>
           </div>

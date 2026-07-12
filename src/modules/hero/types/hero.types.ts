@@ -1,8 +1,4 @@
-import type {
-  IBaseEntity,
-  IApiResponse,
-  IImage,
-} from "@/shared/types";
+import type { IBaseEntity, IApiResponse, IImage } from "@/shared/types";
 
 import type { HeroFormValues } from "../schemas/hero.schema";
 

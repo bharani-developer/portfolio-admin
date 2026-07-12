@@ -21,9 +21,7 @@ interface ExperienceDialogProps {
 
   experience?: IExperience | null;
 
-  onOpenChange: (
-    open: boolean,
-  ) => void;
+  onOpenChange: (open: boolean) => void;
 
   onSuccess?: () => void;
 }
@@ -38,15 +36,10 @@ export function ExperienceDialog({
   onOpenChange,
   onSuccess,
 }: ExperienceDialogProps): ReactElement {
-  const isEditMode =
-    experience !== null &&
-    experience !== undefined;
+  const isEditMode = experience !== null && experience !== undefined;
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className="
           max-h-[90vh]
@@ -56,9 +49,7 @@ export function ExperienceDialog({
       >
         <DialogHeader>
           <DialogTitle>
-            {isEditMode
-              ? "Update Experience"
-              : "Create Experience"}
+            {isEditMode ? "Update Experience" : "Create Experience"}
           </DialogTitle>
 
           <DialogDescription>

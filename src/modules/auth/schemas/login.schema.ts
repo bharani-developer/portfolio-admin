@@ -2,16 +2,10 @@
 
 import { z } from "zod";
 
-export const authProviderSchema = z.enum([
-  "LOCAL",
-  "GOOGLE",
-]);
+export const authProviderSchema = z.enum(["LOCAL", "GOOGLE"]);
 
 export const loginSchema = z.object({
-  email: z
-    .email("Please enter a valid email address.")
-    .trim()
-    .toLowerCase(),
+  email: z.email("Please enter a valid email address.").trim().toLowerCase(),
 
   password: z
     .string()
@@ -25,20 +19,13 @@ export const loginSchema = z.object({
 });
 
 export const googleLoginSchema = z.object({
-  token: z
-    .string()
-    .trim()
-    .min(1, "Google credential token is required."),
+  token: z.string().trim().min(1, "Google credential token is required."),
 });
 
 export const googleCredentialSchema = z.object({
-  credential: z
-    .string()
-    .min(1, "Google credential is required."),
+  credential: z.string().min(1, "Google credential is required."),
 
-  clientId: z
-    .string()
-    .min(1, "Google client ID is required."),
+  clientId: z.string().min(1, "Google client ID is required."),
 
   select_by: z.string().optional(),
 });
@@ -61,14 +48,10 @@ export const changePasswordSchema = z
         "Password must contain uppercase, lowercase, and a number.",
       ),
   })
-  .refine(
-    (data) => data.oldPassword !== data.newPassword,
-    {
-      message:
-        "New password must be different from current password.",
-      path: ["newPassword"],
-    },
-  );
+  .refine((data) => data.oldPassword !== data.newPassword, {
+    message: "New password must be different from current password.",
+    path: ["newPassword"],
+  });
 
 export const updateProfileSchema = z.object({
   name: z
@@ -78,45 +61,21 @@ export const updateProfileSchema = z.object({
     .max(100, "Name must not exceed 100 characters.")
     .optional(),
 
-  givenName: z
-    .string()
-    .trim()
-    .max(50)
-    .optional(),
+  givenName: z.string().trim().max(50).optional(),
 
-  familyName: z
-    .string()
-    .trim()
-    .max(50)
-    .optional(),
+  familyName: z.string().trim().max(50).optional(),
 
-  locale: z
-    .string()
-    .trim()
-    .max(20)
-    .optional(),
+  locale: z.string().trim().max(20).optional(),
 });
 
-export type LoginFormValues = z.infer<
-  typeof loginSchema
->;
+export type LoginFormValues = z.infer<typeof loginSchema>;
 
-export type GoogleLoginFormValues = z.infer<
-  typeof googleLoginSchema
->;
+export type GoogleLoginFormValues = z.infer<typeof googleLoginSchema>;
 
-export type GoogleCredentialValues = z.infer<
-  typeof googleCredentialSchema
->;
+export type GoogleCredentialValues = z.infer<typeof googleCredentialSchema>;
 
-export type ChangePasswordFormValues = z.infer<
-  typeof changePasswordSchema
->;
+export type ChangePasswordFormValues = z.infer<typeof changePasswordSchema>;
 
-export type UpdateProfileFormValues = z.infer<
-  typeof updateProfileSchema
->;
+export type UpdateProfileFormValues = z.infer<typeof updateProfileSchema>;
 
-export type AuthProvider = z.infer<
-  typeof authProviderSchema
->;
+export type AuthProvider = z.infer<typeof authProviderSchema>;

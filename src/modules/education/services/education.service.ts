@@ -1,6 +1,6 @@
 // src/modules/education/services/education.service.ts
 
-import { API_ENDPOINTS } from "@/shared/constants/api-endpoints";
+import { API_ENDPOINTS } from "@/constants/api-endpoints.constants";
 
 import { httpClient } from "@/shared/services/http-client";
 
@@ -41,9 +41,7 @@ class EducationService {
   /*                             Get Education By Id                          */
   /* ------------------------------------------------------------------------ */
 
-  async getEducationById(
-    id: string,
-  ): Promise<IEducationResponse> {
+  async getEducationById(id: string): Promise<IEducationResponse> {
     const response = await httpClient.get<IEducationResponse>(
       `${API_ENDPOINTS.EDUCATION}/${id}`,
     );
@@ -55,9 +53,7 @@ class EducationService {
   /*                           Get Education By Slug                          */
   /* ------------------------------------------------------------------------ */
 
-  async getEducationBySlug(
-    slug: string,
-  ): Promise<IEducationResponse> {
+  async getEducationBySlug(slug: string): Promise<IEducationResponse> {
     const response = await httpClient.get<IEducationResponse>(
       `${API_ENDPOINTS.EDUCATION}/slug/${slug}`,
     );
@@ -93,9 +89,7 @@ class EducationService {
   /*                           Get Educations By Level                        */
   /* ------------------------------------------------------------------------ */
 
-  async getEducationsByLevel(
-    level: string,
-  ): Promise<IEducationsResponse> {
+  async getEducationsByLevel(level: string): Promise<IEducationsResponse> {
     const response = await httpClient.get<IEducationsResponse>(
       `${API_ENDPOINTS.EDUCATION}/level/${level}`,
     );
@@ -107,9 +101,7 @@ class EducationService {
   /*                           Get Educations By Skill                        */
   /* ------------------------------------------------------------------------ */
 
-  async getEducationsBySkill(
-    skill: string,
-  ): Promise<IEducationsResponse> {
+  async getEducationsBySkill(skill: string): Promise<IEducationsResponse> {
     const response = await httpClient.get<IEducationsResponse>(
       `${API_ENDPOINTS.EDUCATION}/skill/${skill}`,
     );
@@ -152,9 +144,7 @@ class EducationService {
   /*                            Delete Education                              */
   /* ------------------------------------------------------------------------ */
 
-  async deleteEducation(
-    id: string,
-  ): Promise<IDeleteEducationResponse> {
+  async deleteEducation(id: string): Promise<IDeleteEducationResponse> {
     const response = await httpClient.delete<IDeleteEducationResponse>(
       `${API_ENDPOINTS.EDUCATION}/${id}`,
     );

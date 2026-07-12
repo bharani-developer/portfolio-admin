@@ -24,7 +24,7 @@ import { ServerTablePagination } from "@/components/table/server-table-paginatio
 
 import type { IApiMeta } from "@/shared/types";
 
-import { useConfirmation } from "@/shared/hooks/use-confirmation";
+import { useConfirmation } from "@/providers/confirmation/use-confirmation";
 
 import { formatDate } from "@/shared/lib/format-date";
 

@@ -1,10 +1,6 @@
 // src/modules/services/types/services.type.ts
 
-import type {
-  IApiMeta,
-  IApiResponse,
-  IBaseEntity,
-} from "@/shared/types";
+import type { IApiMeta, IApiResponse, IBaseEntity } from "@/shared/types";
 
 import type { ServiceFormValues } from "../schemas/services.schema";
 
@@ -50,8 +46,7 @@ export interface ICreateServicePayload {
 /*                              Update Payload                                */
 /* -------------------------------------------------------------------------- */
 
-export type IUpdateServicePayload =
-  Partial<ICreateServicePayload>;
+export type IUpdateServicePayload = Partial<ICreateServicePayload>;
 
 /* -------------------------------------------------------------------------- */
 /*                              Query Parameters                              */
@@ -83,20 +78,15 @@ export interface IServiceParams {
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export type IServiceResponse =
-  IApiResponse<IService>;
+export type IServiceResponse = IApiResponse<IService>;
 
-export type ICreateServiceResponse =
-  IApiResponse<IService>;
+export type ICreateServiceResponse = IApiResponse<IService>;
 
-export type IUpdateServiceResponse =
-  IApiResponse<IService>;
+export type IUpdateServiceResponse = IApiResponse<IService>;
 
-export type IDeleteServiceResponse =
-  IApiResponse<IService>;
+export type IDeleteServiceResponse = IApiResponse<IService>;
 
-export interface IServicesResponse
-  extends IApiResponse<IService[]> {
+export interface IServicesResponse extends IApiResponse<IService[]> {
   meta: IApiMeta;
 }
 

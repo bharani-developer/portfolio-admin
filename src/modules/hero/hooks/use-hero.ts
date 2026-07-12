@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { heroService } from "../services";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import type { IHero, IHeroResponse } from "../types";
 

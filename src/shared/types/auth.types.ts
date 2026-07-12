@@ -1,6 +1,6 @@
 // src\shared\types\auth.type.ts
 
-import type { IUser } from "./user.type";
+import type { IUser } from "./user.types";
 
 export interface ILoginPayload {
   email: string;

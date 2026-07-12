@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 import { queryClient } from "@/app/query-client";
 
-import { QUERY_KEYS } from "@/shared/constants/query-keys";
+import { QUERY_KEYS } from "@/constants/query-keys.constants";
 
 import { getErrorMessage } from "@/shared/lib/handle-error";
 
